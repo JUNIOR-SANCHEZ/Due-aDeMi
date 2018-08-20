@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{$titulo|default:""}</title>
-    <link rel="stylesheet" href="¨{$_layoutParams.ruta_css}materialize.min.css">
+    <link rel="stylesheet" href="{$_layoutParams.ruta_css}materialize.min.css">
     <!-- RUTAS AUTOMATICAS CSS -->
     {if isset($_layoutParams.css) && count($_layoutParams.css)} {foreach item=css from=$_layoutParams.css}
     <link href="{$css}" rel="stylesheet"> {/foreach} {/if}
@@ -15,13 +15,15 @@
 
 <body>
     <!-- MENU DE NAVEGACION -->
-    {if isset($widgets.top)} {foreach item=tp from=$widgets.top} {$tp} {/foreach} {/if}
+    <!-- {if isset($widgets.top)} {foreach item=tp from=$widgets.top} {$tp} {/foreach} {/if} -->
     <!-- MENSAJES DE ERROR -->
     {if isset($_error)}
     <div class="alert alert-success text-center"> {$_error} </div> {/if} {if isset($_mensaje)}
     <div class="alert alert-success text-center"> {$_mensaje} </div> {/if}
     <!-- CUERPO DE LA APLICACION -->
     {include file=$_contenido}
+    <!-- FOOTER -->
+    <!-- {if isset($widgets.footer)} {foreach item=tp from=$widgets.footer } {$tp} {/foreach} {/if} -->
     <!-- VARIABLES GLOBALES -->
     <script type="text/javascript">
         var _root_ = '{$_layoutParams.root}';
@@ -35,7 +37,7 @@
     {if isset($_layoutParams.js) && count($_layoutParams.js)} {foreach item=js from=$_layoutParams.js}
     <script src="{$js}" type="text/javascript"></script> {/foreach} {/if}
     <!-- SECCION DEL FOOTER-->
-    {if isset($widgets.footer)} {foreach item=tp from=$widgets.footer } {$tp} {/foreach} {/if}
+
 </body>
 
 </html>

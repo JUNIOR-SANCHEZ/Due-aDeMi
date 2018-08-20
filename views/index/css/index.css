@@ -1,0 +1,29 @@
+  .navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+  }
+ 
+  .img-circle-d{
+    width: 150px !important;
+    height: 150px !important;
+  }
+  
+  .espacio{
+    height: 100px;
+    margin:  20px 0px;
+  }
+  
+  .top-50{
+      margin-top: 50px;
+  }
+  .bottom-50{
+    margin-bottom: 50px;
+  }
+  .linea-vertical{
+    border-right: 1px solid rgba(0,0,0,.1);
+    border-left: 1px solid rgba(0,0,0,.1);
+  }
+  .linea-horizontal{
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    height: 4px;
+  }

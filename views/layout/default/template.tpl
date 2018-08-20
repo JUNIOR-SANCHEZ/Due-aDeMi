@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{$titulo|default:""}</title>
+    <link rel="stylesheet" href="¨{$_layoutParams.ruta_css}materialize.min.css">
     <!-- RUTAS AUTOMATICAS CSS -->
     {if isset($_layoutParams.css) && count($_layoutParams.css)} {foreach item=css from=$_layoutParams.css}
     <link href="{$css}" rel="stylesheet"> {/foreach} {/if}
 </head>
+
 <body>
     <!-- MENU DE NAVEGACION -->
     {if isset($widgets.top)} {foreach item=tp from=$widgets.top} {$tp} {/foreach} {/if}
@@ -24,7 +26,8 @@
     <script type="text/javascript">
         var _root_ = '{$_layoutParams.root}';
     </script>
-    
+
+    <script src="{$_layoutParams.ruta_js}materialize.min.js"></script>
     <!-- RUTAS AUTOMATICAS DE LIBRERIAS JS QUE NECESITEMOS EN LA APLICACION -->
     {if isset($_layoutParams.jsPlugin) && count($_layoutParams.jsPlugin)} {foreach item=js from=$_layoutParams.jsPlugin}
     <script src="{$js}" type="text/javascript"></script> {/foreach} {/if}
@@ -34,4 +37,5 @@
     <!-- SECCION DEL FOOTER-->
     {if isset($widgets.footer)} {foreach item=tp from=$widgets.footer } {$tp} {/foreach} {/if}
 </body>
+
 </html>

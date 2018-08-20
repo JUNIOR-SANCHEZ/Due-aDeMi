@@ -1,7 +1,6 @@
 <?php
 
 define('BASE_URL', 'http://localhost/Comil-3/');
-// define('BASE_URL', 'http://10.23.29.99/Comil-3/');
 define('DEFAULT_CONTROLLER', 'index');
 define('DEFAULT_LAYOUT', 'default');
 define('SESSION_TIME', 0);

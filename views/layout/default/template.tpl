@@ -26,7 +26,7 @@
     <script type="text/javascript">
         var _root_ = '{$_layoutParams.root}';
     </script>
-
+    <script src="{$_layoutParams.ruta_js}jquery.js"></script>
     <script src="{$_layoutParams.ruta_js}materialize.min.js"></script>
     <!-- RUTAS AUTOMATICAS DE LIBRERIAS JS QUE NECESITEMOS EN LA APLICACION -->
     {if isset($_layoutParams.jsPlugin) && count($_layoutParams.jsPlugin)} {foreach item=js from=$_layoutParams.jsPlugin}

@@ -33,6 +33,7 @@ class View extends Smarty {
             $this->_rutas["view"] = ROOT . "modules" . DS . $modulo . DS . "views" . DS . $controlador . DS;
             $this->_rutas["js"] = BASE_URL . "modules/" . $modulo . "/views/" . $controlador . '/js/';
             $this->_rutas["css"] = BASE_URL . "modules/" . $modulo . "/views/" . $controlador . '/css/';
+            
         } else {
             $this->_rutas["view"] = ROOT . "views" . DS . $controlador . DS;
             $this->_rutas["js"] = BASE_URL . "/views/" . $controlador . '/js/';

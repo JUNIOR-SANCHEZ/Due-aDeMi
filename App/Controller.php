@@ -71,6 +71,20 @@ abstract class Controller {
         }
     }
 
+    protected function getArray($clave){
+        if(isset($_POST[$clave]) && !empty($_POST[$clave]) && is_array($_POST[$clave])){
+            return $_POST[$clave];
+        }
+        return false;
+    }
+    protected function checkNum($array){
+        if (is_array($array)) {
+            return count($array);
+        } else {
+            return 0;
+        }
+        
+    }
     protected function filterInt($int) {
         $int = (int) $int;
         if (is_int($int)) {
@@ -80,11 +94,13 @@ abstract class Controller {
         }
     }
 
-    public function getFile($clave) {
+    protected function getFile($clave) {
         if (isset($_FILES[$clave])) {
             return $_FILES[$clave];
         }
     }
+
+    
 
     protected function redireccionar($ruta = false) {
         if ($ruta) {

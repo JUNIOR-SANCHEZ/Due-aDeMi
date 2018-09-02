@@ -1,7 +1,7 @@
 <?php
 
-define('BASE_URL', 'http://localhost/DuenaDeMi/');
-// define('BASE_URL', 'http://10.23.29.99/DuenaDeMi/');
+// define('BASE_URL', 'http://localhost/DuenaDeMi/');
+define('BASE_URL', 'http://192.168.1.14/DuenaDeMi/');
 define('DEFAULT_CONTROLLER', 'index');
 define('DEFAULT_LAYOUT', 'default');
 define('SESSION_TIME', 0);
@@ -16,5 +16,5 @@ define('SECRET_IV', '507');
 define('DB_HOST','localhost');
 define('DB_USER','root');
 define('DB_PASS','');
-define('DB_NAME','comil3');
+define('DB_NAME','duenademi');
 define('DB_CHAR','utf8');

@@ -8,10 +8,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{$titulo|default:""}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link href="{$_layoutParams.ruta_css}materialize.min.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="{$_layoutParams.ruta_css}bootstrap.min.css" rel="stylesheet">
 
-    <link href="{$_layoutParams.ruta_css}materialize.min.css" rel="stylesheet">
+    
     <!-- Material Design Bootstrap -->
     <link href="{$_layoutParams.ruta_css}mdb.min.css" rel="stylesheet">
 
@@ -28,27 +30,8 @@
     <!-- {if isset($widgets.top)} {foreach item=tp from=$widgets.top} {$tp} {/foreach} {/if} -->
     <!-- MENSAJES DE ERROR -->
     {if isset($error)}
-    <div class="alert alert-success text-center">
-        <div class="row">
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <span class="card-title">Error</span>
-                        <p>{$error}</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">This is a link</a>
-                        <a href="#">This is a link</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    {/if} {if isset($mensaje)}
-    <div class="alert alert-success text-center">
-        {$mensaje}
-    </div>
+    {/if}
+    {if isset($mensaje)}
     {/if}
     <!-- CUERPO DE LA APLICACION -->
     {include file=$_contenido}
@@ -68,6 +51,7 @@
     <script type="text/javascript" src="{$_layoutParams.ruta_js}mdb.min.js"></script>
 
     <script type="text/javascript" src="{$_layoutParams.ruta_js}materialize.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
     <!-- JS propios -->
     <script type="text/javascript" src="{$_layoutParams.ruta_js}inicializar.js"></script>
     <!-- RUTAS AUTOMATICAS DE LIBRERIAS JS QUE NECESITEMOS EN LA APLICACION -->

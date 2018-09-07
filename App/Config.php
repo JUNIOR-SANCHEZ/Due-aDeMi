@@ -1,7 +1,6 @@
 <?php
 
-// define('BASE_URL', 'http://localhost/DuenaDeMi/');
-define('BASE_URL', 'http://192.168.1.14/DuenaDeMi/');
+define('BASE_URL', 'http://localhost/DuenaDeMi/');
 define('DEFAULT_CONTROLLER', 'index');
 define('DEFAULT_LAYOUT', 'default');
 define('SESSION_TIME', 0);

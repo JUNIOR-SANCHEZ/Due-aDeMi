@@ -27,21 +27,10 @@ class menuWidget extends Widget{
            "hide"=>array("registro","login")
         );
 
-        $menus["sidebar"] = array(
-            "position"=>"sidebar",
-            "show"=>array("acl","usuarios"),
-            "hide"=>array("index"),
-        );
-
-        $menus["top_default"] = array(
-            "position"=>"top_default",
+        $menus["sidenav"] = array(
+            "position"=>"sidenav",
             "show"=>"all",
-           "hide"=>array("usuarios","login")
-        );
-        $menus["departamentos"] = array(
-            "position"=>"departamentos",
-            "show"=>array("dptoTalentoHumano","dptoCentroDeComputo"),
-           "hide"=>array()
+            "hide"=>array(""),
         );
         return $menus[$menu];
     }

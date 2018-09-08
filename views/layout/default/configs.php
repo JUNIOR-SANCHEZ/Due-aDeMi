@@ -5,7 +5,7 @@ function get_layout_positions(){
         "header"=>array(),
         "top"=>array(),
         "top_default"=> array(),
-        "sidebar"=>array(),
+        "sidenav"=>array(),
         "footer"=>array(),
         
     );

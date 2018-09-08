@@ -11,7 +11,21 @@ class menuModelWidget extends Model{
     }
     
     public function getmenu($menu){
-       $menus["sidebar"]= array();
+       $menus["sidenav"]= array(
+           array(
+            "id"=>"tutoras",
+            "title"=>"Tutoras",
+            "icon"=>"fa-dashboard",
+            "sub-menu"=>array(
+                array(
+                "id"=>"pfc",
+                "title"=>"PFC",
+                "link"=>BASE_URL
+                )
+            )
+            
+           )
+       );
        $menus["top"]= array();
         return $menus[$menu];
     }

@@ -61,10 +61,32 @@ class View extends Smarty {
             $css = $this->_css;
         }
         $params = array(
-            'ruta_css' => BASE_URL . 'views/layout/' . $this->_template . '/css/',
-            'ruta_img' => BASE_URL . 'views/layout/' . $this->_template . '/img/',
-            'ruta_js' => BASE_URL . 'views/layout/' . $this->_template . '/js/',
-            'ruta_icon' => BASE_URL . 'views/layout/' . $this->_template . '/icon/',
+            'bootstrap_css' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/bootstrap/dist/css/bootstrap.min.css',
+            'fontAwesome_css' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/font-awesome/css/font-awesome.min.css',
+            'ionicons_css' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/Ionicons/css/ionicons.min.css',
+            'jquery_jvectormap_css' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/jvectormap/jquery-jvectormap.css',
+            'AdminLTE_css' => BASE_URL . 'views/layout/' . $this->_template . '/dist/css/AdminLTE.min.css',
+            'skins_css' => BASE_URL . 'views/layout/' . $this->_template . '/dist/css/skins/_all-skins.min.css',
+            // archivos .js
+            'jquery_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/jquery/dist/jquery.min.js',
+            'jquery_ui_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/jquery-ui/jquery-ui.min.js',
+            'bootstrap_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/bootstrap/dist/js/bootstrap.min.js',
+            'raphaelp_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/raphael/raphael.min.js',
+            'morris_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/morris.js/morris.min.js',
+            'jquery_sparkline_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js',
+            'jvectormap_js' => BASE_URL . 'views/layout/' . $this->_template . '/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js',
+            'jvectormap_world_js' => BASE_URL . 'views/layout/' . $this->_template . '/plugins/jvectormap/jquery-jvectormap-world-mill-en.js',
+            'jquery_knob_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/jquery-knob/dist/jquery.knob.min.js',
+            'moment_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/moment/min/moment.min.js',
+            'bootstrap_daterangepicker_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/bootstrap-daterangepicker/daterangepicker.js',
+            'bootstrap_datepicker_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
+            'bootstrap_wysihtml5_js' => BASE_URL . 'views/layout/' . $this->_template . '/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
+            'jquery_slimscroll_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/jquery-slimscroll/jquery.slimscroll.min.js',
+            'fastclick_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/fastclick/lib/fastclick.js',
+            'AdminLTE_js' => BASE_URL . 'views/layout/' . $this->_template . '/dist/js/adminlte.min.js',
+            'dashboard_js' => BASE_URL . 'views/layout/' . $this->_template . '/dist/js/pages/dashboard.js',
+            'demo_js' => BASE_URL . 'views/layout/' . $this->_template . '/dist/js/demo.js',
+            
             'js' => $js,
             'css'=> $css,
             'jsPlugin' => $this->_jsPlugin,
@@ -183,6 +205,10 @@ class View extends Smarty {
             "menu-top" => array(
                 "config" => $this->widget("menu", "getConfigs",array("top")),
                 "content" => array("menu", "getMenu",array("top","top"))
+            ),
+            "menu-sidenav" => array(
+                "config" => $this->widget("menu", "getConfigs",array("sidenav")),
+                "content" => array("menu", "getMenu",array("sidenav","sidenav"))
             ),
             "footer" => array(
                 "config" => $this->widget("footer", "getConfigs",array("footer")),

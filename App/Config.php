@@ -15,5 +15,6 @@ define('SECRET_IV', '507');
 define('DB_HOST','localhost');
 define('DB_USER','root');
 define('DB_PASS','');
-define('DB_NAME','comil3');
+define('DB_NAME','duenademi2');
+
 define('DB_CHAR','utf8');

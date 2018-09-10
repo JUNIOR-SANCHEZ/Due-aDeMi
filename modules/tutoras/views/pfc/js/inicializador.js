@@ -8,16 +8,16 @@ $(document).ready(function () {
             ` 
             <tr>
             <td>
-                <input type="text"  name="" class="form-control" value="">
+                <textarea class="form-control" rows="3"></textarea>
             </td>
             <td>
-                <input type="text"  name="" class="form-control" value="">
+                <textarea class="form-control" rows="3"></textarea>
             </td>
             <td>
-                <input type="text" name="" class="form-control" value="">
+                <textarea class="form-control" rows="3"></textarea>
             </td>
             <td>
-                <input type="text" name="" class="form-control" value="">
+                <textarea class="form-control" rows="3"></textarea>
             </td>
             </tr>
             `
@@ -26,41 +26,45 @@ $(document).ready(function () {
     /**
      * Agregar fila a Intervencion
      */
+    var cont = 2;
     $('#btn_agregar_fila_I').on('click', function (e) {
         e.preventDefault();
-        var cont = 1;
+        
         $('#contenedor_I').append(
             ` 
             <tr>
             <td>
-                <input type="text"  name="metas[${cont}]" class="form-control" value="">
+                <textarea name="metas-${cont}" class="form-control" rows="3"></textarea>
             </td>
             <td>
-                <input type="text"  name="indicadores[${cont}]" class="form-control" value="">
+                <textarea name="indicadores-${cont}" class="form-control" rows="3"></textarea>
             </td>
             <td>
-                <input type="text" name="actividades[${cont}]" class="form-control" value="">
+                <textarea name="actividades-${cont}" class="form-control" rows="3"></textarea>
             </td>
             <td>
-                <input type="text" name="tiempos[${cont}]" class="form-control" value="">
+                <textarea name="tiempos-${cont}" class="form-control" rows="3"></textarea>
             </td>
             <td>
-                <input type="text" name="recursos[${cont}]" class="form-control" value="">
+                <textarea name="recursos-${cont}" class="form-control" rows="3"></textarea>
             </td>
             <td>
-                <input type="text" name="responsables[${cont}]" class="form-control" value="">
+                <textarea  name="responsables-${cont}" class="form-control" rows="3"></textarea>
             </td>
             </tr>
             `
         );
-        cont ++;
+        $('#num-intervencion').attr('value',cont);
+        var num = $('#num-intervencion').attr('value');
+        console.log(num);
+        cont++;
     });
 
     function get_selected() {
 
         var data = $('#canton').val();
         $.ajax({
-            url: _root_ + 'tutoras/plandefortalecimientocomunitario/parroquias',
+            url: _root_ + 'tutoras/PFC/parroquias',
             dataType: 'json',
             type: "POST",
             data: {
@@ -76,7 +80,6 @@ $(document).ready(function () {
                 })
                 $('#parroquia').empty();
                 $('#parroquia').append(option);
-                $('#parroquia').formSelect();
             },
             error: function (xhr, status, err) {
                 // console.log(xhr);
@@ -108,7 +111,7 @@ $(document).ready(function () {
     //     });
     // });
 
-    $(document).on('change','#canton',function(){
-        get_selected();  
+    $(document).on('change', '#canton', function () {
+        get_selected();
     })
 });

@@ -4,11 +4,11 @@
             <h3 class="box-title">DATOS GENERALES DE LA COMUNIDAD A INTERVENIR</h3>
         </div>
         <div class="box box-body">
-            <form action="{$_layoutParams.root}tutoras/plandefortalecimientocomunitario/" method="POST">
+            <form action="{$_layoutParams.root}tutoras/PFC/" method="POST">
                 <input type="hidden" name="guardar" value="1">
                 <div class="row">
                     <!-- Nombres y apellido -->
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon"> <i class="fa fa-user prefix" aria-hidden="true"></i></span>
                             <input type="text" id="pfc_nombres" name="pfc_nombres" class="form-control" value="{$post.pfc_nombres|default:''}"
@@ -19,8 +19,8 @@
                             </small>
                             {/if}
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6">
+                    </div> -->
+                    <!-- <div class="col-12 col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user prefix" aria-hidden="true"></i></span>
                             <input type="text" id="pfc_apellidos" name="pfc_apellidos" class="form-control" value="{$post.pfc_apellidos|default:''}"
@@ -31,17 +31,15 @@
                             </small>
                             {/if}
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Fin nombres y apellido -->
-                    <br><br>
                     <!-- Cantones -->
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Cantones</label>
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-map prefix" aria-hidden="true"></i></span>
-
-                                <select name="pfc_canton" id="canton" required class="form-control">
+                                <span class="input-group-addon"><i class="fa fa-map"></i></span>
+                                <select name="pfc_canton" id="canton" class="form-control" required >
                                     <option value="0" disabled {if !isset($post.pfc_canton) || $post.pfc_canton==0 }
                                         selected {/if}>Seleccione una opcion de la lista</option> {foreach item=list
                                         from=$cantones} <option value="{$list.id_cantones}" {if isset($post.pfc_canton)
@@ -56,15 +54,15 @@
                                 {/if}
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- fin cantones -->
                     <!-- Parroquias -->
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Parroquias</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-map prefix"></i></span>
-                                <select name="pfc_parroquia" id="parroquia" class="form-control">
+                                <select name="pfc_parroquia" id="parroquia" class="form-control" required>
                                     {if isset($post.pfc_parroquia)}
                                     <option value="{$post.pfc_parroquia}">{$parroquias.parroquia|upper}</option>
                                     {else}
@@ -78,19 +76,17 @@
                                 {/if}
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Fin parroquias -->
-                    <br><br>
                     <!-- N# de NNA -->
-                    <div class="col-12 col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="form-group">
                             <label>Nº de NNA en el servicio que proviene de la comunidad a intervenir: </label>
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="fa fa-cogs prefix" aria-hidden="true"></i>
                                 </span>
-                                <input type="text" id="pfc_num_nna" name="pfc_num_nna" class="form-control" value="{$post.pfc_num_nna|default:''}">
-                                <!-- <label for="pfc_num_nna">/label> -->
+                                <input type="text" id="pfc_num_nna" name="pfc_num_nna" class="form-control" value="{$post.pfc_num_nna|default:''}" required>
                                 {if isset($error_pfc_num_nna)}
                                 <small id="" class="form-text text-muted text-danger">
                                     {$error_pfc_num_nna}
@@ -98,18 +94,17 @@
                                 {/if}
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Fin N# de NNA -->
                     <!-- N# Familia -->
-                    <div class="col-12 col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="form-group">
                             <label>Nº de familia en el servicio que proviene de la comunidad aintervenir</label>
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="fa fa-cogs prefix" aria-hidden="true"></i>
                                 </span>
-                                <input type="text" id="pfc_num_famila" name="pfc_num_famila" class="form-control" value="{$post.pfc_num_famila|default:''}">
-                                <!-- <label for="pfc_num_famila"></label> -->
+                                <input type="text" id="pfc_num_famila" name="pfc_num_famila" class="form-control" value="{$post.pfc_num_famila|default:''}" required>
                                 {if isset($error_pfc_num_famila)}
                                 <small id="" class="form-text text-muted text-danger">
                                     {$error_pfc_num_famila}
@@ -117,10 +112,10 @@
                                 {/if}
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Fin N# Familia -->
                     <!-- Fecha elaboracion -->
-                    <div class="col-12 col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Fecha de elaboración del plan</label>
                             <div class="input-group date">
@@ -128,7 +123,7 @@
                                     <i class="fa fa-calendar"></i>
                                 </div>
                                 <input type="text" id="pfc_fecha_plan_elaboracion" name="pfc_fecha_plan_elaboracion"
-                                    class="form-control pull-right" value="{$post.pfc_fecha_plan_elaboracion|default:''}">
+                                    class="form-control pull-right" value="{$post.pfc_fecha_plan_elaboracion|default:''}" required>
                                 {if isset($error_pfc_fecha_plan_elaboracion)}
                                 <small id="" class="form-text text-muted text-danger">
                                     {$error_pfc_fecha_plan_elaboracion}
@@ -136,10 +131,10 @@
                                 {/if}
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Fin fecha elaboracion -->
                     <!-- Fecha proximo plan -->
-                    <div class="col-12 col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Fecha de la proxima elaboración del plan</label>
                             <div class="input-group date">
@@ -147,7 +142,7 @@
                                     <i class="fa fa-calendar"></i>
                                 </div>
                                 <input type="text" id="pfc_fecha_plan_evaluacion" name="pfc_fecha_plan_evaluacion"
-                                    class="form-control" value="{$post.pfc_fecha_plan_evaluacion|default:''}">
+                                    class="form-control" value="{$post.pfc_fecha_plan_evaluacion|default:''}" required>
                                 {if isset($error_pfc_fecha_plan_evaluacion)}
                                 <small id="" class="form-text text-muted text-danger">
                                     {$error_pfc_fecha_plan_evaluacion}
@@ -155,16 +150,16 @@
                                 {/if}
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Fecha proximo plan -->
                 </div>
                 <!-- DPC -->
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <i class="fa fa-cogs prefix" aria-hidden="true"></i>
                             <label for="">Diagnóstico participativo de la comunidad</label>
-                            <textarea id="pfc_diagnostico" name="pfc_diagnostico" class="form-control " rows="5">{$post.pfc_diagnostico|default:''}</textarea>
+                            <textarea id="pfc_diagnostico" name="pfc_diagnostico" class="form-control " rows="5" required>{$post.pfc_diagnostico|default:''}</textarea>
                             {if isset($error_pfc_diagnostico)}
                             <small id="" class="form-text text-muted text-danger">
                                 {$error_pfc_diagnostico}
@@ -172,15 +167,15 @@
                             {/if}
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- Fin DPC -->
                 <!-- Objetivo General -->
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <i class="fa fa-cogs"></i>
                             <label for="pfc_obj_general">Objetivo general del plan</label>
-                            <textarea id="pfc_obj_general" name="pfc_obj_general" class="form-control" rows="5">{$post.pfc_obj_general|default:''}</textarea>
+                            <textarea id="pfc_obj_general" name="pfc_obj_general" class="form-control" rows="5" required>{$post.pfc_obj_general|default:''}</textarea>
 
                             {if isset($error_pfc_obj_general)}
                             <small id="" class="form-text text-muted text-danger">
@@ -189,15 +184,15 @@
                             {/if}
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- Fin Objetivo General -->
                 <!-- Objetivo Especificos -->
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <i class="fa fa-cogs"></i>
                             <label for="pfc_obj_especificos">Objetivo especificos del plan</label>
-                            <textarea id="pfc_obj_especificos" name="pfc_obj_especificos" class="form-control" rows="5">{$post.pfc_obj_especificos|default:''}</textarea>
+                            <textarea id="pfc_obj_especificos" name="pfc_obj_especificos" class="form-control" rows="5" required>{$post.pfc_obj_especificos|default:''}</textarea>
                             {if isset($error_pfc_obj_especificos)}
                             <small id="" class="form-text text-muted text-danger">
                                 {$error_pfc_obj_especificos}
@@ -205,7 +200,7 @@
                             {/if}
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- Fin Objetivo Especificos -->
                 <!-- Intervencione -->
                 <div class="row">
@@ -224,26 +219,26 @@
                                 <th>Recursos</th>
                                 <th>Responsables</th>
                             </thead>
+                            <input type="hidden" id="num-intervencion" name="num-intervenciones" value="1">
                             <tbody id="contenedor_I">
                                 <tr>
                                     <td>
-                                        <input type="text" id="pfc_apellidos" name="metas[0]" class="form-control p-0">
-
+                                        <textarea name="metas-1" id="" class="form-control"  rows="3" required></textarea>
                                     </td>
                                     <td>
-                                        <input type="text" id="pfc_apellidos" name="indicadores[0]" class="form-control">
+                                        <textarea name="indicadores-1" id="" class="form-control" rows="3" required></textarea>
                                     </td>
                                     <td>
-                                        <input type="text" id="pfc_apellidos" name="actividades[0]" class="form-control">
+                                        <textarea name="actividades-1" id="" class="form-control" rows="3" required></textarea>
                                     </td>
                                     <td>
-                                        <input type="text" id="pfc_apellidos" name="tiempos[0]" class="form-control">
+                                        <textarea name="tiempos-1" id="" class="form-control" rows="3" required></textarea>
                                     </td>
                                     <td>
-                                        <input type="text" id="pfc_apellidos" name="recursos[0]" class="form-control">
+                                        <textarea name="recursos-1" id="" class="form-control" rows="3" required></textarea>
                                     </td>
                                     <td>
-                                        <input type="text" id="pfc_apellidos" name="responsables[0]" class="form-control">
+                                        <textarea name="responsables-1" id="" class="form-control" rows="3" required></textarea>
                                     </td>
                                 </tr>
                             </tbody>
@@ -253,7 +248,7 @@
                 </div>
                 <!-- Fin Intervencione -->
                 <!-- Seguimiento y evaluación -->
-                <div class="row ">
+                <!-- <div class="row ">
                     <div class="col-md-12">
                         <h3 class="position-relative">Seguimiento y evaluacion</h3>
                         <button id="btn_agregar_fila_SE" class="btn btn-outline-info btn-sm position-absolute p-1"
@@ -271,22 +266,22 @@
                             <tbody id="contenedor_SE">
                                 <tr>
                                     <td>
-                                        <input type="text" name="" class="form-control" value="">
+                                        <textarea  class="form-control" rows="3" required></textarea>
                                     </td>
                                     <td>
-                                        <input type="text" name="" class="form-control" value="">
+                                        <textarea  class="form-control" rows="3" required></textarea>
                                     </td>
                                     <td>
-                                        <input type="text" name="" class="form-control" value="">
+                                        <textarea  class="form-control" rows="3" required></textarea>
                                     </td>
                                     <td>
-                                        <input type="text" name="" class="form-control" value="">
+                                        <textarea  class="form-control" rows="3" required></textarea>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div> -->
                 <!-- Fin Seguimiento y evaluación -->
                 <div class="row">
                     <div class="col-md-12">

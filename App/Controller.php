@@ -70,7 +70,7 @@ abstract class Controller {
             return 0;
         }
     }
-
+  
     protected function getArray($clave){
         if(isset($_POST[$clave]) && !empty($_POST[$clave]) && is_array($_POST[$clave])){
             return $_POST[$clave];

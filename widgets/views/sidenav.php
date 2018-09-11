@@ -44,6 +44,17 @@
                     <?php endforeach;?>
                 </ul>
             </li>
+            <?php else:?>
+            <li class=" treeview">
+                <a href="<?=$item['link']?>">
+                    <i class="fa <?= $item['icon'] ?>"></i> <span><?=$item['title']?></span>
+                </a>
+                <!-- <ul class="treeview-menu">
+                    <?php foreach ($item['sub-menu'] as $itemsub) : ?>
+                    <li class=""><a href="<?=$itemsub['link']?>"><i class="fa fa-circle-o"></i><?=$itemsub['title']?></a></li>
+                    <?php endforeach;?>
+                </ul> -->
+            </li>
             <?php endif; ?>
             <?php endforeach; ?>
         </ul>

@@ -23,8 +23,13 @@ class menuModelWidget extends Model{
                 "link"=>BASE_URL
                 )
             )
-            
-           )
+                ),
+                array(
+                    "id"=>"Niña",
+                    "title"=>"Niña",
+                    "icon"=>"",
+                    "link"=>BASE_URL."tutoras/ninas"
+                )
        );
        $menus["top"]= array();
         return $menus[$menu];

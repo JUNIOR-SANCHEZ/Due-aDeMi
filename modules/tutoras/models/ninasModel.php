@@ -6,24 +6,30 @@ class ninasModel extends Model
     {
         parent::__construct();
     }
-    public function nuevaNina($nombre, $apellido, $cedula, $telef, $foto, $ficha)
+    public function nuevaNina($nombre, $apellido, $cedula, $telef, $email, $ficha)
     {
         $stmt = $this->_db->prepare(
-            "call NINAS_PI(
+            "CALL NINAS_PI(
                 :nombre,
                 :apellido,
                 :cedula,
                 :telefono,
-                :foto
+                :email,
                 :ficha_ingreso
             );"
         );
         $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
         $stmt->bindParam(":apellido", $apellido, PDO::PARAM_STR);
         $stmt->bindParam(":cedula", $cedula, PDO::PARAM_STR);
-        $stmt->bindParam(":telefono", $telefono, PDO::PARAM_STR);
-        $stmt->bindParam(":foto", $telefono, PDO::PARAM_STR);
-        $stmt->bindParam(":ficha_ingreso", $ficha_ingreso, PDO::PARAM_STR);
-        return $stmt->execute();
+        $stmt->bindParam(":telefono", $telef, PDO::PARAM_STR);
+        $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+        $stmt->bindParam(":ficha_ingreso", $ficha, PDO::PARAM_STR);
+        $response = $stmt->execute();
+        return $response;
+    }
+
+    public function mostraNinas(){
+        $stmt = $this->_db->query("SELECT * FROM ninas");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

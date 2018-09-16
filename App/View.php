@@ -67,6 +67,7 @@ class View extends Smarty {
             'jquery_jvectormap_css' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/jvectormap/jquery-jvectormap.css',
             'AdminLTE_css' => BASE_URL . 'views/layout/' . $this->_template . '/dist/css/AdminLTE.min.css',
             'skins_css' => BASE_URL . 'views/layout/' . $this->_template . '/dist/css/skins/_all-skins.min.css',
+            'ruta_css' => BASE_URL . 'views/layout/' . $this->_template . '/css/',
             // archivos .js
             'jquery_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/jquery/dist/jquery.min.js',
             'jquery_ui_js' => BASE_URL . 'views/layout/' . $this->_template . '/bower_components/jquery-ui/jquery-ui.min.js',

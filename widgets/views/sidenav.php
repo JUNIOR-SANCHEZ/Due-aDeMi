@@ -45,7 +45,7 @@
                 </ul>
             </li>
             <?php else:?>
-            <li class=" treeview">
+            <li>
                 <a href="<?=$item['link']?>">
                     <i class="fa <?= $item['icon'] ?>"></i> <span><?=$item['title']?></span>
                 </a>

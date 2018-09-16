@@ -1,6 +1,6 @@
 <br><br><br><br><br><br>
 
-<center><h2>{$mensaje}</h2>
+<h2>{$mensaje}</h2>
 <p>&nbsp;</p>
 
 <a href="{$_layoutParams.root}">Ir al inicio</a> 
@@ -10,4 +10,4 @@
 {if !Session::get('autenticado')}
 <a href=" {$_layoutParams.root}login" >Iniciar session</a>
 {/if}
-</center>
+

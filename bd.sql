@@ -16,6 +16,28 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`duenademi2` /*!40100 DEFAULT CHARACTER 
 
 USE `duenademi2`;
 
+/*Table structure for table `documentos` */
+
+DROP TABLE IF EXISTS `documentos`;
+
+CREATE TABLE `documentos` (
+  `id_documentos` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_elaboracion` date NOT NULL,
+  `proxima_evaluacion` date NOT NULL,
+  `nina` int(11) NOT NULL,
+  `archivo` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `tipo_documento` int(11) NOT NULL,
+  PRIMARY KEY (`id_documentos`),
+  KEY `D_TD` (`tipo_documento`),
+  KEY `D_N` (`nina`),
+  CONSTRAINT `D_N` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`),
+  CONSTRAINT `D_TD` FOREIGN KEY (`tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`)
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `documentos` */
+
+insert  into `documentos`(`id_documentos`,`fecha_elaboracion`,`proxima_evaluacion`,`nina`,`archivo`,`tipo_documento`) values (57,'2018-09-16','2018-10-16',7,'5b9f0ed4c690c.pdf',1);
+
 /*Table structure for table `ninas` */
 
 DROP TABLE IF EXISTS `ninas`;
@@ -26,14 +48,14 @@ CREATE TABLE `ninas` (
   `apellidos` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `cedula` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
   `telefono` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
-  `fotos` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
+  `email` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
   `ficha_ingreso` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_nina`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `ninas` */
 
-insert  into `ninas`(`id_nina`,`nombres`,`apellidos`,`cedula`,`telefono`,`fotos`,`ficha_ingreso`) values (1,'Maria','2018-08-17','Ursesa','xxxxxxxx','','');
+insert  into `ninas`(`id_nina`,`nombres`,`apellidos`,`cedula`,`telefono`,`email`,`ficha_ingreso`) values (7,' PAULA SIFIA','CALDERON LOBO','0709826357','0968521787','paulob@gmail.com','FICHA DE INGRESO.pdf');
 
 /*Table structure for table `permisos` */
 
@@ -96,6 +118,20 @@ CREATE TABLE `roles` (
 
 insert  into `roles`(`id_role`,`role`) values (1,'Administrador'),(2,'TalentoHumano'),(3,'CentroDeComputo'),(4,'Usuario');
 
+/*Table structure for table `tipo_documento` */
+
+DROP TABLE IF EXISTS `tipo_documento`;
+
+CREATE TABLE `tipo_documento` (
+  `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT,
+  `documento` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_tipo_documento`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tipo_documento` */
+
+insert  into `tipo_documento`(`id_tipo_documento`,`documento`) values (1,'PFC'),(2,'PGF'),(3,'PIA');
+
 /*Table structure for table `usuarios` */
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -120,6 +156,32 @@ CREATE TABLE `usuarios` (
 
 insert  into `usuarios`(`id`,`nombres`,`apellidos`,`usuario`,`pass`,`email`,`phone`,`role`,`estado`,`direccion`,`codigo`) values (1,'','','SrtoLeon','5bae17944cfa8bd5587a430e4a48c9ec0ce68219','leon@leon.com',NULL,2,1,'2018-08-09',NULL),(2,'','','SartoSanchez','5bae17944cfa8bd5587a430e4a48c9ec0ce68219','sanchez@sanchez.com',NULL,3,1,'2018-08-09',NULL);
 
+/* Procedure structure for procedure `DOC_PS` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `DOC_PS` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `DOC_PS`(
+	buscar varchar(50),
+	tipo_doc int
+    )
+BEGIN
+    	SELECT
+                p.id_documentos AS id,
+                p.fecha_elaboracion AS elaboracion,
+                p.proxima_evaluacion AS evaluacion,
+                p.archivo,
+                CONCAT(n.apellidos,' ',n.nombres) AS nombres,
+                n.cedula
+            FROM documentos p,ninas n,tipo_documento t
+            WHERE n.id_nina=p.nina
+            AND p.tipo_documento = t.id_tipo_documento
+            and t.id_tipo_documento = tipo_doc
+            AND n.cedula like concat('',buscar,'%');
+    END */$$
+DELIMITER ;
+
 /* Procedure structure for procedure `NINAS_PI` */
 
 /*!50003 DROP PROCEDURE IF EXISTS  `NINAS_PI` */;
@@ -131,7 +193,7 @@ DELIMITER $$
 	apellidos_n varchar(50),
 	cedula_n varchar(10),
 	telefono_n varchar(10),
-	fotos_n VARCHAR(25),
+	email_n VARCHAR(25),
 	ficha_ingreso_n varchar(50)
     )
 BEGIN
@@ -141,7 +203,7 @@ BEGIN
 	apellidos_n,
 	cedula_n,
 	telefono_n,
-	fotos_n,
+	email_n,
 	ficha_ingreso_n
 	);
     END */$$

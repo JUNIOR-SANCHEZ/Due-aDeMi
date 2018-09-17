@@ -1,3 +1,9 @@
+{if isset($doc)}
+    <script>
+        var _doc_ = "{$doc}"
+    </script>
+{/if}
+
 <div class="content">
     <!-- row principal -->
     <div class="row">
@@ -6,11 +12,11 @@
             <!-- panel formulario -->
             <div class="panel">
                 <div class="panel-heading text-center">
-                    <h2>PLAN DE FORTALECIMIENTO COMUNITARIO</h2>
+                    <h2>{$dato_pag['form']}</h2>
                 </div>
                 <div class="panel-body">
                     <div id="mensaje"></div>
-                    <form action="{$_layoutParams.root}tutoras/pfc/nuevopfc" method="post" enctype="multipart/form-data"
+                    <form action="{$_layoutParams.root}tutoras/docs/nuevo/{$doc|default:''}" method="post" enctype="multipart/form-data"
                         id="form-pfc">
                         <input type="hidden" name="guardar" value="1">
                         <!-- row  primer fila -->
@@ -105,10 +111,10 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-sm-8 col-md-8">
-                            <h4 class="text-center"><strong>LISTA DE PLANES DE FORTALECIMIENTOS COMUNITARIO</strong></h4>
+                            <h4 class="text-center"><strong>{$dato_pag['list']}</strong></h4>
                         </div>
                         <div class="col-sm-4 col-md-4">
-                            <form action="{$_layoutParams.root}tutoras/viewPfc" method="post" id="form-buscar">
+                            <form action="{$_layoutParams.root}tutoras/pgf/viewDoc" method="post" id="form-buscar">
                                 <div class="input-group">
                                     <input type="text" name="buscar" class="form-control">
                                     <div class="input-group-btn ">
@@ -146,15 +152,15 @@
                                         <td>
                                             <div class="pull-right">
                                                 <button type="button" class="btn btn-warning btn-edit" data-toggle="modal"
-                                                    data-target="#modal-default" data-url="{$_layoutParams.root}tutoras/pfc/viewPcfId/{$index['id']}">
+                                                    data-target="#modal-default" data-url="{$_layoutParams.root}tutoras/docs/viewId/{$index['id']}">
                                                     <i class="fa fa-edit"></i>
                                                 </button>
-                                                <form action="{$_layoutParams.root}tutoras/pfc/descargaPFC/" method="post"
+                                                <form action="{$_layoutParams.root}tutoras/docs/descarga/{$doc}" method="post"
                                                     style="display: inline;" enctype="multipart/form-data">
                                                     <input type="hidden" name="img" value="{$index['archivo']}">
                                                     <button type="submit" class="btn btn-success btn-download"><i class="fa fa-download"></i></button>
                                                 </form>
-                                                <a href="{$_layoutParams.root}tutoras/pfc/eliminarPFC/{$index['id']}"
+                                                <a href="{$_layoutParams.root}tutoras/docs/eliminar/{$index['id']}"
                                                     class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </td>
@@ -208,7 +214,7 @@
                     <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">EDIATAR REGISTRO</h4>
             </div>
-            <form action="{$_layoutParams.root}tutoras/pfc/editaPFD" method="POST" enctype="multipart/form-data" id="form-pfc-update">
+            <form action="{$_layoutParams.root}tutoras/docs/editar" method="POST" enctype="multipart/form-data" id="form-pfc-update">
                 <input type="hidden" name="update" value="1">
                 <input type="hidden" name="id" id="form-update-hidden">
                 <div class="modal-body">

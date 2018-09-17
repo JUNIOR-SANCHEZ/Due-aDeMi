@@ -23,57 +23,70 @@
                         <input type="hidden" name="guardar" value="1">
                         <div class="row" style="margin-bottom: 1rem;">
                             <div class="col-md-4">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-user"></i>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input type="text" name="nombres" placeholder="Nombres" class="form-control"
+                                            required>
                                     </div>
-                                    <input type="text" name="nombres" placeholder="Nombres" class="form-control"
-                                        required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input type="text" name="apellidos" placeholder="Apellidos" class="form-control"
+                                            required>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-user"></i>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-address-card"></i>
+                                        </div>
+                                        <input type="text" name="cedula" placeholder="Cedula" class="form-control" required>
                                     </div>
-                                    <input type="text" name="apellidos" placeholder="Apellidos" class="form-control"
-                                        required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-address-card"></i>
-                                    </div>
-                                    <input type="text" name="cedula" placeholder="Cedula" class="form-control" required>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- </div> -->
                         <!-- row 1-->
                         <!-- row 2 -->
-                        <div class="row" style="margin-bottom: 1rem;">
+                        <!-- <div class="row"> -->
                             <div class="col-md-4">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-phone"></i>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <input type="text" name="phone" class="form-control" required>
                                     </div>
-                                    <input type="text" name="phone" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-at"></i>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-at"></i>
+                                        </div>
+                                        <input type="email" name="email" placeholder="Email" class="form-control" required>
                                     </div>
-                                    <input type="email" name="email" placeholder="Email" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-file"></i>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-file"></i>
+                                        </div>
+                                        <input type="file" name="archivo" class="form-control" required>
                                     </div>
-                                    <input type="file" name="archivo" class="form-control" required>
                                 </div>
                             </div>
                         </div>

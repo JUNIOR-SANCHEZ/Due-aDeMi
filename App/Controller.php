@@ -6,6 +6,7 @@ abstract class Controller {
     protected $_view;
     protected $_acl;
     protected $_request;
+    private $_tipo = 0;
 
     public function __construct() {
 
@@ -17,6 +18,12 @@ abstract class Controller {
     }
 
     abstract public function index();
+    protected function getTipo(){
+        return $this->_tipo;
+    }
+    protected function setTipo($value){
+        $this->_tipo = $value;
+    }
 
     protected function loadModel($modelo, $modulo = false) {
         $modelo = $modelo . "Model";

@@ -25,13 +25,19 @@ class menuModelWidget extends Model
                 "id" => "pfc",
                 "title" => "P F C",
                 "icon" => "",
-                "link" => BASE_URL . "tutoras/pfc"
+                "link" => BASE_URL . "tutoras/docs/tipoDoc/pfc"
             ),
             array(
                 "id" => "pgf",
                 "title" => "P G F ",
                 "icon" => "",
-                "link" => BASE_URL . "tutoras/pgf"
+                "link" => BASE_URL . "tutoras/docs/tipoDoc/pgf"
+            ),
+            array(
+                "id" => "pgf",
+                "title" => "P A I N A ",
+                "icon" => "",
+                "link" => BASE_URL . "tutoras/docs/tipoDoc/pia"
             ),
         );
         $menus["top"] = array();

@@ -20,15 +20,15 @@
                 <td>
                     <div class="pull-right">
                         <button type="button" class="btn btn-warning btn-edit" data-toggle="modal" data-target="#modal-default"
-                            data-url="{$_layoutParams.root}tutoras/pfc/viewPcfId/{$index['id']}">
+                            data-url="{$_layoutParams.root}tutoras/docs/viewId/{$index['id']}">
                             <i class="fa fa-edit"></i>
                         </button>
-                        <form action="{$_layoutParams.root}tutoras/pfc/descargaPFC/" method="post" style="display: inline;"
+                        <form action="{$_layoutParams.root}tutoras/docs/descarga/{$doc}" method="post" style="display: inline;"
                             enctype="multipart/form-data">
                             <input type="hidden" name="img" value="{$index['archivo']}">
                             <button type="submit" class="btn btn-success btn-download"><i class="fa fa-download"></i></button>
                         </form>
-                        <a href="{$_layoutParams.root}tutoras/pfc/eliminarPFC/{$index['id']}" class="btn btn-danger btn-delete"><i
+                        <a href="{$_layoutParams.root}tutoras/docs/eliminar/{$index['id']}" class="btn btn-danger btn-delete"><i
                                 class="fa fa-trash"></i></a>
                     </div>
                 </td>

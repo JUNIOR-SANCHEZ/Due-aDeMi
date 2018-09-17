@@ -1,25 +1,48 @@
 <?php
-class pfcController extends tutorasController
+class docsController extends tutorasController
 {
-    private $_pfc;
+    private $_docs;
+    private $_tipo;
     public function __construct()
     {
         parent::__construct();
-        $this->_pfc = $this->loadModel('pgf');
+        $this->_docs = $this->loadModel('docs');
+    }
+
+    public function index()
+    {
     }
     /**
      * MUESTRO EN LA APLICACION LA VISTA NUEVO, DEL PFC
      */
-    public function index()
+    public function tipoDoc(string $docs)
     {
+        $datoVista = array();
+        switch ($docs) {
+            case 'pfc':
+                $datoVista = array("form" => "PLAN DE FORTALECIMIENTO COMUNITARIO", "list" => "LISTA DEPLANES DE FORTALECIMIENTO COMUNITARIOS");
+                break;
+            case 'pgf':
+                $datoVista = array("form" => "PROYECTO GLOBAL DE FAMILIA", "list" => "LISTA DE PROYECTOS GLOBALES DE FAMILIA");
+                break;
+            case 'pia':
+                $datoVista = array("form" => "PROYECTO INTEGRAL DE ATENCION A LA NIÑA Y ADOLECENTE", "list" => "LISTA INTEGRAL DE ATENCION A LA NIÑA Y ADOLECENTE");
+                break;
+        }
+
+        $this->_docs->tipoDoc($docs);
+        // echo $this->_docs->getDocs();
         # INCLUIMOS LOS ARCHOS JS DE LA VISTA
         $this->_view->setJs(array('ajax'));
         # INSTANCIAMOS LA CLASE PAGINADOR DE LA LIBRERIA CLASS.PAGINADOR.PHP
         $paginador = new Paginador();
         # ENVIAMOS LOS REGISTROS DE LA TABLA NINAS A LA VISTA
-        $this->_view->assign('ninas', $this->_pfc->mostrarNinas());
+        $this->_view->assign('ninas', $this->_docs->mostrarNinas());
+        #
+        $this->_view->assign("dato_pag", $datoVista);
+        $this->_view->assign("doc", $docs);
         # ENVIAMOS LLOS REGISTROS DE LA TABLA PFC A LA VISTA UTILIANDO LA PAGINACION
-        $this->_view->assign('pfc', $paginador->paginar($this->_pfc->mostrarDoc(), false, 5));
+        $this->_view->assign('pfc', $paginador->paginar($this->_docs->mostrarDoc(), false, 5));
         # ENVIAMOS LA PAGINACION
         $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
         # LLAMAMOS LA VISTA A PRESENTAR EN LA APLICACION
@@ -30,24 +53,26 @@ class pfcController extends tutorasController
      * SE UTILIZA PARA MOSTRAR LOS DATOS REGISTRADOS DEL PFC DE ACUERDO AL NUMERO DE PAGINA
      * ENVIADA POR POST (AJAX)
      */
-    public function viewDocAjax()
+    public function viewDocAjax($docs)
     {
         /**
          * VERIFICAMOS SI SE A ENVIADO UNA PETICION VIA AJAX
          * EN CASO NO SE HAIGA ENVIADO MOSTRARA UN MENSAJE DE ERROR
          */
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            # TIPO DE DOCUMENTO CON ELQUE VAMOS ATRABAJAR
+            $this->_docs->tipoDoc($docs);
             # OBTENEMOS EL NUMERO DE PAGINA DEL PAGINADOR
             $pagina = $this->getInt('pagina');
             #
             $buscar = "";
-            if(!empty($this->getText('buscar'))){
+            if (!empty($this->getText('buscar'))) {
                 $buscar = $this->getText('buscar');
             }
             # MUESTRA LOS DATOS DE LAS NIÑAS INGRESADAS
             $paginador = new Paginador();
             # ENVIAMOS LLOS REGISTROS DE LA TABLA PFC A LA VISTA UTILIZANDO LA PAGINACION
-            $this->_view->assign('pfc', $paginador->paginar($this->_pfc->mostrarDoc($buscar), $pagina, 5));
+            $this->_view->assign('pfc', $paginador->paginar($this->_docs->mostrarDoc($buscar), $pagina, 5));
             # ENVIAMOS LA PAGINACION
             $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
             # RENDERIZAMOS LA VISTA QUE MOSTRARA EL CONTENIDO DE LA PAGINA
@@ -59,7 +84,7 @@ class pfcController extends tutorasController
     /**
      * PERMITE REGISTRAR UN NUEVO PFC (AJAX)
      */
-    public function nuevo()
+    public function nuevo(string $docs)
     {
         /**
          * VERIFICAMOS SI SE A ENVIADO UNA PETICION VIA AJAX
@@ -81,8 +106,12 @@ class pfcController extends tutorasController
                 $tmp = $_FILES['archivo']['tmp_name'];
                 # GUARDAMOS EL NOMBRE DEL ARCHIVO
                 $name = $_FILES['archivo']['name'];
+                $ext = explode('.', $name);
+                $name_file = uniqid() . "." . $ext[1];
+
                 # CREAMOS LA RUTA EN DONDE MOVEREMOS EL ARCHIVO
-                $url = ROOT . "public" . DS . "file" . DS . "pdf" . DS . $name;
+                $url = ROOT . "public" . DS . "file" . DS . "pdf" . DS . $docs . DS . $name_file;
+
                 # MOVEMOS EL ARCHIVO AL SERVIDOR
                 move_uploaded_file($tmp, $url);
                 /**
@@ -93,12 +122,14 @@ class pfcController extends tutorasController
                     echo json_encode(array('error' => true, 'mensaje' => 'NO SE CARGO EL ARCHIVO.'));
                     exit;
                 }
+                #TIPO DEDOCUMENTO QUE SEBAAINGRESAR
+                $this->_docs->tipoDoc($docs);
                 # REGISTRAMO LOS DATOS ENVIADOS DESDE EL FORMULARIO EN LA TABLA PFC
-                $response = $this->_pfc->nuevoDoc(
+                $response = $this->_docs->nuevoDoc(
                     $this->getText('elaboracion'),
                     $this->getText('evaluacion'),
                     $this->getInt('nina'),
-                    $name
+                    $name_file
                 );
                 /**
                  * COMPROBAMOS SI SE A INGRESADO CORRECTAMENTE LOS DATOS EN CASO DE QUE OCURRA UN ERROR
@@ -127,7 +158,7 @@ class pfcController extends tutorasController
          * EN CASO NO SE HAIGA ENVIADO MOSTRARA UN MENSAJE DE ERROR
          */
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            if ($this->_pfc->eliminarDoc($id)) {
+            if ($this->_docs->eliminarDoc($id)) {
                 sleep(1);
                 echo json_encode(array('error' => false, 'mensaje' => 'SE A ELIMINADO EL REGISTRO.'));
                 exit;
@@ -140,19 +171,18 @@ class pfcController extends tutorasController
     /**
      * PERMITE LA DESCARGA DE ARCHIVOS SUBIDOS AL SERVIDOR
      */
-    public function descarga()
+    public function descarga($docs)
     {
         $img = $this->getText('img');
-        $file = file(BASE_URL . 'public/file/pdf/' . $img);
+        $file = file(BASE_URL . 'public/file/pdf/' . $docs . '/' . $img);
         $file2 = implode('', $file);
-        $ext = explode('.', $img);
-        $type = $ext[1];
+
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=plan-de-frortalecimiento-comunitario.' . $type);
+        header('Content-Disposition: attachment; filename=' . $img);
         echo $file2;
     }
     /**
-     * OBTIENE UN REGISTRO DEL PFC ENVIANDO UN ID
+     * OBTIENE UN REGISTRO DE LA TABLA DOCUMENTOS ENVIANDO UN ID
      * POR GET (AJAX)
      */
     public function viewId(int $id)
@@ -162,14 +192,14 @@ class pfcController extends tutorasController
          * EN CASO NO SE HAIGA ENVIADO MOSTRARA UN MENSAJE DE ERROR
          */
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            echo json_encode($this->_pfc->mostrarDocId($id));
+            echo json_encode($this->_docs->mostrarDocId($id));
         } else {
             echo json_encode(array('error' => true, 'LOS DATOS NO SE AN ENVIADO POR METODO XMLHTTPREQUEST'));
         }
     }
     /**
-     * PERMITE EDITAR UN REGISTRO DEL PFC 
-     * 
+     * PERMITE EDITAR UN REGISTRO DEL LO DOCUMENTOS EXISTENTES
+     *
      */
     public function editar()
     {
@@ -180,7 +210,7 @@ class pfcController extends tutorasController
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             if ($this->getInt('update') == 1) {
                 if ($_FILES['archivo']['error'] == 4) {
-                    $response = $this->_pfc->editarDoc(
+                    $response = $this->_docs->editarDoc(
                         $this->getText('elaboracion'),
                         $this->getText('evaluacion'),
                         $this->getInt('nina'),
@@ -224,7 +254,7 @@ class pfcController extends tutorasController
                         echo json_encode(array('error' => true, 'mensaje' => 'NO SE CARGO EL ARCHIVO.'));
                         exit;
                     }
-                    $response = $this->_pfc->editarDocAll(
+                    $response = $this->_docs->editarDocAll(
                         $this->getText('elaboracion'),
                         $this->getText('evaluacion'),
                         $this->getInt('nina'),

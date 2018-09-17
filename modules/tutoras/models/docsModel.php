@@ -1,14 +1,26 @@
 <?php
 
-class pgfModel extends Model
+class docsModel extends Model
 {
     private $_table;
-    private $_tipoDoc;
+    private $_docs;
+    private $_tipoDoc = 0;
+    
     public function __construct()
     {
         parent::__construct();
         $this->_table = "documentos";
-        $this->_tipoDoc = 2;
+        $this->_docs = $this->tipoDocumento();
+        // print_r($this->_docs);
+    }
+    public function tipoDoc($valor){
+        $valor = strtoupper($valor);
+        
+        for($i = 0; $i < count($this->_docs); $i++){
+            if(isset($this->_docs[$i]["documento"]) && $this->_docs[$i]["documento"]== $valor){
+                $this->_tipoDoc  = $this->_docs[$i]["id"];
+            }
+        }
     }
     /**
      * REALIZO UNA CONSULTA SIMPLE DE LA TABLA NINAS
@@ -107,7 +119,7 @@ class pgfModel extends Model
                 p.id_{$this->_table} AS id,
                 p.fecha_elaboracion AS elaboracion,
                 p.proxima_evaluacion AS evaluacion,
-                p.archivo,
+                P.archivo,
                 CONCAT(n.apellidos,' ',n.nombres) AS nombres,
                 n.id_nina as nina
             FROM {$this->_table} p,ninas n

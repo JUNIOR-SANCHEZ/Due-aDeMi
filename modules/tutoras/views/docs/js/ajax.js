@@ -4,7 +4,7 @@ $(document).ready(function () {
      * PAGINACION AJAX
      */
     function paginacion(dato) {
-        $.post(_root_ + "tutoras/pgf/viewDocAjax", dato,
+        $.post(_root_ + "tutoras/docs/viewDocAjax/"+_doc_, dato,
             function (response) {
                 $("#contenedor").html("");
                 $("#contenedor").html(response);
@@ -18,12 +18,14 @@ $(document).ready(function () {
         var pag = "pagina=" + $(this).attr("pagina");
         paginacion(pag);
     });
+    /**
+     * BUSCAMOS UN REGISTRO CON LA CEDULA
+     */
     $('#form-buscar').on('click',function(e){
         e.preventDefault();
         var buscar = $(this).serialize()
         paginacion(buscar);
     })
-
     /**
      * ELIMINO UN REGISTRO DEL PLAN DE FORTALECIMIENTO COMUNITARIO
      */
@@ -38,6 +40,7 @@ $(document).ready(function () {
             },
             success: function (response) {
                 $('.panel .fondo').addClass('hide');
+                console.log(response);
                 if ($.isEmptyObject(response) == false) {
                     var json = $.parseJSON(response);
                     if (json['error'] == false) {
@@ -57,6 +60,7 @@ $(document).ready(function () {
      */
     $(document).delegate('.btn-edit', 'click', function (e) {
         e.preventDefault();
+        
         var url = $(this).attr('data-url');
         $.get(url, function (response) {
             $('#form-update-input-elaboracion').val(response['elaboracion']);
@@ -66,7 +70,7 @@ $(document).ready(function () {
             <option value="">Seleccionar:</option>
             <option value="${response['nina']}" selected >${response['nombres']}</option>
             `);
-        }, 'json')
+        },'json')
 
     })
     /**
@@ -138,7 +142,6 @@ $(document).ready(function () {
                     }
 
                 }
-
             }
         })
     })

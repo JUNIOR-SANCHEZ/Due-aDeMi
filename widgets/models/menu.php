@@ -33,13 +33,17 @@ class menuModelWidget extends Model
                 "icon" => "",
                 "link" => BASE_URL . "tutoras/docs/tipoDoc/pgf"
             ),
-            array(
-                "id" => "pgf",
-                "title" => "P A I N A ",
-                "icon" => "",
-                "link" => BASE_URL . "tutoras/docs/tipoDoc/pia"
-            ),
+            
         );
+
+        if(false){
+        $menus["sidenav"][]=array(
+            "id" => "pgf",
+            "title" => "P A I N A ",
+            "icon" => "",
+            "link" => BASE_URL . "tutoras/docs/tipoDoc/pia"
+        );
+    }
         $menus["top"] = array();
         return $menus[$menu];
     }

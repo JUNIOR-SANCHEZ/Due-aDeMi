@@ -6,8 +6,8 @@
 <canvas zoom="100">
 <tables>
 <table name="ninas" view="standard">
-<left>178</left>
-<top>170</top>
+<left>67</left>
+<top>97</top>
 <width>220</width>
 <height>197</height>
 <sql_create_table>CREATE TABLE `ninas` (
@@ -19,11 +19,11 @@
   `email` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
   `ficha_ingreso` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_nina`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="documentos" view="colnames">
-<left>455</left>
-<top>16</top>
+<left>393</left>
+<top>193</top>
 <width>161</width>
 <height>178</height>
 <sql_create_table>CREATE TABLE `documentos` (
@@ -38,11 +38,11 @@
   KEY `D_N` (`nina`),
   CONSTRAINT `D_N` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`),
   CONSTRAINT `D_TD` FOREIGN KEY (`tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="tipo_documento" view="colnames">
-<left>730</left>
-<top>108</top>
+<left>612</left>
+<top>92</top>
 <width>154</width>
 <height>112</height>
 <sql_create_table>CREATE TABLE `tipo_documento` (

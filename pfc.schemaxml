@@ -6,8 +6,8 @@
 <canvas zoom="100">
 <tables>
 <table name="ninas" view="standard">
-<left>67</left>
-<top>97</top>
+<left>121</left>
+<top>65</top>
 <width>220</width>
 <height>197</height>
 <sql_create_table>CREATE TABLE `ninas` (
@@ -22,8 +22,8 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="documentos" view="colnames">
-<left>393</left>
-<top>193</top>
+<left>437</left>
+<top>189</top>
 <width>161</width>
 <height>178</height>
 <sql_create_table>CREATE TABLE `documentos` (
@@ -41,7 +41,7 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="tipo_documento" view="colnames">
-<left>612</left>
+<left>706</left>
 <top>92</top>
 <width>154</width>
 <height>112</height>

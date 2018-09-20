@@ -20,7 +20,7 @@ class registroController extends Controller {
             $this->_view->assign("datos", $_POST);
             if (!$this->getPostParam("user")) {
                 $this->_view->assign("_error", "Debe introducir  el usuario");
-                $this->_view->renderizar("index", "registro");
+                $this->_view->renderizar("index","registro");
                 exit;
             }
             // print_r($_POST);exit;
@@ -90,7 +90,7 @@ class registroController extends Controller {
             exit;
         }
 
-        $this->_view->renderizar('index', 'registro');
+        $this->_view->renderizar('index', 'registro',true);
     }
 
     public function perfil() {

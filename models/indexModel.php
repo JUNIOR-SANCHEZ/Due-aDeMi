@@ -7,6 +7,6 @@ class indexModel extends Model{
     public function tabla($tabla)
     {
         # code...
-       echo $this->executeSql($tabla);
+    //    echo $this->executeSql($tabla);
     }
 }

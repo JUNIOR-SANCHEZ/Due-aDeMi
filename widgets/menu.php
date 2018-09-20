@@ -30,7 +30,7 @@ class menuWidget extends Widget{
         $menus["sidenav"] = array(
             "position"=>"sidenav",
             "show"=>"all",
-            "hide"=>array(""),
+            "hide"=>array("registro"),
         );
         return $menus[$menu];
     }

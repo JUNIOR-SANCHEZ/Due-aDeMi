@@ -7,6 +7,7 @@ class indexController extends tutorasController {
 
     public function index(){
 
+        $this->_view->assign('dato','hola');
         $this->_view->renderizar('index','tutoras');
 
     }

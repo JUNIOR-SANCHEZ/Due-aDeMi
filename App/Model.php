@@ -17,7 +17,8 @@ class Model
         $stmt = $this->_db->query('SELECT id_tipo_documento as id, documento FROM tipo_documento;');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    protected function setTable($table){
+    protected function table($table)
+    {
         $this->_table = $table;
     }
     private function campos()
@@ -27,34 +28,51 @@ class Model
         $table_fields = $stmt->fetchAll(PDO::FETCH_COLUMN);
         return $table_fields;
     }
-    private function sqlInsert($table)
+
+    /**
+     * GENERAMOS LA SENTECIA SQL PARA INSERTAR
+     * ESTA TOMARA LA PROPIEDAD PRIVADA $table PARA SABER QUE TABLA SERA AFECTADA
+     */
+    private function sqlInsert()
     {
+        # DECLARAMOS DOS VARIABLES
         $campo = "";
         $param = "";
+        # TRAEMOS LOS CAMPOS DE LA TABLA
         $campoTable = $this->campos();
         for ($i = 0; $i < count($campoTable); $i++) {
             $campo .= $campoTable[$i] . ",";
             if ($i < count($campoTable) - 1) {$param .= ":" . $campoTable[$i + 1] . ",";}
-
         }
         $campo = trim($campo, ",");
         $param = trim($param, ",");
-
-        $sql = "INSERT INTO {$table} ( {$campo} ) VALUES ( NULL, {$param} );";
-
+        #CREA LA SENTENCIA INSERT DE LA TABLA
+        $sql = "INSERT INTO {$this->_table} ( {$campo} ) VALUES ( NULL, {$param} );";
         return $sql;
-
     }
 
-    public function prepareSql($table)
+    private function prepareSql()
     {
-        return $stmt = $this->_db->prepare($this->sqlInsert($table));
+        return $stmt = $this->_db->prepare($this->sqlInsert());
     }
-    public function executeSql()
+    protected function executeSql(array $datos)
     {
-        $array = array(':nombre' => "x", ":apellido" => "y");
-        $stmt->execute($array);
+        if (!is_array($datos)) {echo "no es array";exit;}
+            $datos = $this->paramQuery($datos);
+            $stmt = $this->prepareSql();
+            return $stmt->execute($datos);
     }
-
+    private function paramQuery(array $param)
+    {
+        $campoTable = $this->campos();
+        $dato = array();
+        if ((count($campoTable) - 1) == count($param)) {
+            for ($i = 0; $i < count($param); $i++) {
+                $dato[":" . $campoTable[$i + 1]] = $param[$i];
+            }
+            return $dato;
+        }
+        return $dato;
+    }
 
 }

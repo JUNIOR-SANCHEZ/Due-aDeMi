@@ -6,26 +6,11 @@ class ninasModel extends Model
     {
         parent::__construct();
     }
-    public function nuevaNina($nombre, $apellido, $cedula, $telef, $email, $ficha)
+    public function nuevaNina($fecha_ingreso,$nombre, $apellido,$lugar_nacimiento,$foto,$cedula,$telef,$direcion,$tipo_medida,$num_medida,$fecha_medida,$org_oper)
     {
-        $stmt = $this->_db->prepare(
-            "CALL NINAS_PI(
-                :nombre,
-                :apellido,
-                :cedula,
-                :telefono,
-                :email,
-                :ficha_ingreso
-            );"
-        );
-        $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
-        $stmt->bindParam(":apellido", $apellido, PDO::PARAM_STR);
-        $stmt->bindParam(":cedula", $cedula, PDO::PARAM_STR);
-        $stmt->bindParam(":telefono", $telef, PDO::PARAM_STR);
-        $stmt->bindParam(":email", $email, PDO::PARAM_STR);
-        $stmt->bindParam(":ficha_ingreso", $ficha, PDO::PARAM_STR);
-        $response = $stmt->execute();
-        return $response;
+        $this->table('ninas');
+        $this->executeSql(array($fecha_ingreso,$nombre,$apellido,$lugar_nacimiento,$foto,$cedula,$telef,$direcion,$tipo_medida,$num_medida,$fecha_medida,$org_oper));
+        return $this->_db->lastInsertId();
     }
 
     public function mostraNinas(){

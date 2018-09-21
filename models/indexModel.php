@@ -4,9 +4,11 @@ class indexModel extends Model{
         parent::__construct();
     }
 
-    public function tabla($tabla)
+    public function tabla($nombre,$apellido,$date)
     {
-        # code...
-    //    echo $this->executeSql($tabla);
+        
+        $this->table('prueba');
+        $this->executeSql(array($nombre,$apellido,$date));
+        return $this->_db->lastInsertId();
     }
 }

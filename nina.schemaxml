@@ -6,20 +6,39 @@
 <canvas zoom="100">
 <tables>
 <table name="ninas" view="standard">
-<left>38</left>
-<top>100</top>
-<width>220</width>
-<height>197</height>
+<left>71</left>
+<top>82</top>
+<width>270</width>
+<height>299</height>
 <sql_create_table>CREATE TABLE `ninas` (
   `id_nina` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_ingreso` date NOT NULL,
   `nombres` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `apellidos` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `luga_nacimiento` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `foto` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `cedula` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
   `telefono` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
-  `email` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
-  `ficha_ingreso` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `direccion` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `tipo_medida` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `numero_medida` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha_medida` date NOT NULL,
+  `organiacion_persona` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_nina`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="prueba" view="standard">
+<left>453</left>
+<top>90</top>
+<width>188</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `prueba` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `apellido` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 </tables>
 </canvas>

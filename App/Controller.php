@@ -7,14 +7,14 @@ abstract class Controller {
     protected $_acl;
     protected $_request;
     private $_tipo = 0;
-
+    protected $date;
     public function __construct() {
 
         $this->_registry = Registry::getInstancia();
         $this->_acl = $this->_registry->_acl;
         $this->_request = $this->_registry->_request;
         $this->_view = new View($this->_request, $this->_acl);
-        
+        $this->date = $date = date("Y-n-j");
     }
 
     abstract public function index();

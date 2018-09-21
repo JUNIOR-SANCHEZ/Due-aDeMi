@@ -2,7 +2,11 @@
 
 class ninasController extends tutorasController
 {
-    # DECLARAMOS EL ATRIBUTO _NINA
+    /**
+     * DECLARAMOS EL ATRIBUTO QUE CONTENDRA EL OBJETO DE LA CLASE ninasModel PARA
+     * REALIZAR LA GESTIONES DE LA BASE DE DATO
+     */
+
     private $_nina;
     public function __construct()
     {

@@ -32,6 +32,17 @@
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-addon">
+                                                                                    <i class="fa fa-file"></i>
+                                                                                </div>
+                                                                                <input type="file" name="foto" class="form-control"
+                                                                                    required>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
                                                                             <label for="">Nombres de la niña o
                                                                                 adolecenre</label>
                                                                             <div class="input-group">
@@ -78,17 +89,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <div class="input-group">
-                                                                                <div class="input-group-addon">
-                                                                                    <i class="fa fa-file"></i>
-                                                                                </div>
-                                                                                <input type="file" name="foto" class="form-control"
-                                                                                    required>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+
                                                                 </div>
                                                                 <!-- row 1 -->
                                                                 <div class="row">

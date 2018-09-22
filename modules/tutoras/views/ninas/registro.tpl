@@ -18,7 +18,7 @@
                                                 Datos de indentificación
                                             </a>
                                         </h4>
-                                    </div>
+     +                               </div>
                                     <div id="datos-identificacion" class="panel-collapse collapse in">
                                         <div class="box-body">
                                             <div class="row">

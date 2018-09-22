@@ -7,7 +7,7 @@ class aclController extends Controller
     {
         parent::__construct();
         $this->_aclm = $this->loadModel('acl');
-        $this->_view->setTemplate("administracion");
+ 
 //        if(!$this->_acl->permiso("admin_access")){
 //            $this->redireccionar();
 //        }

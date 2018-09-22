@@ -21,8 +21,8 @@ USE `duenademi2`;
 DROP TABLE IF EXISTS `documentos`;
 
 CREATE TABLE `documentos` (
-  `id_documentos` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha_elaboracion` date NOT NULL,
+  `id_documentos` INT(11) NOT NULL AUTO_INCREMENT,
+  `fecha_elaboracion` DATE NOT NULL,
   `proxima_evaluacion` date NOT NULL,
   `nina` int(11) NOT NULL,
   `archivo` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,

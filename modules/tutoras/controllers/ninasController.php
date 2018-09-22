@@ -43,7 +43,7 @@ class ninasController extends tutorasController
                         $imagen = $upload->file_dst_name;
                         $thumb = new upload($upload->file_dst_pathname);
                         $thumb->image_resize = true;
-                        $thumb->image_x = 100;
+                         $thumb->image_x = 100;
                         $thumb->image_y = 100;
                         $thumb->file_name_body_pre = "thumb_";
                         $upload->process($ruta . "thumb" . DS);

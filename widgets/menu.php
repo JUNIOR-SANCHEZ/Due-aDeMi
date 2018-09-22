@@ -24,7 +24,7 @@ class menuWidget extends Widget{
         $menus["top"] = array(
             "position"=>"top",
             "show"=>"all",
-           "hide"=>array("registro","login")
+           "hide"=>array(" "," ")
         );
 
         $menus["sidenav"] = array(

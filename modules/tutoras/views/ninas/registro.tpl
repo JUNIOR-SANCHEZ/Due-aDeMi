@@ -37,7 +37,7 @@
                                                                                     <i class="fa fa-file"></i>
                                                                                 </div>
                                                                                 <input type="file" name="foto" class="form-control"
-                                                                                    required>
+                                                                                     >
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -51,7 +51,7 @@
                                                                                 </div>
                                                                                 <input type="text" name="nombres"
                                                                                     placeholder="Nombres" class="form-control"
-                                                                                    required>
+                                                                                     >
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -63,7 +63,7 @@
                                                                                 </div>
                                                                                 <input type="text" name="apellidos"
                                                                                     placeholder="Apellidos" class="form-control"
-                                                                                    required>
+                                                                                     >
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -74,7 +74,7 @@
                                                                                 </div>
                                                                                 <input type="text" name="fecha_nacimiento"
                                                                                     placeholder="fecha de nacimiento"
-                                                                                    class="form-control" required>
+                                                                                    class="form-control"  >
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -85,7 +85,7 @@
                                                                                 </div>
                                                                                 <input type="text" name="lugar_nacimiento"
                                                                                     placeholder="lugar de nacimiento"
-                                                                                    class="form-control" required>
+                                                                                    class="form-control"  >
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -102,7 +102,7 @@
                                                                                 </div>
                                                                                 <input type="text" name="cedula"
                                                                                     placeholder="Cedula" class="form-control"
-                                                                                    required>
+                                                                                     >
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -114,7 +114,7 @@
                                                                                     <i class="fa fa-phone"></i>
                                                                                 </div>
                                                                                 <input type="text" name="phone" class="form-control"
-                                                                                    required>
+                                                                                     >
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -127,7 +127,7 @@
                                                                                 </div>
                                                                                 <input type="text" name="direccion"
                                                                                     placeholder="direccion" class="form-control"
-                                                                                    required>
+                                                                                     >
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -143,7 +143,7 @@
                                                                                     <i></i>
                                                                                 </div>
                                                                                 <input type="text" name="tipo-medida"
-                                                                                    placeholder="tipo de medida" class="form-control" required>
+                                                                                    placeholder="tipo de medida" class="form-control"  >
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -155,7 +155,7 @@
                                                                                     <i></i>
                                                                                 </div>
                                                                                 <input type="text" name="num-medida"
-                                                                                    class="form-control" placeholder="numero de medida" required>
+                                                                                    class="form-control" placeholder="numero de medida"  >
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -167,7 +167,7 @@
                                                                                     <i></i>
                                                                                 </div>
                                                                                 <input type="text" name="fecha-medida"
-                                                                                    class="form-control" placeholder="fecha de medida" required>
+                                                                                    class="form-control" placeholder="fecha de medida"  >
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -184,7 +184,7 @@
                                                                                     <i></i>
                                                                                 </div>
                                                                                 <input type="text" name="nombre_solicitud"
-                                                                                    class="form-control" required>
+                                                                                    class="form-control"  >
                                                                             </div>
                                                                         </div>
                                                                     </div>

@@ -31,7 +31,7 @@ class menuModelWidget extends Model
                 "id" => "pgf",
                 "title" => "P G F ",
                 "icon" => "",
-                "link" => BASE_URL . "tutoras/docs/tipoDoc/pgf"
+                "link" => BASE_URL . "tutoras/PGF"
             ),
             
         );

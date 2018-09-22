@@ -59,13 +59,15 @@ class Model
     {
         if (!is_array($datos)) {echo "no es array";exit;}
             $datos = $this->paramQuery($datos);
-            $stmt = $this->prepareSql();
+            $stmt = $this->prepareSql(); 
+            print_r($datos);
             return $stmt->execute($datos);
     }
     private function paramQuery(array $param)
     {
         $campoTable = $this->campos();
         $dato = array();
+
         if ((count($campoTable) - 1) == count($param)) {
             for ($i = 0; $i < count($param); $i++) {
                 $dato[":" . $campoTable[$i + 1]] = $param[$i];

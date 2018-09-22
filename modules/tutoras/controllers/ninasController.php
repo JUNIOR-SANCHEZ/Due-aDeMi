@@ -26,16 +26,17 @@ class ninasController extends tutorasController
     {
         /**
          * VERIFICAMOS SI SE A ENVIADO UNA PETICION VIA AJAX
-         * EN CASO NO SE HAIGA ENVIADO MOSTRARA UN MENSAJE DE ERROR
+         * EN CASO NO SE HAYA ENVIADO MOSTRARA UN MENSAJE DE ERROR
          */
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             # VERIFICAMOS SI SE HA ENVIADO POR POST EL CAMPO GUARDAR CON VALOR 1
+             
             if ($this->getInt('guardar') == 1) {
-                $imagen = '';
-                if (isset($_FILES['foto']['name'])) {
+                 $imagen = '';
+                if (isset($_FILES['foto']['name']) ) {
                     $upload = new upload($_FILES['foto']);
                     $ruta = ROOT . "public" . DS . "img" . DS . "nina" . DS;
-                    $upload->allowed = array('image/gif', 'image/jpg', 'image/png');
+                    $upload->allowed = array('image/*',);
                     $upload->file_new_name_body = 'upl_' . uniqid();
                     $upload->process($ruta);
 
@@ -52,10 +53,10 @@ class ninasController extends tutorasController
                         echo json_encode(array("error"=>true,"mensaje"=>$upload->error));
                     }
                 }
-                $result =  $this->_nina->nuevaNina(
+                 $result =  $this->_nina->nuevaNina(
                     $this->date,
-                    $this->getText("nombre"),
-                    $this->getText("apellido"),
+                    $this->getText("nombres"),
+                    $this->getText("apellidos"),
                     $this->getText("lugar_nacimiento"),
                     $this->getText("fecha_nacimiento"),
                     $imagen,
@@ -65,13 +66,14 @@ class ninasController extends tutorasController
                     $this->getText("tipo-medida"),
                     $this->getText('num-medida'),
                     $this->getText('fecha-medida'),
-                    $this->getText('nombre_solicitud'));
+                    $this->getText('nombre_solicitud'))."<pre>";
 
                 if($result == 0){
-                    echo json_encode(array("error"=>true,"mensaje"=>"Ha ocurrido un error al ingresar"));
+                    echo json_encode(array("error"=>true,"mensaje"=>"Ha ocurrido un error al ingresar dato"));
                     exit;
                 }
-
+                echo json_encode(array("error"=>true,"mensaje"=>"Datos registrados"));
+                exit;
             }
 
         } else {

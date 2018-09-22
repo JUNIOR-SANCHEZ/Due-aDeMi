@@ -8,8 +8,8 @@
 <table name="ninas" view="standard">
 <left>71</left>
 <top>82</top>
-<width>270</width>
-<height>299</height>
+<width>337</width>
+<height>367</height>
 <sql_create_table>CREATE TABLE `ninas` (
   `id_nina` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_ingreso` date NOT NULL,
@@ -39,7 +39,7 @@
   `apellido` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `fecha` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 </tables>
 </canvas>

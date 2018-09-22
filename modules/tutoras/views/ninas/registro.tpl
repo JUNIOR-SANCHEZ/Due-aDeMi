@@ -143,7 +143,7 @@
                                                                                     <i></i>
                                                                                 </div>
                                                                                 <input type="text" name="tipo-medida"
-                                                                                    placeholder="tipo de medida" class="form-control">
+                                                                                    placeholder="tipo de medida" class="form-control" required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -155,7 +155,7 @@
                                                                                     <i></i>
                                                                                 </div>
                                                                                 <input type="text" name="num-medida"
-                                                                                    class="form-control" placeholder="numero de medida">
+                                                                                    class="form-control" placeholder="numero de medida" required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -167,7 +167,7 @@
                                                                                     <i></i>
                                                                                 </div>
                                                                                 <input type="text" name="fecha-medida"
-                                                                                    class="form-control" placeholder="fecha de medida">
+                                                                                    class="form-control" placeholder="fecha de medida" required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -183,8 +183,8 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i></i>
                                                                                 </div>
-                                                                                <input type="text" name="fecha-medida"
-                                                                                    class="form-control">
+                                                                                <input type="text" name="nombre_solicitud"
+                                                                                    class="form-control" required>
                                                                             </div>
                                                                         </div>
                                                                     </div>

@@ -44,18 +44,25 @@ DROP TABLE IF EXISTS `ninas`;
 
 CREATE TABLE `ninas` (
   `id_nina` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_ingreso` date NOT NULL,
   `nombres` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `apellidos` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `luga_nacimiento` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `foto` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `cedula` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
   `telefono` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
-  `email` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
-  `ficha_ingreso` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `direccion` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `tipo_medida` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `numero_medida` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha_medida` date NOT NULL,
+  `organiacion_persona` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_nina`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `ninas` */
 
-insert  into `ninas`(`id_nina`,`nombres`,`apellidos`,`cedula`,`telefono`,`email`,`ficha_ingreso`) values (7,' PAULA SIFIA','CALDERON LOBO','0709826357','0968521787','paulob@gmail.com','FICHA DE INGRESO.pdf');
+insert  into `ninas`(`id_nina`,`fecha_ingreso`,`nombres`,`apellidos`,`luga_nacimiento`,`fecha_nacimiento`,`foto`,`cedula`,`telefono`,`direccion`,`tipo_medida`,`numero_medida`,`fecha_medida`,`organiacion_persona`) values (7,'0000-00-00',' PAULA SIFIA','CALDERON LOBO','','0000-00-00','','0709826357','0968521787','','','','0000-00-00','');
 
 /*Table structure for table `permisos` */
 
@@ -103,6 +110,22 @@ CREATE TABLE `permisos_usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `permisos_usuario` */
+
+/*Table structure for table `prueba` */
+
+DROP TABLE IF EXISTS `prueba`;
+
+CREATE TABLE `prueba` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `apellido` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `prueba` */
+
+insert  into `prueba`(`id`,`nombre`,`apellido`,`fecha`) values (34,'x','y','2018-01-01'),(35,'x','y','0000-00-00'),(36,'x','y','0000-00-00'),(37,'x','y','2018-09-21'),(38,'x','y','2018-09-21');
 
 /*Table structure for table `roles` */
 

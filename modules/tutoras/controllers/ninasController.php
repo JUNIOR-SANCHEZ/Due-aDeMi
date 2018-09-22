@@ -19,36 +19,7 @@ class ninasController extends tutorasController
     {
         # HACEMOS USO DEL ARCHIVO AJAX.JS
         $this->_view->setJs(array('ajax'));
-        # INSTANCIAMOS LA LIBRERIA CLASS.PAGINADOR.PHP
-        $paginador = new Paginador();
-        # ENVIAMOS DATOS DE LA NIÑAS REGISTRADAS
-        $this->_view->assign('ninas', $paginador->paginar($this->_nina->mostraNinas(),false, 5));
-        # ENVIAMOS LA PAGINACION
-        $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
-        # LLAMAMOS LA VISTA REGISTRO DE LA CARPETA NINAS
         $this->_view->renderizar("registro", "ninas");
-    }
-    public function viewNina()
-    {
-        /**
-         * VERIFICAMOS SI SE A ENVIADO UNA PETICION VIA AJAX
-         * EN CASO NO SE HAIGA ENVIADO MOSTRARA UN MENSAJE DE ERROR
-         */
-        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            # OBTENEMOS EL NUMERO DE PAGINA DEL PAGINADOR
-            $pagina = $this->getInt('pagina');
-            # MUESTRA LOS DATOS DE LAS NIÑAS INGRESADAS
-            $paginador = new Paginador();
-            # ENVIAMOS DATOS DE LA NIÑAS REGISTRADAS
-            $this->_view->assign('ninas', $paginador->paginar($this->_nina->mostraNinas(), $pagina, 5));
-            # ENVIAMOS LA PAGINACION
-            $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
-            # RENDERIZAMOS LA VISTA QUE MOSTRARA EL CONTENIDO DE LA PAGINA
-            $this->_view->renderizar("viewAjax/registro", false, true);
-        } else {
-            throw new Exception("Error Processing Request", 1);
-        }
-
     }
 
     public function nuevaNina()
@@ -60,53 +31,51 @@ class ninasController extends tutorasController
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             # VERIFICAMOS SI SE HA ENVIADO POR POST EL CAMPO GUARDAR CON VALOR 1
             if ($this->getInt('guardar') == 1) {
-                /**
-                 * VERIFICAMO SI NO EXITE EL ENVIO DE ARCHIVO Y COMPROBAMOS SI EL ENVIO CONTIENE UN ERROR
-                 * EN SER EL CASO INGRESAMOS A LA CONDICION PARA MOSTRAR UN MENSAJE CON EL NUMERO DE ERRO
-                 * QUE CONTIENE EL ARCHIVO
-                 */
-                if (!isset($_FILES) || $_FILES['archivo']['error'] > 0) {
-                    echo "Error" . $_FILES['archivo']['error'];
+                $imagen = '';
+                if (isset($_FILES['foto']['name'])) {
+                    $upload = new upload($_FILES['foto']);
+                    $ruta = ROOT . "public" . DS . "img" . DS . "nina" . DS;
+                    $upload->allowed = array('image/gif', 'image/jpg', 'image/png');
+                    $upload->file_new_name_body = 'upl_' . uniqid();
+                    $upload->process($ruta);
+
+                    if($upload->processed){
+                        $imagen = $upload->file_dst_name;
+                        $thumb = new upload($upload->file_dst_pathname);
+                        $thumb->image_resize = true;
+                        $thumb->image_x = 100;
+                        $thumb->image_y = 100;
+                        $thumb->file_name_body_pre = "thumb_";
+                        $upload->process($ruta . "thumb" . DS);
+
+                    }else{
+                        echo json_encode(array("error"=>true,"mensaje"=>$upload->error));
+                    }
+                }
+                $result =  $this->_nina->nuevaNina(
+                    $this->date,
+                    $this->getText("nombre"),
+                    $this->getText("apellido"),
+                    $this->getText("lugar_nacimiento"),
+                    $this->getText("fecha_nacimiento"),
+                    $imagen,
+                    $this->getText("cedula"),
+                    $this->getText("phone"),
+                    $this->getText("direccion"),
+                    $this->getText("tipo-medida"),
+                    $this->getText('num-medida'),
+                    $this->getText('fecha-medida'),
+                    $this->getText('nombre_solicitud'));
+
+                if($result == 0){
+                    echo json_encode(array("error"=>true,"mensaje"=>"Ha ocurrido un error al ingresar"));
                     exit;
                 }
-                # GUARDAMOS EL NOMBRE TEMPORAL DEL ARCHIVO
-                $tmp = $_FILES['archivo']['tmp_name'];
-                # GUARDAMOS EL NOMBRE DEL ARCHIVO
-                $name = $_FILES['archivo']['name'];
-                # CREAMOS LA RUTA EN DONDE MOVEREMOS EL ARCHIVO
-                $url = ROOT . "public" . DS . "file" . DS . "pdf" . DS . $name;
-                # MOVEMOS EL ARCHIVO AL SERVIDOR
-                move_uploaded_file($tmp, $url);
-                /**
-                 * VERIFICAMOS SI LA RUTA NO EXITE ENCASO DE SER CIERTO INGRESAMOS EN LA CONDICION PARA
-                 * MOSTRA UN MENSAJE
-                 */
-                if (!is_readable($url)) {
-                    echo "Error no se cargo el archivo";
-                    exit;
-                }
-                # REGISTRAMOS LOS DATOS ENVIADO DESDE EL FORMULARIO EN LA TABLA NINA
-                $response = $this->_nina->nuevaNina(
-                    $this->getText('nombres'),
-                    $this->getText('apellidos'),
-                    $this->getText('cedula'),
-                    $this->getText('phone'),
-                    $this->getText('email'),
-                    $name
-                );
-                /**
-                 * COMPROBAMOS SI SE A INGRESADO CORRECTAMENTE LOS DATOS EN CASO DE QUE OCURRA UN ERROR
-                 * INGRSARA A LA CONDICION Y MOSTRARA EL MENSAJE
-                 */
-                if (!$response) {
-                    echo "Ha ocurrido un erroral al ingresar.";
-                    exit;
-                }
-                echo "Se registro con exito";
+
             }
 
         } else {
-            throw new Exception("Error Processing Request", 1);
+            echo json_encode(array("error"=>true,"mensaje"=>"Error Processing Request"));
         }
     }
 

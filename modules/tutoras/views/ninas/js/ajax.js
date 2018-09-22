@@ -10,27 +10,29 @@ $(document).ready(function () {
     $(document).delegate(".pagina", "click", function () {
         var pag = "pagina=" + $(this).attr("pagina");
         paginacion(pag);
-    });
-    // formulario niña registrar
+    }); 
+    /**
+     * FORMULARIO NINA O ADOLECENTE
+     */
     $('#form-ninas').on('submit', function (e) {
         e.preventDefault();
         var _data = new FormData(document.getElementById('form-ninas'))
         var _url = $(this).attr("action");
         var _method = $(this).attr("method")
-        $.ajax({
-            url: _url,
-            type: _method,
-            data: _data,
-            contentType: false,
-            processData: false,
-            success: function (response) {
-                console.log(response);
-                var pag = "pagina=" + 1;
-                paginacion(pag)
-            }
-        })
-        $(this)[0].reset();
-        mostrarNina();
+        for (var value of _data.keys()) {
+            console.log(value); 
+         }
+        // $.ajax({
+        //     url: _url,
+        //     type: _method,
+        //     data: _data,
+        //     contentType: false,
+        //     processData: false,
+        //     success: function (response) {
+        //         console.log(response);
+        //     }
+        // })
+        // $(this)[0].reset();
     })
     // formulario niña registrar
 

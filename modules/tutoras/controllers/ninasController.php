@@ -100,12 +100,13 @@ class ninasController extends tutorasController
     public function nuevaDescripcion()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            if ($this->getInt('guardar')) {
-                $resp = $this->_nina->nuevaDescripcion(
+            if ($this->getInt('guardar') == 1) {
+                $resp = $this->_nina->nuevoDescripcion(
                     $this->getText("vestimenta"),
                     $this->getText("salud"),
                     $this->getText("maltrato-fisico"),
                     $this->getText("pertenencias"),
+                    $this->getText("observaciones-generales"),
                     $this->getInt("nina")
                 );
                 if ($resp == 0) {
@@ -115,6 +116,8 @@ class ninasController extends tutorasController
                 echo json_encode(array("error" => false, "mensaje" => "Se a rregistrado con exito"));
                 exit;
             }
+            echo json_encode(array("error" => false, "mensaje" => "No se a enviado guradar"));
+            exit;
         } else {
             echo json_encode(array("error" => true, "mensaje" => "Error Processing Request"));
             exit;

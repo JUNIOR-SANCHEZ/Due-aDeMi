@@ -65,5 +65,10 @@ class registroModel extends Model {
         $result = $strt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+    public function getcargos(Type $var = null)
+    {
+        $stmt = $this->_db->query("SELECT * FROM roles;");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 }

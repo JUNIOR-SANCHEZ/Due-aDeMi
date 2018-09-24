@@ -24,13 +24,13 @@ class menuWidget extends Widget{
         $menus["top"] = array(
             "position"=>"top",
             "show"=>"all",
-           "hide"=>array(" "," ")
+           "hide"=>array()
         );
 
         $menus["sidenav"] = array(
             "position"=>"sidenav",
             "show"=>"all",
-            "hide"=>array("registro"),
+            "hide"=>array(),
         );
         return $menus[$menu];
     }

@@ -46,16 +46,18 @@ $(document).ready(function () {
 
     $("#form-descripcion").on("submit", function (e) {
         e.preventDefault();
-        var datos = $(this).serialize();
+        var datos = $(this).serialize()+"&nina="+parseInt(id);
         var url = $(this).attr("action");
         console.log(datos);
         $.post(url, datos, function (response) {
+            console.log(response);
+            $("#error").html(`${response}`)
             if (response["error"] == false) {
                 console.log(response["mensaje"]);
             } else {
                 console.log(response["mensaje"]);
             }
-        });
+        },"json");
 
     });
 

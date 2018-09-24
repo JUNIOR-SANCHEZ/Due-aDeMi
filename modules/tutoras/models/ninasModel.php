@@ -61,16 +61,16 @@ class ninasModel extends Model
     public function nuevoDescripcion(
         $vestimenta,
         $salud,
-        $maltrato_familiar,
+        $maltrato_fisico,
         $pertenencia,
         $observacion_general,
         $nina
     ) {
-        $this->table("descripcion");
+        $this->table("descripciones");
         $this->executeSql(array(
             $vestimenta,
             $salud,
-            $maltrato_familiar,
+            $maltrato_fisico,
             $pertenencia,
             $observacion_general,
             $nina));

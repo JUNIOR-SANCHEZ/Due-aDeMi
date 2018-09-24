@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8" collation="utf8_spanish2_ci">duenademi2</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="roles" view="standard">
+<left>276</left>
+<top>102</top>
+<width>190</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `roles` (
+  `id_role` int(11) NOT NULL AUTO_INCREMENT,
+  `role` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id_role`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="permisos_role" view="standard">
+<left>527</left>
+<top>156</top>
+<width>174</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `permisos_role` (
+  `role` int(11) NOT NULL,
+  `permiso` int(11) NOT NULL,
+  `valor` tinyint(4) NOT NULL,
+  PRIMARY KEY (`role`,`permiso`),
+  KEY `role` (`role`),
+  KEY `permiso` (`permiso`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="permisos_usuario" view="standard">
+<left>282</left>
+<top>430</top>
+<width>174</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `permisos_usuario` (
+  `usuario` int(11) NOT NULL,
+  `permiso` int(11) NOT NULL,
+  `valor` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`usuario`,`permiso`),
+  KEY `permiso` (`permiso`),
+  KEY `permisos_usuario_ibfk_2` (`usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="usuarios" view="standard">
+<left>39</left>
+<top>164</top>
+<width>202</width>
+<height>265</height>
+<sql_create_table>CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombres` varchar(30) COLLATE utf8_spanish2_ci NOT NULL,
+  `apellidos` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `usuario` varchar(15) COLLATE utf8_spanish2_ci NOT NULL,
+  `pass` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `phone` varchar(20) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `role` int(11) NOT NULL,
+  `estado` tinyint(4) NOT NULL,
+  `direccion` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `codigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `role` (`role`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="permisos" view="standard">
+<left>733</left>
+<top>310</top>
+<width>214</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `permisos` (
+  `id_permiso` int(11) NOT NULL AUTO_INCREMENT,
+  `permiso` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `key` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`id_permiso`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

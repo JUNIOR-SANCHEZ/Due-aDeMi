@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v11.11 (64 bit)
-MySQL - 5.5.5-10.1.29-MariaDB : Database - duenademi
+MySQL - 5.5.5-10.1.33-MariaDB : Database - duenademi2
 *********************************************************************
 */
 
@@ -12,77 +12,78 @@ MySQL - 5.5.5-10.1.29-MariaDB : Database - duenademi
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`duenademi` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`duenademi2` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci */;
 
-USE `duenademi`;
+USE `duenademi2`;
 
-/*Table structure for table `cantones` */
+/*Table structure for table `descripciones` */
 
-DROP TABLE IF EXISTS `cantones`;
+DROP TABLE IF EXISTS `descripciones`;
 
-CREATE TABLE `cantones` (
-  `id_cantones` int(11) NOT NULL AUTO_INCREMENT,
-  `canton` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  PRIMARY KEY (`id_cantones`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-/*Data for the table `cantones` */
-
-insert  into `cantones`(`id_cantones`,`canton`) values (1,'machala'),(2,'arenillas'),(3,'atahualpa'),(4,'balsas'),(5,'chilla'),(6,'el guabo'),(7,'huaquillas'),(8,'las lajas'),(9,'marcabeli'),(10,'piñas'),(11,'portovelo');
-
-/*Table structure for table `intervenciones` */
-
-DROP TABLE IF EXISTS `intervenciones`;
-
-CREATE TABLE `intervenciones` (
-  `id_intervenciones` int(11) NOT NULL AUTO_INCREMENT,
-  `metas` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `indicadores` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `actividades` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `tiempos` date NOT NULL,
-  `recursos` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `responsable` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `pfc` int(11) NOT NULL,
-  PRIMARY KEY (`id_intervenciones`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-/*Data for the table `intervenciones` */
-
-insert  into `intervenciones`(`id_intervenciones`,`metas`,`indicadores`,`actividades`,`tiempos`,`recursos`,`responsable`,`pfc`) values (1,'metas','indicadores','actividades','0000-00-00','recursos','responsable',23),(2,'metas','indicadores','actividades','0000-00-00','recursos','responsable',23),(3,'1','2','3','0000-00-00','5','6',23),(4,'1','2','3','0000-00-00','5','6',23),(5,'7','8','9','0000-00-00','11','12',23);
-
-/*Table structure for table `nina` */
-
-DROP TABLE IF EXISTS `nina`;
-
-CREATE TABLE `nina` (
-  `id_nina` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_nina` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `fecha_nacimiento` date NOT NULL,
-  `direccion` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
-  `telefono` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
-  PRIMARY KEY (`id_nina`)
+CREATE TABLE `descripciones` (
+  `id_descripciones` int(11) NOT NULL AUTO_INCREMENT,
+  `vestimenta` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `salud` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `maltrato_fisico` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `pertenecia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `observaciones_generales` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `nina` int(11) NOT NULL,
+  PRIMARY KEY (`id_descripciones`),
+  UNIQUE KEY `D_NNA` (`nina`),
+  CONSTRAINT `D_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
-/*Data for the table `nina` */
+/*Data for the table `descripciones` */
 
-insert  into `nina`(`id_nina`,`nombre_nina`,`fecha_nacimiento`,`direccion`,`telefono`) values (1,'Maria','2018-08-17','Ursesa','xxxxxxxx');
+insert  into `descripciones`(`id_descripciones`,`vestimenta`,`salud`,`maltrato_fisico`,`pertenecia`,`observaciones_generales`,`nina`) values (1,'BLUSA AZUL CON PANTALON JEAN NEGRO','NO PRESENTA NINGUNA ENFERMEDAD','NO PRESENTA MALTRATO FISICO','NO INGRESA CON PERTENENCIAS ','CARACTER INTROVERTIDO',75);
 
-/*Table structure for table `parroquias` */
+/*Table structure for table `informantes` */
 
-DROP TABLE IF EXISTS `parroquias`;
+DROP TABLE IF EXISTS `informantes`;
 
-CREATE TABLE `parroquias` (
-  `id_parroquias` int(11) NOT NULL AUTO_INCREMENT,
-  `parroquia` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `canton` int(11) NOT NULL,
-  PRIMARY KEY (`id_parroquias`),
-  KEY `C_P` (`canton`),
-  CONSTRAINT `C_P` FOREIGN KEY (`canton`) REFERENCES `cantones` (`id_cantones`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+CREATE TABLE `informantes` (
+  `id_informantes` int(11) NOT NULL AUTO_INCREMENT,
+  `nombres` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `apellidos` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `direccion` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `telefono` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `institucion` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `documento_ingreso` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `nina` int(11) NOT NULL,
+  PRIMARY KEY (`id_informantes`),
+  UNIQUE KEY `I_NNA` (`nina`),
+  CONSTRAINT `I_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
-/*Data for the table `parroquias` */
+/*Data for the table `informantes` */
 
-insert  into `parroquias`(`id_parroquias`,`parroquia`,`canton`) values (1,'el retiro',1),(2,'el cambio',1),(3,'la providencia',1),(4,'puerto bolivar',1),(5,'nueve de mayo',1),(6,'carbon',2),(7,'chacras',2),(8,'palmales',2),(9,'ayapamba',3),(10,'cordoncillo',3),(11,'milagro',3),(12,'san jose',3),(13,'san juan de cerro azul',3),(14,'paccha',3);
+insert  into `informantes`(`id_informantes`,`nombres`,`apellidos`,`direccion`,`telefono`,`institucion`,`documento_ingreso`,`nina`) values (1,'LAURA NICOL','APOLO GUZMAN','MACHALA','0967687883','SAN JUAN BAUTISTA','WORD',75);
+
+/*Table structure for table `ninas` */
+
+DROP TABLE IF EXISTS `ninas`;
+
+CREATE TABLE `ninas` (
+  `id_nina` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_ingreso` date NOT NULL,
+  `nombres` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `apellidos` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `lugar_nacimiento` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `foto` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `cedula` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `telefono` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `direccion` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `tipo_medida` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `numero_medida` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha_medida` date NOT NULL,
+  `organiacion_persona` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id_nina`)
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `ninas` */
+
+insert  into `ninas`(`id_nina`,`fecha_ingreso`,`nombres`,`apellidos`,`lugar_nacimiento`,`fecha_nacimiento`,`foto`,`cedula`,`telefono`,`direccion`,`tipo_medida`,`numero_medida`,`fecha_medida`,`organiacion_persona`) values (75,'2018-09-24','LAURA NICOL','APOLO GUZMAN','MACHALA','2003-02-21','upl_5ba927dc00115.jpg','0706674819','0967687883','MACHALA','25','25','2018-06-25','MARTHA AGUIRRE CALDERON');
 
 /*Table structure for table `permisos` */
 
@@ -93,11 +94,11 @@ CREATE TABLE `permisos` (
   `permiso` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `key` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_permiso`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 /*Data for the table `permisos` */
 
-insert  into `permisos`(`id_permiso`,`permiso`,`key`) values (1,'Tareas de administracion','admin_access'),(2,'add news','new_news'),(3,'edit news','edit_news'),(4,'delete news','delete_news'),(5,'Dpto. de Talento Humano','admin_dptoTalHum'),(6,'Dpto. de Centro de Computo','admin_dptoCenCom');
+insert  into `permisos`(`id_permiso`,`permiso`,`key`) values (1,'Tareas de administracion','admin_access'),(7,'Crear usuarios','add_user'),(8,'Desactivar usuarios','disabled_user');
 
 /*Table structure for table `permisos_role` */
 
@@ -114,7 +115,7 @@ CREATE TABLE `permisos_role` (
 
 /*Data for the table `permisos_role` */
 
-insert  into `permisos_role`(`role`,`permiso`,`valor`) values (1,1,1),(1,2,1),(1,3,1),(1,4,1),(2,2,1),(2,3,1),(2,4,1),(2,5,1),(3,6,1);
+insert  into `permisos_role`(`role`,`permiso`,`valor`) values (1,1,1),(1,2,1),(1,3,1);
 
 /*Table structure for table `permisos_usuario` */
 
@@ -131,27 +132,6 @@ CREATE TABLE `permisos_usuario` (
 
 /*Data for the table `permisos_usuario` */
 
-/*Table structure for table `pfc` */
-
-DROP TABLE IF EXISTS `pfc`;
-
-CREATE TABLE `pfc` (
-  `id_pfc` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha_elaboracion` date NOT NULL,
-  `fecha_proxima_evaluacion` date NOT NULL,
-  `diagnostico_participativo` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
-  `objetivo_general` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
-  `objetivos_especificos` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
-  `parroquias` int(11) NOT NULL,
-  PRIMARY KEY (`id_pfc`),
-  KEY `PCF_P` (`parroquias`),
-  CONSTRAINT `PCF_P` FOREIGN KEY (`parroquias`) REFERENCES `parroquias` (`id_parroquias`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-/*Data for the table `pfc` */
-
-insert  into `pfc`(`id_pfc`,`fecha_elaboracion`,`fecha_proxima_evaluacion`,`diagnostico_participativo`,`objetivo_general`,`objetivos_especificos`,`parroquias`) values (22,'2018-05-16','2018-06-16','Diagnostico','objetivo','objetivo general',1),(23,'2018-05-16','2018-06-16','Diagnostico','objetivo','objetivo general',1),(24,'2018-05-16','2018-06-16','Diagnostico','objetivo','objetivo general',1),(25,'2018-05-16','2018-06-16','Diagnostico','objetivo','objetivo general',1),(26,'2018-05-16','2018-06-16','Diagnostico','objetivo','objetivo general',1),(28,'2018-05-16','2018-06-16','Diagnostico','objetivo','objetivo general',1);
-
 /*Table structure for table `roles` */
 
 DROP TABLE IF EXISTS `roles`;
@@ -160,29 +140,11 @@ CREATE TABLE `roles` (
   `id_role` int(11) NOT NULL AUTO_INCREMENT,
   `role` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `roles` */
 
-insert  into `roles`(`id_role`,`role`) values (1,'Administrador'),(2,'TalentoHumano'),(3,'CentroDeComputo'),(4,'Usuario');
-
-/*Table structure for table `seguimientos_evaluaciones` */
-
-DROP TABLE IF EXISTS `seguimientos_evaluaciones`;
-
-CREATE TABLE `seguimientos_evaluaciones` (
-  `id_seguimientos_evaluaciones` int(11) NOT NULL,
-  `actividad` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `dificultad` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `resultado` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `observaciones` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `pfc` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_seguimientos_evaluaciones`),
-  KEY `SE_P` (`pfc`),
-  CONSTRAINT `SE_P` FOREIGN KEY (`pfc`) REFERENCES `pfc` (`id_pfc`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-/*Data for the table `seguimientos_evaluaciones` */
+insert  into `roles`(`id_role`,`role`) values (1,'Administrador'),(5,'tutoras');
 
 /*Table structure for table `usuarios` */
 
@@ -207,6 +169,22 @@ CREATE TABLE `usuarios` (
 /*Data for the table `usuarios` */
 
 insert  into `usuarios`(`id`,`nombres`,`apellidos`,`usuario`,`pass`,`email`,`phone`,`role`,`estado`,`direccion`,`codigo`) values (1,'','','SrtoLeon','5bae17944cfa8bd5587a430e4a48c9ec0ce68219','leon@leon.com',NULL,2,1,'2018-08-09',NULL),(2,'','','SartoSanchez','5bae17944cfa8bd5587a430e4a48c9ec0ce68219','sanchez@sanchez.com',NULL,3,1,'2018-08-09',NULL);
+
+/*Table structure for table `xprueba` */
+
+DROP TABLE IF EXISTS `xprueba`;
+
+CREATE TABLE `xprueba` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `apellido` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `xprueba` */
+
+insert  into `xprueba`(`id`,`nombre`,`apellido`,`fecha`) values (1,'x','y','2018-09-24');
 
 /* Function  structure for function  `PFC_FI` */
 

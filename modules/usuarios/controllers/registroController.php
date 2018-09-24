@@ -10,12 +10,8 @@ class registroController extends Controller {
     }
 
     public function index() {
-        
-        $this->_view->setJsPlugin(array("validate"));
-        $this->_view->setJs(array("validacionRegistro"));
         $this->_view->assign("titulo", "Registro");
-        $this->_view->setCss(array("registro"));
-        
+        $this->_view->assign("rol", $this->_sqlUser->getCargos());
         if ($this->getInt("registro") == 1) {
             $this->_view->assign("datos", $_POST);
             if (!$this->getPostParam("user")) {
@@ -23,7 +19,6 @@ class registroController extends Controller {
                 $this->_view->renderizar("index","registro");
                 exit;
             }
-            // print_r($_POST);exit;
             if ($this->_sqlUser->checkUser($this->getPostParam("user"))) {
                 $this->_view->assign("_error", "El usuario " . $this->getPostParam("txt_usuario") . " ya exite.");
                 $this->_view->renderizar("index", "registro");
@@ -52,29 +47,6 @@ class registroController extends Controller {
                 exit;
             }
             $imagen = "user.png";
-
-            // if ($_FILES['image']['name']) {
-            //     $ruta = $this->getRutaCarpetaImagen("user");
-            //     $upload = new upload($_FILES['image'], 'es_Es');
-            //     $upload->allowed = array('image/*');
-            //     $upload->file_new_name_body = 'upl_' . uniqid();
-            //     $upload->process($ruta);
-
-            //     if ($upload->processed) {
-            //         $imagen = $upload->file_dst_name;
-            //         $thumb = new upload($upload->file_dst_pathname);
-            //         $thumb->image_resize = true;
-            //         $thumb->image_x = 800;
-            //         $thumb->image_y = 600;
-            //         $thumb->file_name_body_pre = 'thumb_';
-            //         $thumb->process($ruta . 'thumb' . DS);
-            //     } else {
-            //         $this->_view->assign('_error', $upload->error);
-            //         $this->_view->renderizar('index', 'blog');
-            //         exit;
-            //     }
-            // }
-
             $this->_sqlUser->addUser(
                     $this->getAlphaNum("user"), $this->getPostParam("password"), $this->getPostParam("email"), $imagen
             );
@@ -90,7 +62,7 @@ class registroController extends Controller {
             exit;
         }
 
-        $this->_view->renderizar('index', 'registro',true);
+        $this->_view->renderizar('nuevo', 'registro');
     }
 
     public function perfil() {

@@ -18,7 +18,7 @@ class ninasController extends tutorasController
     public function index()
     {
         # HACEMOS USO DEL ARCHIVO AJAX.JS
-        $this->_view->setJs(array('ajax'));
+        $this->_view->setJs(array('ajax', 'img'));
         $this->_view->renderizar("registro", "ninas");
     }
 
@@ -30,54 +30,94 @@ class ninasController extends tutorasController
          */
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             # VERIFICAMOS SI SE HA ENVIADO POR POST EL CAMPO GUARDAR CON VALOR 1
-             
             if ($this->getInt('guardar') == 1) {
-                 $imagen = '';
-                if (isset($_FILES['foto']['name']) ) {
-                    $upload = new upload($_FILES['foto']);
+                $imagen = '';
+                $upload = new file($_FILES['foto']);
+                if ($upload->uploaded) {
                     $ruta = ROOT . "public" . DS . "img" . DS . "nina" . DS;
-                    $upload->allowed = array('image/*',);
                     $upload->file_new_name_body = 'upl_' . uniqid();
                     $upload->process($ruta);
+                    if ($upload->processed) {
+                        $result = $this->_nina->nuevaNina(
+                            $this->date,
+                            $this->getText("nombres"),
+                            $this->getText("apellidos"),
+                            $this->getText("lugar_nacimiento"),
+                            $this->getText("fecha_nacimiento"),
+                            $upload->file_name_body,
+                            $this->getText("cedula"),
+                            $this->getText("phone"),
+                            $this->getText("direccion"),
+                            $this->getText("tipo-medida"),
+                            $this->getText('num-medida'),
+                            $this->getText('fecha-medida'),
+                            $this->getText('nombre_solicitud')) . "<pre>";
 
-                    if($upload->processed){
-                        $imagen = $upload->file_dst_name;
-                        $thumb = new upload($upload->file_dst_pathname);
-                        $thumb->image_resize = true;
-                         $thumb->image_x = 100;
-                        $thumb->image_y = 100;
-                        $thumb->file_name_body_pre = "thumb_";
-                        $upload->process($ruta . "thumb" . DS);
+                        if ($result == 0) {
+                            echo json_encode(array("error" => true, "mensaje" => "Ha ocurrido un error al ingresar dato"));
+                            exit;
+                        }
+                        echo json_encode(array("error" => false, "mensaje" => "Datos registrados", "id" => $result));
+                        exit;
 
-                    }else{
-                        echo json_encode(array("error"=>true,"mensaje"=>$upload->error));
+                    } else {
+                        echo json_encode(array("error" => true, "mensaje" => $upload->error));
                     }
                 }
-                 $result =  $this->_nina->nuevaNina(
-                    $this->date,
-                    $this->getText("nombres"),
-                    $this->getText("apellidos"),
-                    $this->getText("lugar_nacimiento"),
-                    $this->getText("fecha_nacimiento"),
-                    $imagen,
-                    $this->getText("cedula"),
-                    $this->getText("phone"),
-                    $this->getText("direccion"),
-                    $this->getText("tipo-medida"),
-                    $this->getText('num-medida'),
-                    $this->getText('fecha-medida'),
-                    $this->getText('nombre_solicitud'))."<pre>";
 
-                if($result == 0){
-                    echo json_encode(array("error"=>true,"mensaje"=>"Ha ocurrido un error al ingresar dato"));
-                    exit;
-                }
-                echo json_encode(array("error"=>true,"mensaje"=>"Datos registrados"));
-                exit;
             }
 
         } else {
-            echo json_encode(array("error"=>true,"mensaje"=>"Error Processing Request"));
+            echo json_encode(array("error" => true, "mensaje" => "Error Processing Request"));
+        }
+    }
+    public function nuevoInformante()
+    {
+
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            if ($this->getInt('guardar') == 1) {
+                $resp = $this->_nina->nuevoInformante(
+                    $this->getText("nombres"),
+                    $this->getText("apellidos"),
+                    $this->getText("direccion"),
+                    $this->getText("phone"),
+                    $this->getText("institucion"),
+                    $this->getText("documento"),
+                    $this->getInt("nina")
+                );
+                if ($resp == 0) {
+                    echo json_encode(array("error" => true, "mensaje" => "Ha ocurrido un error al ingresar los datos"));
+                    exit;
+                }
+                echo json_encode(array("error" => false, "mensaje" => "Se a rregistrado con exito"));
+                exit;
+            }
+        } else {
+            echo json_encode(array("error" => true, "mensaje" => "Error Processing Request"));
+            exit;
+        }
+    }
+    public function nuevaDescripcion()
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            if ($this->getInt('guardar')) {
+                $resp = $this->_nina->nuevaDescripcion(
+                    $this->getText("vestimenta"),
+                    $this->getText("salud"),
+                    $this->getText("maltrato-fisico"),
+                    $this->getText("pertenencias"),
+                    $this->getInt("nina")
+                );
+                if ($resp == 0) {
+                    echo json_encode(array("error" => true, "mensaje" => "Ha ocurrido un error al ingresar los datos"));
+                    exit;
+                }
+                echo json_encode(array("error" => false, "mensaje" => "Se a rregistrado con exito"));
+                exit;
+            }
+        } else {
+            echo json_encode(array("error" => true, "mensaje" => "Error Processing Request"));
+            exit;
         }
     }
 

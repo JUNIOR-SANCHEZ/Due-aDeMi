@@ -60,7 +60,6 @@ class Model
         if (!is_array($datos)) {echo "no es array";exit;}
             $datos = $this->paramQuery($datos);
             $stmt = $this->prepareSql(); 
-            print_r($datos);
             return $stmt->execute($datos);
     }
     private function paramQuery(array $param)

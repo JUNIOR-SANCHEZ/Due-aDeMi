@@ -8,7 +8,7 @@ class ninasModel extends Model
     }
     public function nuevaNina(
         $fecha_ingreso,
-        $nombre, 
+        $nombre,
         $apellido,
         $lugar_nacimiento,
         $fecha_naciminto,
@@ -19,8 +19,7 @@ class ninasModel extends Model
         $tipo_medida,
         $num_medida,
         $fecha_medida,
-        $org_oper)
-    {
+        $org_oper) {
         $this->table('ninas');
         $this->executeSql(array(
             $fecha_ingreso,
@@ -38,6 +37,44 @@ class ninasModel extends Model
             $org_oper));
         return $this->_db->lastInsertId();
     }
+    public function nuevoInformante(
+        $nombres,
+        $apellido,
+        $direccion,
+        $telefono,
+        $institucion,
+        $documento,
+        $nina
+    ) {
+        $this->table("informantes");
+        $this->executeSql(array(
+            $nombres,
+            $apellido,
+            $direccion,
+            $telefono,
+            $institucion,
+            $documento,
+            $nina,
+        ));
+        return $this->_db->lastInsertId();
+    }
+    public function nuevoDescripcion(
+        $vestimenta,
+        $salud,
+        $maltrato_familiar,
+        $pertenencia,
+        $observacion_general,
+        $nina
+    ) {
+        $this->table("descripcion");
+        $this->executeSql(array(
+            $vestimenta,
+            $salud,
+            $maltrato_familiar,
+            $pertenencia,
+            $observacion_general,
+            $nina));
+        return $this->_db->lastInsertId();
+    }
 
-      
 }

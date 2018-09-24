@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v11.11 (64 bit)
-MySQL - 5.5.5-10.1.29-MariaDB : Database - duenademi2
+MySQL - 5.5.5-10.1.29-MariaDB : Database - duenademi
 *********************************************************************
 */
 
@@ -12,57 +12,77 @@ MySQL - 5.5.5-10.1.29-MariaDB : Database - duenademi2
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`duenademi2` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`duenademi` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci */;
 
-USE `duenademi2`;
+USE `duenademi`;
 
-/*Table structure for table `documentos` */
+/*Table structure for table `cantones` */
 
-DROP TABLE IF EXISTS `documentos`;
+DROP TABLE IF EXISTS `cantones`;
 
-CREATE TABLE `documentos` (
-  `id_documentos` INT(11) NOT NULL AUTO_INCREMENT,
-  `fecha_elaboracion` DATE NOT NULL,
-  `proxima_evaluacion` date NOT NULL,
-  `nina` int(11) NOT NULL,
-  `archivo` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `tipo_documento` int(11) NOT NULL,
-  PRIMARY KEY (`id_documentos`),
-  KEY `D_TD` (`tipo_documento`),
-  KEY `D_N` (`nina`),
-  CONSTRAINT `D_N` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`),
-  CONSTRAINT `D_TD` FOREIGN KEY (`tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+CREATE TABLE `cantones` (
+  `id_cantones` int(11) NOT NULL AUTO_INCREMENT,
+  `canton` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id_cantones`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
-/*Data for the table `documentos` */
+/*Data for the table `cantones` */
 
-insert  into `documentos`(`id_documentos`,`fecha_elaboracion`,`proxima_evaluacion`,`nina`,`archivo`,`tipo_documento`) values (57,'2018-09-16','2018-10-16',7,'5b9f0ed4c690c.pdf',1);
+insert  into `cantones`(`id_cantones`,`canton`) values (1,'machala'),(2,'arenillas'),(3,'atahualpa'),(4,'balsas'),(5,'chilla'),(6,'el guabo'),(7,'huaquillas'),(8,'las lajas'),(9,'marcabeli'),(10,'piñas'),(11,'portovelo');
 
-/*Table structure for table `ninas` */
+/*Table structure for table `intervenciones` */
 
-DROP TABLE IF EXISTS `ninas`;
+DROP TABLE IF EXISTS `intervenciones`;
 
-CREATE TABLE `ninas` (
+CREATE TABLE `intervenciones` (
+  `id_intervenciones` int(11) NOT NULL AUTO_INCREMENT,
+  `metas` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `indicadores` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `actividades` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `tiempos` date NOT NULL,
+  `recursos` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `responsable` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `pfc` int(11) NOT NULL,
+  PRIMARY KEY (`id_intervenciones`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `intervenciones` */
+
+insert  into `intervenciones`(`id_intervenciones`,`metas`,`indicadores`,`actividades`,`tiempos`,`recursos`,`responsable`,`pfc`) values (1,'metas','indicadores','actividades','0000-00-00','recursos','responsable',23),(2,'metas','indicadores','actividades','0000-00-00','recursos','responsable',23),(3,'1','2','3','0000-00-00','5','6',23),(4,'1','2','3','0000-00-00','5','6',23),(5,'7','8','9','0000-00-00','11','12',23);
+
+/*Table structure for table `nina` */
+
+DROP TABLE IF EXISTS `nina`;
+
+CREATE TABLE `nina` (
   `id_nina` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha_ingreso` date NOT NULL,
-  `nombres` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `apellidos` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `luga_nacimiento` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `nombre_nina` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `fecha_nacimiento` date NOT NULL,
-  `foto` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `cedula` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `direccion` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `telefono` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
-  `direccion` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `tipo_medida` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `numero_medida` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `fecha_medida` date NOT NULL,
-  `organiacion_persona` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_nina`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
-/*Data for the table `ninas` */
+/*Data for the table `nina` */
 
-insert  into `ninas`(`id_nina`,`fecha_ingreso`,`nombres`,`apellidos`,`luga_nacimiento`,`fecha_nacimiento`,`foto`,`cedula`,`telefono`,`direccion`,`tipo_medida`,`numero_medida`,`fecha_medida`,`organiacion_persona`) values (7,'0000-00-00',' PAULA SIFIA','CALDERON LOBO','','0000-00-00','','0709826357','0968521787','','','','0000-00-00','');
+insert  into `nina`(`id_nina`,`nombre_nina`,`fecha_nacimiento`,`direccion`,`telefono`) values (1,'Maria','2018-08-17','Ursesa','xxxxxxxx');
+
+/*Table structure for table `parroquias` */
+
+DROP TABLE IF EXISTS `parroquias`;
+
+CREATE TABLE `parroquias` (
+  `id_parroquias` int(11) NOT NULL AUTO_INCREMENT,
+  `parroquia` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `canton` int(11) NOT NULL,
+  PRIMARY KEY (`id_parroquias`),
+  KEY `C_P` (`canton`),
+  CONSTRAINT `C_P` FOREIGN KEY (`canton`) REFERENCES `cantones` (`id_cantones`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `parroquias` */
+
+insert  into `parroquias`(`id_parroquias`,`parroquia`,`canton`) values (1,'el retiro',1),(2,'el cambio',1),(3,'la providencia',1),(4,'puerto bolivar',1),(5,'nueve de mayo',1),(6,'carbon',2),(7,'chacras',2),(8,'palmales',2),(9,'ayapamba',3),(10,'cordoncillo',3),(11,'milagro',3),(12,'san jose',3),(13,'san juan de cerro azul',3),(14,'paccha',3);
 
 /*Table structure for table `permisos` */
 
@@ -111,21 +131,26 @@ CREATE TABLE `permisos_usuario` (
 
 /*Data for the table `permisos_usuario` */
 
-/*Table structure for table `prueba` */
+/*Table structure for table `pfc` */
 
-DROP TABLE IF EXISTS `prueba`;
+DROP TABLE IF EXISTS `pfc`;
 
-CREATE TABLE `prueba` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `apellido` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `fecha` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+CREATE TABLE `pfc` (
+  `id_pfc` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_elaboracion` date NOT NULL,
+  `fecha_proxima_evaluacion` date NOT NULL,
+  `diagnostico_participativo` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `objetivo_general` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `objetivos_especificos` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `parroquias` int(11) NOT NULL,
+  PRIMARY KEY (`id_pfc`),
+  KEY `PCF_P` (`parroquias`),
+  CONSTRAINT `PCF_P` FOREIGN KEY (`parroquias`) REFERENCES `parroquias` (`id_parroquias`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
-/*Data for the table `prueba` */
+/*Data for the table `pfc` */
 
-insert  into `prueba`(`id`,`nombre`,`apellido`,`fecha`) values (34,'x','y','2018-01-01'),(35,'x','y','0000-00-00'),(36,'x','y','0000-00-00'),(37,'x','y','2018-09-21'),(38,'x','y','2018-09-21');
+insert  into `pfc`(`id_pfc`,`fecha_elaboracion`,`fecha_proxima_evaluacion`,`diagnostico_participativo`,`objetivo_general`,`objetivos_especificos`,`parroquias`) values (22,'2018-05-16','2018-06-16','Diagnostico','objetivo','objetivo general',1),(23,'2018-05-16','2018-06-16','Diagnostico','objetivo','objetivo general',1),(24,'2018-05-16','2018-06-16','Diagnostico','objetivo','objetivo general',1),(25,'2018-05-16','2018-06-16','Diagnostico','objetivo','objetivo general',1),(26,'2018-05-16','2018-06-16','Diagnostico','objetivo','objetivo general',1),(28,'2018-05-16','2018-06-16','Diagnostico','objetivo','objetivo general',1);
 
 /*Table structure for table `roles` */
 
@@ -141,19 +166,23 @@ CREATE TABLE `roles` (
 
 insert  into `roles`(`id_role`,`role`) values (1,'Administrador'),(2,'TalentoHumano'),(3,'CentroDeComputo'),(4,'Usuario');
 
-/*Table structure for table `tipo_documento` */
+/*Table structure for table `seguimientos_evaluaciones` */
 
-DROP TABLE IF EXISTS `tipo_documento`;
+DROP TABLE IF EXISTS `seguimientos_evaluaciones`;
 
-CREATE TABLE `tipo_documento` (
-  `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT,
-  `documento` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_tipo_documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+CREATE TABLE `seguimientos_evaluaciones` (
+  `id_seguimientos_evaluaciones` int(11) NOT NULL,
+  `actividad` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `dificultad` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `resultado` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `observaciones` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `pfc` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_seguimientos_evaluaciones`),
+  KEY `SE_P` (`pfc`),
+  CONSTRAINT `SE_P` FOREIGN KEY (`pfc`) REFERENCES `pfc` (`id_pfc`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
-/*Data for the table `tipo_documento` */
-
-insert  into `tipo_documento`(`id_tipo_documento`,`documento`) values (1,'PFC'),(2,'PGF'),(3,'PIA');
+/*Data for the table `seguimientos_evaluaciones` */
 
 /*Table structure for table `usuarios` */
 
@@ -179,56 +208,115 @@ CREATE TABLE `usuarios` (
 
 insert  into `usuarios`(`id`,`nombres`,`apellidos`,`usuario`,`pass`,`email`,`phone`,`role`,`estado`,`direccion`,`codigo`) values (1,'','','SrtoLeon','5bae17944cfa8bd5587a430e4a48c9ec0ce68219','leon@leon.com',NULL,2,1,'2018-08-09',NULL),(2,'','','SartoSanchez','5bae17944cfa8bd5587a430e4a48c9ec0ce68219','sanchez@sanchez.com',NULL,3,1,'2018-08-09',NULL);
 
-/* Procedure structure for procedure `DOC_PS` */
+/* Function  structure for function  `PFC_FI` */
 
-/*!50003 DROP PROCEDURE IF EXISTS  `DOC_PS` */;
-
+/*!50003 DROP FUNCTION IF EXISTS `PFC_FI` */;
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `DOC_PS`(
-	buscar varchar(50),
-	tipo_doc int
-    )
+/*!50003 CREATE DEFINER=`root`@`localhost` FUNCTION `PFC_FI`(
+    fecha_elaboracion_pfc VARCHAR(25),
+    fecha_proxima_evaluacion_pfc VARCHAR(25),
+    diagnostico_participativo_pfc VARCHAR(200),
+    objetivo_general_pfc VARCHAR(200),
+    objetivo_especificos_pfc VARCHAR(200),
+    intervenciones_pfc INT,
+    seguimientos_evaluaciones_pfc INT
+    ) RETURNS int(11)
 BEGIN
-    	SELECT
-                p.id_documentos AS id,
-                p.fecha_elaboracion AS elaboracion,
-                p.proxima_evaluacion AS evaluacion,
-                p.archivo,
-                CONCAT(n.apellidos,' ',n.nombres) AS nombres,
-                n.cedula
-            FROM documentos p,ninas n,tipo_documento t
-            WHERE n.id_nina=p.nina
-            AND p.tipo_documento = t.id_tipo_documento
-            and t.id_tipo_documento = tipo_doc
-            AND n.cedula like concat('',buscar,'%');
+	DECLARE id_despues INT;
+    DECLARE id_antes INT;
+    
+    SELECT id_pfc INTO id_antes FROM pfc ORDER BY id_pfc DESC LIMIT 1;
+    INSERT INTO pfc 
+    VALUES (
+    NULL,fecha_elaboracion_pfc,fecha_proxima_evaluacion_pfc,
+    diagnostico_participativo_pfc,objetivo_general_pfc,
+    objetivo_especificos_pfc,intervenciones_pfc,
+    seguimientos_evaluaciones_pfc
+    );
+    
+    SELECT id_pfc INTO id_despues FROM pfc ORDER BY id_pfc DESC LIMIT 1;
+    
+    IF id_despues > id_antes THEN
+    return 1;
+    ELSE
+    return 0;
+    END IF;
+    
     END */$$
 DELIMITER ;
 
-/* Procedure structure for procedure `NINAS_PI` */
+/* Procedure structure for procedure `INTERVENCIONES_PI` */
 
-/*!50003 DROP PROCEDURE IF EXISTS  `NINAS_PI` */;
+/*!50003 DROP PROCEDURE IF EXISTS  `INTERVENCIONES_PI` */;
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `NINAS_PI`(
-	nombres_n varchar(50),
-	apellidos_n varchar(50),
-	cedula_n varchar(10),
-	telefono_n varchar(10),
-	email_n VARCHAR(25),
-	ficha_ingreso_n varchar(50)
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `INTERVENCIONES_PI`(
+    metas_i varchar(100),
+    indicadores_i varchar(100),
+    actividades_i varchar(100),
+    tiempos_i varchar(25),
+    recursos_i varchar(100),
+    responsable_i varchar(100),
+    pfc_i int
     )
 BEGIN
-	INSERT INTO ninas VALUES (
-	NULL,
-	nombres_n,
-	apellidos_n,
-	cedula_n,
-	telefono_n,
-	email_n,
-	ficha_ingreso_n
+	insert into intervenciones values (
+	null,metas_i,indicadores_i,actividades_i,
+	tiempos_i,recursos_i,responsable_i,pfc_i
 	);
+	
+    END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `PFC_PI` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `PFC_PI` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `PFC_PI`(
+    fecha_elaboracion_pfc varchar(25),
+    fecha_proxima_evaluacion_pfc varchar(25),
+    diagnostico_participativo_pfc varchar(200),
+    objetivo_general_pfc varchar(200),
+    objetivo_especificos_pfc varchar(200),
+    parroquia_pfc int
+    )
+BEGIN
+    declare id int default 0;
+    insert into pfc 
+    values (
+    null,fecha_elaboracion_pfc,fecha_proxima_evaluacion_pfc,
+    diagnostico_participativo_pfc,objetivo_general_pfc,
+    objetivo_especificos_pfc,parroquia_pfc
+    );
+    select id_pfc into id from pfc order by id_pfc desc limit 1;
+    select id;
+    END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `SEGUIMIENTOS_EVALUACIONES_PI` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `SEGUIMIENTOS_EVALUACIONES_PI` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `SEGUIMIENTOS_EVALUACIONES_PI`(
+    actividad_se varchar(100),
+    dificultad_se varchar(100),
+    resultado_se varchar(100),
+    observaciones_se varchar(100),
+    pfc_se int
+    
+    )
+BEGIN
+    
+    insert into seguimientos_evaluaciones values (
+	null,actividad_se,dificultad_se,resultado_se,
+	observaciones_se,pfc_se
+    );
     END */$$
 DELIMITER ;
 

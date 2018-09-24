@@ -18,11 +18,11 @@
                                                 Datos de indentificación
                                             </a>
                                         </h4>
-     +                               </div>
+                                    </div>
                                     <div id="datos-identificacion" class="panel-collapse collapse in">
                                         <div class="box-body">
                                             <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
+                                                <div class=" col-md-10 col-md-offset-1 ">
                                                     <form action="{$_layoutParams.root}tutoras/ninas/nuevaNina" method="POST"
                                                         enctype="multipart/form-data" id="form-ninas">
                                                         <input type="hidden" name="guardar" value="1">
@@ -30,14 +30,29 @@
                                                             <div class="col-md-12">
                                                                 <!-- parte lateral foto -->
                                                                 <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <div class="input-group">
-                                                                                <div class="input-group-addon">
-                                                                                    <i class="fa fa-file"></i>
+                                                                    <div class="col-md-6 ">
+                                                                        <div class="row">
+                                                                            <div class="col-12 col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
+                                                                                <div id="container-logo">
+                                                                                    <a href="#" class="thumbnail">
+                                                                                        <img class="img-responsive"
+                                                                                            style="height: 210px; width: 100%;"
+                                                                                            id="logo-img" src="{$_layoutParams.root}public/img/user/user.png" />
+                                                                                    </a>
                                                                                 </div>
-                                                                                <input type="file" name="foto" class="form-control"
-                                                                                     >
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 col-md-offset-3" style="margin-top: 0px;">
+                                                                                <div class="form-group">
+                                                                                    <label for="" class="btn btn-success btn-file btn-block">
+                                                                                        <i class="fa fa-file"></i>
+                                                                                        Imagen<input type="file" name="foto"
+                                                                                            class="form-control"
+                                                                                            required>
+                                                                                    </label>
+                                                                                    <span class="help-block"></span>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -51,7 +66,7 @@
                                                                                 </div>
                                                                                 <input type="text" name="nombres"
                                                                                     placeholder="Nombres" class="form-control"
-                                                                                     >
+                                                                                    required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -63,7 +78,7 @@
                                                                                 </div>
                                                                                 <input type="text" name="apellidos"
                                                                                     placeholder="Apellidos" class="form-control"
-                                                                                     >
+                                                                                    required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -74,7 +89,7 @@
                                                                                 </div>
                                                                                 <input type="text" name="fecha_nacimiento"
                                                                                     placeholder="fecha de nacimiento"
-                                                                                    class="form-control"  >
+                                                                                    class="form-control" required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -85,7 +100,7 @@
                                                                                 </div>
                                                                                 <input type="text" name="lugar_nacimiento"
                                                                                     placeholder="lugar de nacimiento"
-                                                                                    class="form-control"  >
+                                                                                    class="form-control" required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -102,7 +117,7 @@
                                                                                 </div>
                                                                                 <input type="text" name="cedula"
                                                                                     placeholder="Cedula" class="form-control"
-                                                                                     >
+                                                                                    required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -114,7 +129,7 @@
                                                                                     <i class="fa fa-phone"></i>
                                                                                 </div>
                                                                                 <input type="text" name="phone" class="form-control"
-                                                                                     >
+                                                                                    required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -127,7 +142,7 @@
                                                                                 </div>
                                                                                 <input type="text" name="direccion"
                                                                                     placeholder="direccion" class="form-control"
-                                                                                     >
+                                                                                    required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -143,7 +158,8 @@
                                                                                     <i></i>
                                                                                 </div>
                                                                                 <input type="text" name="tipo-medida"
-                                                                                    placeholder="tipo de medida" class="form-control"  >
+                                                                                    placeholder="tipo de medida" class="form-control"
+                                                                                    required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -155,7 +171,8 @@
                                                                                     <i></i>
                                                                                 </div>
                                                                                 <input type="text" name="num-medida"
-                                                                                    class="form-control" placeholder="numero de medida"  >
+                                                                                    class="form-control" placeholder="numero de medida"
+                                                                                    required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -167,7 +184,8 @@
                                                                                     <i></i>
                                                                                 </div>
                                                                                 <input type="text" name="fecha-medida"
-                                                                                    class="form-control" placeholder="fecha de medida"  >
+                                                                                    class="form-control" placeholder="fecha de medida"
+                                                                                    required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -184,7 +202,7 @@
                                                                                     <i></i>
                                                                                 </div>
                                                                                 <input type="text" name="nombre_solicitud"
-                                                                                    class="form-control"  >
+                                                                                    class="form-control" required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -223,7 +241,9 @@
                                         <div class="box-body">
                                             <div class="row">
                                                 <div class="col-md-10 col-md-offset-1">
-                                                    <form action="{$_layoutParams.root}" method="post">
+                                                    <form action="{$_layoutParams.root}tutoras/ninas/nuevoInformante"
+                                                        method="post" id="form-informante">
+                                                        <input type="hidden" name="guardar" value="1">
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-6">
@@ -331,7 +351,9 @@
                                         <div class="box-body">
                                             <div class="row">
                                                 <div class="col-md-10 col-md-offset-1">
-                                                    <form action="{$_layoutParams.root}" method="post">
+                                                    <form action="{$_layoutParams.root}tutoras/ninas/nuevaDescripcion"
+                                                        method="post" id="form-descripcion">
+                                                        <input type="hidden" name="guardar" value="1">
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-12">
@@ -346,7 +368,7 @@
                                                                     <div class="form-group">
                                                                         <label for="">Estado de salud al momento del
                                                                             ingreso:</label>
-                                                                        <textarea name="salud" id="" rows="5" class="form-control"></textarea>
+                                                                        <textarea name="salud" id="" rows="5" class="form-control" required></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12">
@@ -354,7 +376,7 @@
                                                                         <label for="">Existe señales evidentes de
                                                                             maltrato físico al momento de ingresar
                                                                             SI/NO detallar:</label>
-                                                                        <textarea name="salud" id="" rows="5" class="form-control"></textarea>
+                                                                        <textarea name="maltrato-fisico" id="" rows="5" class="form-control" required></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12">
@@ -362,13 +384,13 @@
                                                                         <label for="">La NNA ingresa con pertenencias
                                                                             personales SI/NO detallar:</label>
                                                                         <textarea name="pertenencias" id="" rows="5"
-                                                                            class="form-control"></textarea>
+                                                                            class="form-control" required></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label for="">Observaciones generales:</label>
-                                                                        <textarea name="salud" id="" rows="5" class="form-control"></textarea>
+                                                                        <textarea name="observaciones-generales" id="" rows="5" class="form-control" required></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>

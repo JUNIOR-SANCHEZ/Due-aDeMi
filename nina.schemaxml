@@ -6,16 +6,16 @@
 <canvas zoom="100">
 <tables>
 <table name="ninas" view="standard">
-<left>71</left>
-<top>82</top>
-<width>337</width>
-<height>367</height>
+<left>17</left>
+<top>70</top>
+<width>270</width>
+<height>326</height>
 <sql_create_table>CREATE TABLE `ninas` (
   `id_nina` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_ingreso` date NOT NULL,
   `nombres` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `apellidos` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `luga_nacimiento` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `lugar_nacimiento` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `fecha_nacimiento` date NOT NULL,
   `foto` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `cedula` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
@@ -26,11 +26,11 @@
   `fecha_medida` date NOT NULL,
   `organiacion_persona` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_nina`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="prueba" view="standard">
-<left>453</left>
-<top>90</top>
+<left>924</left>
+<top>297</top>
 <width>188</width>
 <height>129</height>
 <sql_create_table>CREATE TABLE `prueba` (
@@ -39,7 +39,44 @@
   `apellido` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `fecha` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="informantes" view="standard">
+<left>336</left>
+<top>29</top>
+<width>256</width>
+<height>214</height>
+<sql_create_table>CREATE TABLE `informantes` (
+  `id_informantes` int(11) NOT NULL AUTO_INCREMENT,
+  `nombres` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `apellidos` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `direccion` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `telefono` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `institucion` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `documento_ingreso` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `nina` int(11) NOT NULL,
+  PRIMARY KEY (`id_informantes`),
+  UNIQUE KEY `I_NNA` (`nina`),
+  CONSTRAINT `I_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="descripciones" view="standard">
+<left>340</left>
+<top>299</top>
+<width>296</width>
+<height>197</height>
+<sql_create_table>CREATE TABLE `descripciones` (
+  `id_descripciones` int(11) NOT NULL AUTO_INCREMENT,
+  `vestimenta` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `salud` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `maltrato_fisico` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `pertenecia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `observaciones_generales` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `nina` int(11) NOT NULL,
+  PRIMARY KEY (`id_descripciones`),
+  UNIQUE KEY `D_NNA` (`nina`),
+  CONSTRAINT `D_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 </tables>
 </canvas>

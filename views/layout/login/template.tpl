@@ -8,7 +8,11 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{$titulo|default:""}</title>
 
-    
+    <link rel="stylesheet" href="{$_layoutParams.bootstrap_css}">
+    <link rel="stylesheet" href="{$_layoutParams.fontAwesome_css}">
+    <link rel="stylesheet" href="{$_layoutParams.ionicons_css}">
+    <link rel="stylesheet" href="{$_layoutParams.AdminLTE_css}">
+    <link rel="stylesheet" href="{$_layoutParams.blue_css}">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <!-- RUTAS AUTOMATICAS CSS -->
@@ -16,20 +20,24 @@
     <link href="{$css}" rel="stylesheet"> {/foreach} {/if}
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-        <!-- MENU DE NAVEGACION -->
-        {if isset($widgets.top)} {foreach item=tp from=$widgets.top} {$tp} {/foreach} {/if}
-
-        {if isset($widgets.sidenav)} {foreach item=tp from=$widgets.sidenav} {$tp} {/foreach} {/if}
-        <div class="content-wrapper">
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="../../index2.html"><b>Dueña de mi</b></a>
+        </div>
+        <div class="login-box-body">
+            <p class="login-box-msg">Inicio de sesion</p>
+            <!-- {if isset($_error)} -->
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Warning!</strong> Better check yourself, you're not looking too good.
+            </div>
+            <!-- {/if} -->
             <!-- CUERPO DE LA APLICACION -->
             {include file=$_contenido}
+            <a href="register.html" class="text-center">Olvidé mi contraseña</a>
         </div>
     </div>
-    <!-- FOOTER -->
-    <!-- {if isset($widgets.footer)} {foreach item=tp from=$widgets.footer } {$tp} {/foreach} {/if} -->
-
 
     <!-- VARIABLES GLOBALES -->
     <script type="text/javascript">
@@ -38,27 +46,9 @@
 
 
     <script src="{$_layoutParams.jquery_js}"></script>
-    <script src="{$_layoutParams.jquery_ui_js}"></script>
-    <script>
-        $.widget.bridge('uibutton', $.ui.button);
-    </script>
     <script src="{$_layoutParams.bootstrap_js}"></script>
-    <script src="{$_layoutParams.raphaelp_js}"></script>
-    <!-- <script src="{$_layoutParams.morris_js}"></script> -->
-    <script src="{$_layoutParams.jquery_sparkline_js}"></script>
-    <script src="{$_layoutParams.jvectormap_js}"></script>
-    <script src="{$_layoutParams.jvectormap_world_js}"></script>
-    <script src="{$_layoutParams.jquery_knob_js}"></script>
-    <script src="{$_layoutParams.moment_js}"></script>
-    <script src="{$_layoutParams.bootstrap_daterangepicker_js}"></script>
-    <script src="{$_layoutParams.bootstrap_datepicker_js}"></script>
-    <script src="{$_layoutParams.bootstrap_wysihtml5_js}"></script>
-    <script src="{$_layoutParams.jquery_slimscroll_js}"></script>
-    <script src="{$_layoutParams.fastclick_js}"></script>
-
     <script src="{$_layoutParams.AdminLTE_js}"></script>
-    <!-- <script src="{$_layoutParams.dashboard_js}"></script> -->
-    <script src="{$_layoutParams.demo_js}"></script>
+    <script src="{$_layoutParams.icheck_js}"></script>
 
 
 
@@ -70,7 +60,6 @@
     <!-- RUTAS AUTOMATICAS DE ARCHIVO JS CREADOS -->
     {if isset($_layoutParams.js) && count($_layoutParams.js)} {foreach item=js from=$_layoutParams.js}
     <script src="{$js}" type="text/javascript"></script> {/foreach} {/if}
-    <!-- SECCION DEL FOOTER-->
 
 </body>
 

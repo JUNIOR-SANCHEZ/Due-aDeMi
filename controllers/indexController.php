@@ -14,8 +14,8 @@ class indexController extends Controller
     public function index()
     {
         $this->_view->setCss(array("index"));
-        $this->_view->assign("titulo", "DueÃ±a de mi");
-        echo $this->sql->tabla('x', 'y',$this->date);
+        $this->_view->assign("titulo", "Dueña de mi");
+        $this->redireccionar("usuarios/login");
     }
 
 }

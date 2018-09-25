@@ -28,15 +28,30 @@ class registroModel extends Model {
         return false;
     }
     //FUNCIÓN QUE PERMITE LA INSERCIÓN DE NUEVOS USUARIOS A LA PÁGINA
-    public function addUser($user, $password, $email, $image) {
+    public function addUser(
+        $nombres,
+        $apellidos,
+        $usuario,
+        $password,
+        $email,
+        $cedula,
+        $role,
+        $img
+    ) {
     
-        $statement = $this->_db->prepare("CALL addUser(:user,:email,:password,:image);");
-        $clave = Cifrado::getHash("sha1", $password, HASH_KEY);
-        $statement->bindParam(":user", $user, PDO::PARAM_STR);
-        $statement->bindParam(":password", $clave, PDO::PARAM_STR);
-        $statement->bindParam(":email", $email, PDO::PARAM_STR);
-        $statement->bindParam(":image", $image, PDO::PARAM_STR);
-        $statement->execute();
+       $this->table("usuarios");
+       $this->executeSql(array(
+        $nombres,
+        $apellidos,
+        $usuario,
+        Cifrado::getHash("sha1", $password, HASH_KEY),
+        $email,
+        $cedula,
+        $role,
+        $img,
+        0,
+        uniqid(),
+       ));
     }
     //FUNCIÓN QUE PERMITE EDITAR LOS USUARIOS REGISTRADOS EN LA PÁGINA
     public function editUser($img,$name, $user, $email, $phone, $sexo, $estado,$ocupacion, $id = false) {

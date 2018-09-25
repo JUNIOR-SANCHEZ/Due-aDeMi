@@ -12,53 +12,59 @@ class registroController extends Controller {
     public function index() {
         $this->_view->assign("titulo", "Registro");
         $this->_view->assign("rol", $this->_sqlUser->getCargos());
-        if ($this->getInt("registro") == 1) {
+        if ($this->getInt("guardar") == 1) {
             $this->_view->assign("datos", $_POST);
-            if (!$this->getPostParam("user")) {
+            if (!$this->getPostParam("nombre_usuario")) {
                 $this->_view->assign("_error", "Debe introducir  el usuario");
-                $this->_view->renderizar("index","registro");
+                $this->_view->renderizar("nuevo","registro");
                 exit;
             }
-            if ($this->_sqlUser->checkUser($this->getPostParam("user"))) {
-                $this->_view->assign("_error", "El usuario " . $this->getPostParam("txt_usuario") . " ya exite.");
-                $this->_view->renderizar("index", "registro");
+            if ($this->_sqlUser->checkUser($this->getPostParam("nombre_usuario"))) {
+                $this->_view->assign("_error", "El usuario " . $this->getPostParam("nombre_usuario") . " ya exite.");
+                $this->_view->renderizar("nuevo", "registro");
                 exit;
             }
 
-            if (!$this->checkEmail($this->getPostParam("email"))) {
+            if (!$this->checkEmail($this->getPostParam("correo"))) {
                 $this->_view->assign("_error", "El correo es invalido");
-                $this->_view->renderizar("index", "registro");
+                $this->_view->renderizar("nuevo", "registro");
                 exit;
             }
 
-            if ($this->_sqlUser->checkEmail($this->getPostParam("email"))) {
+            if ($this->_sqlUser->checkEmail($this->getPostParam("correo"))) {
                 $this->_view->assign("_error", "El correo " . $this->getPostParam("email") . " ya exite");
-                $this->_view->renderizar("index", "registro");
+                $this->_view->renderizar("nuevo", "registro");
                 exit;
             }
             if (!$this->getSql("password")) {
                 $this->_view->assign("_error", "Debe introducir  una contraseña");
-                $this->_view->renderizar("index", "registro");
+                $this->_view->renderizar("nuevo", "registro");
                 exit;
             }
-            if ($this->getPostParam("password") != $this->getPostParam("confirmPassword")) {
+            if ($this->getPostParam("password") != $this->getPostParam("confirmar_password")) {
                 $this->_view->assign("_error", "Las contraseñas no coinciden");
-                $this->_view->renderizar("index", "registro");
+                $this->_view->renderizar("nuevo", "registro");
                 exit;
             }
-            $imagen = "user.png";
             $this->_sqlUser->addUser(
-                    $this->getAlphaNum("user"), $this->getPostParam("password"), $this->getPostParam("email"), $imagen
+                    $this->getText("nombres"),
+                    $this->getText("apellidos"),
+                    $this->getText("nombre_usuario"),
+                    $this->getText("password"),
+                    $this->getText("correo"),
+                    $this->getText("cedula"),
+                    $this->getInt("rol"),
+                    "user.png"
             );
 
-            if (!$this->_sqlUser->checkUser($this->getPostParam("user"))) {
+            if (!$this->_sqlUser->checkUser($this->getPostParam("nombre_usuario"))) {
                 $this->_view->assign("_error", "Error al registrar el usuario.");
-                $this->_view->renderizar("index", "registro");
+                $this->_view->renderizar("nuevo", "registro");
                 exit;
             }
             $this->_view->assign("datos", array());
             $this->_view->assign("mensaje", "El usuario se registro con exito.");
-            $this->redireccionar("usuarios/registro");
+            $this->_view->renderizar("nuevo", "registro");
             exit;
         }
 
@@ -77,7 +83,7 @@ class registroController extends Controller {
         
         
         if ($this->getInt("guardar") == 1) {
-            if (!$this->getSql("name")) {
+            if (!$this->getSql("nombres")) {
                 $this->_view->assign("_error", "Debe introducir  su nombre");
                 $this->_view->renderizar("perfil", "registro");
                 exit;

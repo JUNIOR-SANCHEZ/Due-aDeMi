@@ -6,17 +6,12 @@ class loginController extends Controller {
         parent::__construct();
         
         $this->_login = $this->loadModel('login');
+        $this->_view->setTemplate("login");
     }
-
     public function index() {
         // ARCHIVOS ADJUNTOS
-        $this->_view->setJsPlugin(array("validate"));
-        $this->_view->setJs(array("validacionLogin"));   
-        $this->_view->setCss(array("login"));
         $this->_view->assign("titulo","Login");
         if (Session::get("autenticado")) $this->redireccionar();
-
-        
         if ($this->getInt('login') == 1) {
             $this->_view->assign("datos",$_POST);
             if(!$this->getAlphaNum('user')){
@@ -55,15 +50,11 @@ class loginController extends Controller {
                 default:
                 $this->redireccionar("usuarios/login/cerrar");
             }
-           
         }
         $this->_view->renderizar('index', 'login');
     }
-
-
     public function cerrar() {
         Session::destroy();
         $this->redireccionar("usuarios/login");
     }
-
 }

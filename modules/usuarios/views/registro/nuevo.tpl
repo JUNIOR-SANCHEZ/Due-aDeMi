@@ -1,3 +1,4 @@
+{if isset($_error)} {$_error} {/if}
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -8,14 +9,15 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
-                            <form action="{$_layoutParams.root}" method="post">
+                            <form action="{$_layoutParams.root}usuarios/registro" method="post">
+                                <input type="hidden" name="guardar" value="1">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="from-group">
                                             <label for="">Nombres</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                                <input type="text" name="nombres" class="form-control" placeholder="Nombres">
+                                                <input type="text" name="nombres" class="form-control" placeholder="Nombres" value="{$datos['nombres']|default:''}">
                                             </div>
                                         </div>
                                     </div>
@@ -24,7 +26,7 @@
                                             <label for="">Apellidos</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                                <input type="text" name="apellidos" class="form-control" placeholder="Apellidos">
+                                                <input type="text" name="apellidos" class="form-control" placeholder="Apellidos" value="{$datos['apellidos']|default:''}">
                                             </div>
                                         </div>
                                     </div>
@@ -35,7 +37,7 @@
                                             <label for="">Cedula</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-id-card    "></i></div>
-                                                <input type="text" name="cedula" class="form-control" placeholder="Cedula"
+                                                <input type="text" name="cedula" class="form-control" placeholder="Cedula" value="{$datos['cedula']|default:''}"
                                                     required>
                                             </div>
                                         </div>
@@ -47,7 +49,7 @@
                                                 <div class="input-group-addon"><i class="fa fa-caret-down    "></i></div>
                                                 <select name="rol" id="input" class="form-control" required="required">
                                                     {foreach item=value from=$rol}
-                                                    <option value="">{$value['role']}</option>
+                                                    <option value="{$value['id_role']}">{$value['role']}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
@@ -61,29 +63,39 @@
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-id-card    "></i></div>
                                                 <input type="text" name="nombre_usuario" class="form-control"
-                                                    placeholder="Usuario" required>
+                                                    placeholder="Usuario" value="{$datos['nombre_usuario']|default:''}" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="from-group">
-                                            <label for="">Contraseña</label>
+                                            <label for="">Email:</label>
                                             <div class="input-group">
-                                                <div class="input-group-addon"></div>
-                                                <input type="password" name="password" class="form-control" placeholder="Contraseña"
+                                                <div class="input-group-addon">@</div>
+                                                <input type="email" name="correo" class="form-control" placeholder="Email" value="{$datos['correo']|default:''}"
                                                     required>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="from-group">
-                                            <label for="">Email:</label>
+                                            <label for="">Contraseña</label>
                                             <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-id-card    "></i></div>
-                                                <input type="email" name="correo" class="form-control"
-                                                    placeholder="Email" required>
+                                                <div class="input-group-addon"></div>
+                                                <input type="password" name="password" class="form-control" placeholder="Contraseña" value="{$datos['password']|default:''}"
+                                                    required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="from-group">
+                                            <label for="">Confirmar contraseña</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon"></div>
+                                                <input type="password" name="confirmar_password" class="form-control" placeholder="Confirmar contraseña" value="{$datos['confirmar_password']|default:''}"
+                                                    required>
                                             </div>
                                         </div>
                                     </div>

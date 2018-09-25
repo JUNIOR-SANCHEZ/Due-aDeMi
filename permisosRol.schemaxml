@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemadesigner version="6.5">
 <source>
-<database charset="utf8" collation="utf8_spanish2_ci">duenademi2</database>
+<database charset="latin1" collation="latin1_swedish_ci">duenademi2</database>
 </source>
 <canvas zoom="100">
 <tables>
@@ -31,8 +31,8 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="permisos_usuario" view="standard">
-<left>282</left>
-<top>430</top>
+<left>281</left>
+<top>409</top>
 <width>174</width>
 <height>129</height>
 <sql_create_table>CREATE TABLE `permisos_usuario` (
@@ -56,14 +56,14 @@
   `usuario` varchar(15) COLLATE utf8_spanish2_ci NOT NULL,
   `pass` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `phone` varchar(20) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `cedula` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
   `role` int(11) NOT NULL,
+  `img` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `estado` tinyint(4) NOT NULL,
-  `direccion` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `codigo` int(11) DEFAULT NULL,
+  `codigo` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `role` (`role`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="permisos" view="standard">
 <left>733</left>

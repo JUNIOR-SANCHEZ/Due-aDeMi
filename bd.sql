@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v11.11 (64 bit)
-MySQL - 5.5.5-10.1.33-MariaDB : Database - duenademi2
+MySQL - 5.5.5-10.1.29-MariaDB : Database - duenademi2
 *********************************************************************
 */
 
@@ -12,7 +12,7 @@ MySQL - 5.5.5-10.1.33-MariaDB : Database - duenademi2
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`duenademi2` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`duenademi2` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `duenademi2`;
 
@@ -36,6 +36,26 @@ CREATE TABLE `descripciones` (
 /*Data for the table `descripciones` */
 
 insert  into `descripciones`(`id_descripciones`,`vestimenta`,`salud`,`maltrato_fisico`,`pertenecia`,`observaciones_generales`,`nina`) values (1,'BLUSA AZUL CON PANTALON JEAN NEGRO','NO PRESENTA NINGUNA ENFERMEDAD','NO PRESENTA MALTRATO FISICO','NO INGRESA CON PERTENENCIAS ','CARACTER INTROVERTIDO',75);
+
+/*Table structure for table `documentos` */
+
+DROP TABLE IF EXISTS `documentos`;
+
+CREATE TABLE `documentos` (
+  `id_documentos` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_elaboracion` date NOT NULL,
+  `proxima_evaluacion` date NOT NULL,
+  `nina` int(11) NOT NULL,
+  `archivo` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `tipo_documento` int(11) NOT NULL,
+  PRIMARY KEY (`id_documentos`),
+  KEY `D_TD` (`tipo_documento`),
+  KEY `D_N` (`nina`),
+  CONSTRAINT `D_N` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`),
+  CONSTRAINT `D_TD` FOREIGN KEY (`tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `documentos` */
 
 /*Table structure for table `informantes` */
 
@@ -94,11 +114,11 @@ CREATE TABLE `permisos` (
   `permiso` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `key` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_permiso`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 /*Data for the table `permisos` */
 
-insert  into `permisos`(`id_permiso`,`permiso`,`key`) values (1,'Tareas de administracion','admin_access'),(7,'Crear usuarios','add_user'),(8,'Desactivar usuarios','disabled_user');
+insert  into `permisos`(`id_permiso`,`permiso`,`key`) values (1,'Tareas de administracion','admin_access'),(7,'Crear usuarios','add_user'),(8,'Desactivar usuarios','disabled_user'),(9,'Registrar nina','add_nina');
 
 /*Table structure for table `permisos_role` */
 
@@ -115,7 +135,7 @@ CREATE TABLE `permisos_role` (
 
 /*Data for the table `permisos_role` */
 
-insert  into `permisos_role`(`role`,`permiso`,`valor`) values (1,1,1),(1,2,1),(1,3,1);
+insert  into `permisos_role`(`role`,`permiso`,`valor`) values (1,1,1),(1,2,1),(1,3,1),(5,4,1);
 
 /*Table structure for table `permisos_usuario` */
 
@@ -146,6 +166,20 @@ CREATE TABLE `roles` (
 
 insert  into `roles`(`id_role`,`role`) values (1,'Administrador'),(5,'tutoras');
 
+/*Table structure for table `tipo_documento` */
+
+DROP TABLE IF EXISTS `tipo_documento`;
+
+CREATE TABLE `tipo_documento` (
+  `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT,
+  `documento` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_tipo_documento`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tipo_documento` */
+
+insert  into `tipo_documento`(`id_tipo_documento`,`documento`) values (1,'PFC'),(2,'PGF'),(3,'PIA');
+
 /*Table structure for table `usuarios` */
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -157,18 +191,18 @@ CREATE TABLE `usuarios` (
   `usuario` varchar(15) COLLATE utf8_spanish2_ci NOT NULL,
   `pass` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `phone` varchar(20) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `cedula` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
   `role` int(11) NOT NULL,
+  `img` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `estado` tinyint(4) NOT NULL,
-  `direccion` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `codigo` int(11) DEFAULT NULL,
+  `codigo` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `role` (`role`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `usuarios` */
 
-insert  into `usuarios`(`id`,`nombres`,`apellidos`,`usuario`,`pass`,`email`,`phone`,`role`,`estado`,`direccion`,`codigo`) values (1,'','','SrtoLeon','5bae17944cfa8bd5587a430e4a48c9ec0ce68219','leon@leon.com',NULL,2,1,'2018-08-09',NULL),(2,'','','SartoSanchez','5bae17944cfa8bd5587a430e4a48c9ec0ce68219','sanchez@sanchez.com',NULL,3,1,'2018-08-09',NULL);
+insert  into `usuarios`(`id`,`nombres`,`apellidos`,`usuario`,`pass`,`email`,`cedula`,`role`,`img`,`estado`,`codigo`) values (4,'JUAN DIEGO','CALDERON LOBO','juan24','710f9d5d43fb39fb06facf99d677841a2e19c07b','juan2@gmail.com','0709826357',1,'user.png',0,'5ba99aecbeed2'),(5,' PAULA SIFIA','SANCHEZ MARTINEZ','juan27','710f9d5d43fb39fb06facf99d677841a2e19c07b','juan29@gmail.com','0709826357',5,'user.png',0,'5ba99fe64d2f3');
 
 /*Table structure for table `xprueba` */
 
@@ -224,6 +258,32 @@ BEGIN
     END */$$
 DELIMITER ;
 
+/* Procedure structure for procedure `DOC_PS` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `DOC_PS` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `DOC_PS`(
+	buscar varchar(50),
+	tipo_doc int
+    )
+BEGIN
+    	SELECT
+                p.id_documentos AS id,
+                p.fecha_elaboracion AS elaboracion,
+                p.proxima_evaluacion AS evaluacion,
+                p.archivo,
+                CONCAT(n.apellidos,' ',n.nombres) AS nombres,
+                n.cedula
+            FROM documentos p,ninas n,tipo_documento t
+            WHERE n.id_nina=p.nina
+            AND p.tipo_documento = t.id_tipo_documento
+            and t.id_tipo_documento = tipo_doc
+            AND n.cedula like concat('',buscar,'%');
+    END */$$
+DELIMITER ;
+
 /* Procedure structure for procedure `INTERVENCIONES_PI` */
 
 /*!50003 DROP PROCEDURE IF EXISTS  `INTERVENCIONES_PI` */;
@@ -245,6 +305,33 @@ BEGIN
 	tiempos_i,recursos_i,responsable_i,pfc_i
 	);
 	
+    END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `NINAS_PI` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `NINAS_PI` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `NINAS_PI`(
+	nombres_n varchar(50),
+	apellidos_n varchar(50),
+	cedula_n varchar(10),
+	telefono_n varchar(10),
+	email_n VARCHAR(25),
+	ficha_ingreso_n varchar(50)
+    )
+BEGIN
+	INSERT INTO ninas VALUES (
+	NULL,
+	nombres_n,
+	apellidos_n,
+	cedula_n,
+	telefono_n,
+	email_n,
+	ficha_ingreso_n
+	);
     END */$$
 DELIMITER ;
 

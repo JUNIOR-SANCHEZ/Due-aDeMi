@@ -22,8 +22,8 @@ class menuModelWidget extends Model
         if ($this->_acl->permiso("add_nina")) {
             $menus["sidenav"][] = array(
                 "id" => "ficha_ingreso",
-                "title" => "FICHA DE INGRESO NIÑA",
-                "icon" => "fa-dashboard",
+                "title" => "Ficha de ingreso NNA",
+                "icon" => "fa-child",
                 "link" => BASE_URL . "tutoras/ninas",
             );
         }
@@ -41,6 +41,32 @@ class menuModelWidget extends Model
                 "title" => "P F C",
                 "icon" => "",
                 "link" => BASE_URL . "tutoras/docs/tipoDoc/pfc",
+            );
+        }
+        if ($this->_acl->permiso("admin_access")) {
+            $menus["sidenav"][] = 
+                array(
+                    "id" => "usuarios",
+                    "title" => "Permisos por usuario",
+                    "icon" => "fa-user",
+                    "link" => BASE_URL . "usuarios"
+                
+            );
+            $menus["sidenav"][] = 
+                array(
+                    "id" => "acl",
+                    "title" => "Control de acceso por rol",
+                    "icon" => "fa-group",
+                    "link" => BASE_URL . "acl"
+                
+            );
+            $menus["sidenav"][] = 
+                array(
+                    "id" => "registro_user",
+                    "title" => "Registrar nuevo usuario",
+                    "icon" => " fa-user-plus",
+                    "link" => BASE_URL . "usuarios/registro"
+                
             );
         }
 

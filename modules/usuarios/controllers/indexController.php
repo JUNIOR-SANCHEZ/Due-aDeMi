@@ -9,10 +9,11 @@ class indexController extends usuariosController
         parent::__construct();
             
         $this->_usuarios = $this->loadModel('index');
-         
+        if (!$this->_acl->permiso("admin_access")) {
+            $this->redireccionar();
+        }         
 
     }
-    
     public function index()
     {
         $dato = "";
@@ -94,16 +95,7 @@ class indexController extends usuariosController
         
         $this->_view->renderizar('permisos', 'usuarios');
     }
-    public function eliminarUsuario($id){
-        $id = Cifrado::decryption($id);
-        $id = (int)$id;
-        if(!is_int($id)){
-            $this->redireccionar();
-        }
-        $this->_usuarios->eliminarUsuario($id);
-        $this->redireccionar("usuarios");
-        
-    }
+    
 }
 
 ?>

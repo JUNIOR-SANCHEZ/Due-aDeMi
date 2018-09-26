@@ -129,25 +129,4 @@ abstract class Controller {
         }
         return true;
     }
-
-    protected function getRutaCarpetaImagen($ruta) {
-        $ruta = ROOT . "public" . DS . "img" . DS . $ruta . DS;
-        return $ruta;
-    }
-
-    protected function eliminarImg($folder, $file) {
-        $imgStaic = ROOT . "public" . DS . "img" . DS . $folder . DS . "upl_5acda05f64a84.png";
-        $imgDinam = ROOT . "public" . DS . "img" . DS . $folder . DS . $file;
-        
-        
-        if ($imgStaic != $imgDinam){          
-            
-            if (file_exists($imgDinam)) {
-                unlink(ROOT . "public" . DS . "img" . DS . $folder . DS . $file);
-                unlink(ROOT . "public" . DS . "img" . DS . $folder . DS . "thumb" . DS . "thumb_" . $file);
-            }
-        
-        }
-    }
-
 }

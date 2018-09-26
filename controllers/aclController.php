@@ -8,9 +8,9 @@ class aclController extends Controller
         parent::__construct();
         $this->_aclm = $this->loadModel('acl');
  
-//        if(!$this->_acl->permiso("admin_access")){
-//            $this->redireccionar();
-//        }
+       if(!$this->_acl->permiso("admin_access")){
+           $this->redireccionar();
+       }
     }
     
     public function index()

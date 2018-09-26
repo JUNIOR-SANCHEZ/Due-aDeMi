@@ -52,6 +52,7 @@ class loginController extends Controller {
             Session::set("id", $row["id"]);
             Session::set('usuario', $row['usuario']);
             Session::set('nombre', $row['nombres']);
+            Session::set('img', $row['img']);
             Session::set('apellido', $row['apellidos']);
             Session::set('tiempo', time());
             switch(Session::get("rol_name")){

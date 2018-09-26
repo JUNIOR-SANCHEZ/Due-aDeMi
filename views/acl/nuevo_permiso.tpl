@@ -7,6 +7,7 @@
         <div class="box-body">
 
             <form action="" method="POST" class="form-horizontal" role="form">
+                <input type="hidden" name="guardar" value="1">
                 <div class="form-group">
                     <label for="inputEmail3" class="col-md-1 control-label">Permiso:</label>
                     <div class="col-md-3">

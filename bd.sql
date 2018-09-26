@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v11.11 (64 bit)
-MySQL - 5.5.5-10.1.29-MariaDB : Database - duenademi2
+MySQL - 5.5.5-10.1.33-MariaDB : Database - duenademi2
 *********************************************************************
 */
 
@@ -12,7 +12,7 @@ MySQL - 5.5.5-10.1.29-MariaDB : Database - duenademi2
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`duenademi2` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`duenademi2` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci */;
 
 USE `duenademi2`;
 
@@ -46,7 +46,6 @@ CREATE TABLE `documentos` (
   `fecha_elaboracion` date NOT NULL,
   `proxima_evaluacion` date NOT NULL,
   `nina` int(11) NOT NULL,
-  `archivo` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `tipo_documento` int(11) NOT NULL,
   PRIMARY KEY (`id_documentos`),
   KEY `D_TD` (`tipo_documento`),
@@ -114,11 +113,11 @@ CREATE TABLE `permisos` (
   `permiso` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `key` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_permiso`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 /*Data for the table `permisos` */
 
-insert  into `permisos`(`id_permiso`,`permiso`,`key`) values (1,'Tareas de administracion','admin_access'),(7,'Crear usuarios','add_user'),(8,'Desactivar usuarios','disabled_user'),(9,'Registrar nina','add_nina');
+insert  into `permisos`(`id_permiso`,`permiso`,`key`) values (1,'Tareas de administracion','admin_access'),(7,'Crear usuarios','add_user'),(8,'Desactivar usuarios','disabled_user'),(9,'Registrar nina','add_nina'),(10,'Registrar plan de fortalecimiento comunitario','add_pfc');
 
 /*Table structure for table `permisos_role` */
 
@@ -135,7 +134,7 @@ CREATE TABLE `permisos_role` (
 
 /*Data for the table `permisos_role` */
 
-insert  into `permisos_role`(`role`,`permiso`,`valor`) values (1,1,1),(1,2,1),(1,3,1),(5,4,1);
+insert  into `permisos_role`(`role`,`permiso`,`valor`) values (1,1,1),(1,2,1),(1,3,1),(1,7,1),(1,8,1),(1,9,0),(1,10,0),(5,4,1),(5,9,1),(5,10,1),(6,9,1);
 
 /*Table structure for table `permisos_usuario` */
 
@@ -152,6 +151,30 @@ CREATE TABLE `permisos_usuario` (
 
 /*Data for the table `permisos_usuario` */
 
+insert  into `permisos_usuario`(`usuario`,`permiso`,`valor`) values (4,9,1),(4,10,1);
+
+/*Table structure for table `pfc` */
+
+DROP TABLE IF EXISTS `pfc`;
+
+CREATE TABLE `pfc` (
+  `id_pfc` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `canton` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `parroquia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `num_familia_servicio` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
+  `num_nna_servicio` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
+  `dpc` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `ob_general_plan` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `ob_especificos` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `documento` int(11) NOT NULL,
+  PRIMARY KEY (`id_pfc`),
+  KEY `PFC_DOC` (`documento`),
+  CONSTRAINT `PFC_DOC` FOREIGN KEY (`documento`) REFERENCES `documentos` (`id_documentos`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `pfc` */
+
 /*Table structure for table `roles` */
 
 DROP TABLE IF EXISTS `roles`;
@@ -160,11 +183,11 @@ CREATE TABLE `roles` (
   `id_role` int(11) NOT NULL AUTO_INCREMENT,
   `role` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `roles` */
 
-insert  into `roles`(`id_role`,`role`) values (1,'Administrador'),(5,'tutoras');
+insert  into `roles`(`id_role`,`role`) values (1,'Administrador'),(5,'tutoras'),(6,'Psicologa');
 
 /*Table structure for table `tipo_documento` */
 
@@ -202,7 +225,7 @@ CREATE TABLE `usuarios` (
 
 /*Data for the table `usuarios` */
 
-insert  into `usuarios`(`id`,`nombres`,`apellidos`,`usuario`,`pass`,`email`,`cedula`,`role`,`img`,`estado`,`codigo`) values (4,'JUAN DIEGO','CALDERON LOBO','juan24','710f9d5d43fb39fb06facf99d677841a2e19c07b','juan2@gmail.com','0709826357',1,'user.png',0,'5ba99aecbeed2'),(5,' PAULA SIFIA','SANCHEZ MARTINEZ','juan27','710f9d5d43fb39fb06facf99d677841a2e19c07b','juan29@gmail.com','0709826357',5,'user.png',0,'5ba99fe64d2f3');
+insert  into `usuarios`(`id`,`nombres`,`apellidos`,`usuario`,`pass`,`email`,`cedula`,`role`,`img`,`estado`,`codigo`) values (4,'JUAN DIEGO','CALDERON LOBO','juan24','710f9d5d43fb39fb06facf99d677841a2e19c07b','juan2@gmail.com','0709826357',1,'user1.png',0,'5ba99aecbeed2'),(5,' PAULA SIFIA','SANCHEZ MARTINEZ','juan27','710f9d5d43fb39fb06facf99d677841a2e19c07b','juan29@gmail.com','0709826357',5,'user.png',0,'5ba99fe64d2f3');
 
 /*Table structure for table `xprueba` */
 

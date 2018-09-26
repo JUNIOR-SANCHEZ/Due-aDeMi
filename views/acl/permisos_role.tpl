@@ -7,7 +7,7 @@
     <input type="hidden" name="guardar" value="1" />
     
     {if isset($permisos) && count($permisos)}
-        <table class="table table-bordered table-condensed table-striped" style="width: 500px;">
+        <table class="table table-bordered table-condensed table-striped" style="width: 550px;">
             <tr>
                 <th>Permiso</th>
                 <th style="text-align: center;">Habilitado</th>

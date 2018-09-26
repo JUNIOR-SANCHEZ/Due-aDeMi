@@ -11,10 +11,21 @@ class loginController extends Controller {
     public function index() {
         // ARCHIVOS ADJUNTOS
         $this->_view->assign("titulo","Login");
-        if (Session::get("autenticado")) $this->redireccionar();
+        if (Session::get("autenticado")){
+            switch(Session::get("rol_name")){
+                case "Administrador":
+                $this->redireccionar("usuarios");
+                break;
+                case "tutoras":
+                $this->redireccionar("tutoras");
+                break;
+                default:
+                $this->redireccionar("usuarios/login/cerrar");
+            }
+        }
         if ($this->getInt('login') == 1) {
             $this->_view->assign("datos",$_POST);
-            if(!$this->getAlphaNum('user')){
+            if(!$this->getText('user')){
                  $this->_view->assign("_error","Escriba el nombre de usuario");
                 $this->_view->renderizar('index', 'login');
                 exit;
@@ -24,8 +35,9 @@ class loginController extends Controller {
                  $this->_view->renderizar('index', 'login');
                 exit;
             }
+            
             $row = $this->_login->getUser(
-                    $this->getAlphaNum('user'),
+                    $this->getText('user'),
                     $this->getSql('password')
                     ); 
             if(!$row){
@@ -36,20 +48,22 @@ class loginController extends Controller {
             $this->_view->datos="Session";
             Session::set('autenticado', true);
             Session::set('level', $row['role']);
-            Session::set('rol_name', $row['nombre_role']);
+            Session::set('rol_name', $row['rol_name']);
             Session::set("id", $row["id"]);
             Session::set('usuario', $row['usuario']);
+            Session::set('nombre', $row['nombres']);
+            Session::set('apellido', $row['apellidos']);
             Session::set('tiempo', time());
-            // switch(Session::get("rol_name")){
-            //     case "TalentoHumano":
-            //     $this->redireccionar("dptoTalentoHumano");
-            //     break;
-            //     case "CentroDeComputo":
-            //     $this->redireccionar("dptoCentroDeComputo");
-            //     break;
-            //     default:
-            //     $this->redireccionar("usuarios/login/cerrar");
-            // }
+            switch(Session::get("rol_name")){
+                case "Administrador":
+                $this->redireccionar("usuarios");
+                break;
+                case "tutoras":
+                $this->redireccionar("tutoras");
+                break;
+                default:
+                $this->redireccionar("usuarios/login/cerrar");
+            }
         }
         $this->_view->renderizar('index', 'login');
     }

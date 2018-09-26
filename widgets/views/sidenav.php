@@ -7,7 +7,8 @@
                 <img src="<?=BASE_URL?>public/img/user/user.png?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p><?=Session::get("apellido")?></p>
+                <p><?=Session::get("nombre")?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>

@@ -27,12 +27,13 @@
         </div>
         <div class="login-box-body">
             <p class="login-box-msg">Inicio de sesion</p>
-            <!-- {if isset($_error)} -->
-            <div class="alert alert-warning alert-dismissible" role="alert">
+            
+            {if isset($_error)}
+            <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                <strong>Error!</strong>   {$_error}
             </div>
-            <!-- {/if} -->
+            {/if}
             <!-- CUERPO DE LA APLICACION -->
             {include file=$_contenido}
             <a href="register.html" class="text-center">Olvidé mi contraseña</a>

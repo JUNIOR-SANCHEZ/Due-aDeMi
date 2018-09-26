@@ -1,10 +1,11 @@
 <form action="{$_layoutParams.root}usuarios/login" method="post">
+  <input type="hidden" name="login" value="1">
   <div class="form-group has-feedback">
-    <input type="email" name="user" class="form-control" placeholder="Email" value="{$datos.user|default:''}">
+    <input type="text" name="user" class="form-control" placeholder="Email" value="{$datos.user|default:''}" required>
     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
   </div>
   <div class="form-group has-feedback">
-    <input type="password" name="password" class="form-control" placeholder="Password" value="{$datos.password|default:''}">
+    <input type="password" name="password" class="form-control" placeholder="Password" value="{$datos.password|default:''}" required>
     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
   </div>
   <div class="row">

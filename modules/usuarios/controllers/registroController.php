@@ -7,9 +7,11 @@ class registroController extends Controller {
     public function __construct() {
         parent::__construct();
         $this->_sqlUser = $this->loadModel("registro");
+        
     }
 
     public function index() {
+        if(!$this->_acl->permiso("add_user")){$this->redireccionar();}
         $this->_view->assign("titulo", "Registro");
         $this->_view->assign("rol", $this->_sqlUser->getCargos());
         if ($this->getInt("guardar") == 1) {

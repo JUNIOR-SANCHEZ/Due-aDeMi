@@ -17,6 +17,7 @@ class ninasController extends tutorasController
     }
     public function index()
     {
+        if(!$this->_acl->permiso("add_nina")){$this->redireccionar();}
         # HACEMOS USO DEL ARCHIVO AJAX.JS
         $this->_view->setJs(array('ajax', 'img'));
         $this->_view->renderizar("registro", "ninas");

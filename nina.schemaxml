@@ -48,8 +48,8 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="descripciones" view="standard">
-<left>431</left>
-<top>341</top>
+<left>381</left>
+<top>357</top>
 <width>296</width>
 <height>197</height>
 <sql_create_table>CREATE TABLE `descripciones` (

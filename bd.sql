@@ -37,25 +37,6 @@ CREATE TABLE `descripciones` (
 
 insert  into `descripciones`(`id_descripciones`,`vestimenta`,`salud`,`maltrato_fisico`,`pertenecia`,`observaciones_generales`,`nina`) values (1,'BLUSA AZUL CON PANTALON JEAN NEGRO','NO PRESENTA NINGUNA ENFERMEDAD','NO PRESENTA MALTRATO FISICO','NO INGRESA CON PERTENENCIAS ','CARACTER INTROVERTIDO',75);
 
-/*Table structure for table `documentos` */
-
-DROP TABLE IF EXISTS `documentos`;
-
-CREATE TABLE `documentos` (
-  `id_documentos` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha_elaboracion` date NOT NULL,
-  `proxima_evaluacion` date NOT NULL,
-  `nina` int(11) NOT NULL,
-  `tipo_documento` int(11) NOT NULL,
-  PRIMARY KEY (`id_documentos`),
-  KEY `D_TD` (`tipo_documento`),
-  KEY `D_N` (`nina`),
-  CONSTRAINT `D_N` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`),
-  CONSTRAINT `D_TD` FOREIGN KEY (`tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-/*Data for the table `documentos` */
-
 /*Table structure for table `informantes` */
 
 DROP TABLE IF EXISTS `informantes`;
@@ -158,22 +139,24 @@ insert  into `permisos_usuario`(`usuario`,`permiso`,`valor`) values (4,9,1),(4,1
 DROP TABLE IF EXISTS `pfc`;
 
 CREATE TABLE `pfc` (
-  `id_pfc` int(11) NOT NULL AUTO_INCREMENT,
+  `id_datos_generales` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `canton` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `parroquia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `num_familia_servicio` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
   `num_nna_servicio` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
-  `dpc` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `ob_general_plan` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `ob_especificos` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `documento` int(11) NOT NULL,
-  PRIMARY KEY (`id_pfc`),
-  KEY `PFC_DOC` (`documento`),
-  CONSTRAINT `PFC_DOC` FOREIGN KEY (`documento`) REFERENCES `documentos` (`id_documentos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+  `diag_part_comu` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `ob_general_plan` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `ob_especificos` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha_elab` date NOT NULL,
+  `fecha_eval` date NOT NULL,
+  `nina` int(11) NOT NULL,
+  PRIMARY KEY (`id_datos_generales`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `pfc` */
+
+insert  into `pfc`(`id_datos_generales`,`nombre`,`canton`,`parroquia`,`num_familia_servicio`,`num_nna_servicio`,`diag_part_comu`,`ob_general_plan`,`ob_especificos`,`fecha_elab`,`fecha_eval`,`nina`) values (8,'juan','machala','nueve de mayo','255','255','','','','0000-00-00','0000-00-00',0),(9,'juan','machala','nueve de mayo','255','255','','','','0000-00-00','0000-00-00',0);
 
 /*Table structure for table `roles` */
 
@@ -188,20 +171,6 @@ CREATE TABLE `roles` (
 /*Data for the table `roles` */
 
 insert  into `roles`(`id_role`,`role`) values (1,'Administrador'),(5,'tutoras'),(6,'Psicologa');
-
-/*Table structure for table `tipo_documento` */
-
-DROP TABLE IF EXISTS `tipo_documento`;
-
-CREATE TABLE `tipo_documento` (
-  `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT,
-  `documento` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_tipo_documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
-/*Data for the table `tipo_documento` */
-
-insert  into `tipo_documento`(`id_tipo_documento`,`documento`) values (1,'PFC'),(2,'PGF'),(3,'PIA');
 
 /*Table structure for table `usuarios` */
 

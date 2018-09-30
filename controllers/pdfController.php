@@ -26,5 +26,9 @@ class pdfController extends Controller {
         $this->_pdf->Cell(40, 10, '¡Hola, Mundo!');
         $this->_pdf->Output();
     }
+    public function nuevapaina()
+    {
+        
+    }
 
 }

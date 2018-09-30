@@ -23,15 +23,15 @@ class menuModelWidget extends Model
             ),
             array(
                 "id" => "pfc",
-                "title" => "P F C",
+                "title" => "PAINA",
                 "icon" => "",
-                "link" => BASE_URL . "tutoras/docs/tipoDoc/pfc"
+                "link" => BASE_URL . "tutoras/PAINA"
             ),
             array(
                 "id" => "pgf",
                 "title" => "P G F ",
                 "icon" => "",
-                "link" => BASE_URL . "tutoras/docs/tipoDoc/pgf"
+                "link" => BASE_URL . "tutoras/PGF"
             ),
             
         );

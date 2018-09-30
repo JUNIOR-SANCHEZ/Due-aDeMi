@@ -6,15 +6,15 @@
 <canvas zoom="100">
 <tables>
 <table name="roles" view="standard">
-<left>276</left>
-<top>102</top>
+<left>261</left>
+<top>53</top>
 <width>190</width>
 <height>112</height>
 <sql_create_table>CREATE TABLE `roles` (
   `id_role` int(11) NOT NULL AUTO_INCREMENT,
   `role` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="permisos_role" view="standard">
 <left>527</left>
@@ -75,7 +75,7 @@
   `permiso` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `key` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_permiso`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci</sql_create_table>
 </table>
 </tables>
 </canvas>

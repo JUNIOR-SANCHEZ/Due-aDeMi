@@ -10,7 +10,7 @@ class Model
     {
         $this->_registry = Registry::getInstancia();
         $this->_db = $this->_registry->_db;
-        $this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->_db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     }
 
     protected function tipoDocumento()

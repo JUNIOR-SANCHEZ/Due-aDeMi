@@ -2,30 +2,32 @@
     <div class="row">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-solid">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">PROYECTO GLOBAL DE FAMILIA</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="box-group" id="accordion">
-                                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                                <div class="panel box box-primary">
-                                    <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#datos-identificacion">
-                                                Datos de indentificación
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="datos-identificacion" class="panel-collapse collapse in">
-                                        <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
-                                                    <form action="{$_layoutParams.root}tutoras/ninas/nuevaNina" method="POST"
-                                                        enctype="multipart/form-data" id="form-ninas">
-                                                        <input type="hidden" name="guardar" value="1">
+                <form action="{$_layoutParams.root}tutoras/pgf/nuevopgf" method="post" id="form-pgf">
+                    <input type="hidden" name="guardar" value="1">
+                    <div class="col-md-12">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">PROYECTO GLOBAL DE FAMILIA</h3>
+                                <button type="button" class="btn btn-primary pull-right " id="btn-guardar-pgf">Guardar</button>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="box-group" id="accordion">
+                                    <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                    <!-- <form action="{$_layoutParams.root}tutoras/pgf/nuevopgf" method="post" id="form-pgf">
+                                    <input type="hidden" name="guardar" value="1"> -->
+                                    <div class="panel box box-primary">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#datos-identificacion">
+                                                    Datos de indentificación
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="datos-identificacion" class="panel-collapse collapse in">
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-offset-1">
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <!-- parte lateral foto -->
@@ -38,21 +40,28 @@
                                                                                     <i class="fa fa-user"></i>
                                                                                 </div>
                                                                                 <input type="text" name="famila"
-                                                                                    placeholder="Familia" class="form-control"
-                                                                                    required>
+                                                                                    placeholder="Familia" class="form-control">
                                                                             </div>
                                                                         </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label for="">Niños/as Adolescentes:</label>
                                                                             <div class="input-group">
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-user"></i>
                                                                                 </div>
-                                                                                <input type="text" name="niños"
-                                                                                    placeholder="Niños" class="form-control"
-                                                                                    required>
+                                                                                <select name="nina" class="form-control">
+                                                                                    <option value="0">Seleccione</option>
+                                                                                    {foreach item=list from=$nina}
+                                                                                    <option value="{$list['id_nina']}">{$list['nombres']}
+                                                                                        {$list['apellidos']}</option>
+                                                                                    {/foreach}
+                                                                                </select>
                                                                             </div>
                                                                         </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label for="">Etnia de la Familia:</label>
                                                                             <div class="input-group">
@@ -60,30 +69,19 @@
                                                                                     <!-- <i class="fa fa-user"></i> -->
                                                                                 </div>
                                                                                 <input type="text" name="etnia"
-                                                                                    placeholder="Etnia" class="form-control"
-                                                                                    required>
+                                                                                    placeholder="Etnia" class="form-control">
                                                                             </div>
                                                                         </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label for="">Causa del acogimiento:</label>
                                                                             <div class="input-group">
                                                                                 <div class="input-group-addon">
                                                                                     <!-- <i class="fa fa-user"></i> -->
                                                                                 </div>
-                                                                                <input type="text" name="causa"
-                                                                                    placeholder="Causa" class="form-control"
-                                                                                    required>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <div class="input-group">
-                                                                                <div class="input-group-addon">
-                                                                                    <i class="fa fa-file"></i>
-                                                                                </div>
-                                                                                <input type="file" name="foto" class="form-control"
-                                                                                    required>
+                                                                                <input type="text" name="causa_acogimiento"
+                                                                                    placeholder="Causa" class="form-control">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -97,21 +95,8 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-address-card"></i>
                                                                                 </div>
-                                                                                <input type="text" name="fecha"
-                                                                                    placeholder="Fecha" class="form-control"
-                                                                                    required>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="">Causa del Acogimiento:</label>
-                                                                            <div class="input-group">
-                                                                                <div class="input-group-addon">
-                                                                                    <i class="fa fa-phone"></i>
-                                                                                </div>
-                                                                                <input type="text" name="phone" class="form-control"
-                                                                                    required>
+                                                                                <input type="text" name="fecha_elaboracion"
+                                                                                    placeholder="Fecha" class="form-control">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -122,9 +107,8 @@
                                                                                 <div class="input-group-addon">
                                                                                     <!-- <i class="fa fa-at"></i> -->
                                                                                 </div>
-                                                                                <input type="text" name="fecha"
-                                                                                    placeholder="Fecha" class="form-control"
-                                                                                    required>
+                                                                                <input type="text" name="fecha_evaluacion"
+                                                                                    placeholder="Fecha" class="form-control">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -134,7 +118,7 @@
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
-                                                                            <label for="">Profesional y N° cedula:</label>
+                                                                            <label for="">Profesional</label>
                                                                             <div class="input-group">
                                                                                 <div class="input-group-addon">
                                                                                     <i></i>
@@ -144,11 +128,19 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="">Cedula:</label>
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-addon">
+                                                                                    <i></i>
+                                                                                </div>
+                                                                                <input type="text" name="cedula"
+                                                                                    placeholder="Cedula" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <!-- parte lateral foto -->
-
-
                                                                 <div class="col-md-4">
 
                                                                 </div>
@@ -156,43 +148,38 @@
 
                                                             </div>
                                                             <!-- row 1 -->
-                                                            <div class="row" style="margin-bottom: 1rem;">
-                                                                <div class="col-md-12 ">
-                                                                    <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                                                                </div>
-                                                            </div>
-                                                    </form>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel box box-warning">
-                                    <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#infomante">
-                                                Diagnostico de la situación
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="infomante" class="panel-collapse collapse ">
-                                        <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
-                                                    <form action="{$_layoutParams.root}" method="post">
+
+                                    <div class="panel box box-warning">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#infomante">
+                                                    Diagnostico de la situación
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="infomante" class="panel-collapse collapse ">
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-offset-1">
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="">De la famila:</label>
-                                                                        <textarea name="de_familia" id="" rows="5"
-                                                                            class="form-control"></textarea>
+                                                                        <textarea name="diag_familia" id="" rows="5" class="form-control"></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="">Del Equipo:</label>
-                                                                        <textarea name="del_equi" id="" rows="5" class="form-control"></textarea>
+                                                                        <textarea name="diag_equipo" id="" rows="5" class="form-control"></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
@@ -201,33 +188,31 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-
-                                                    </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel box box-warning">
-                                    <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#objetivo_general">
-                                                Objetivo General
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="objetivo_general" class="panel-collapse collapse">
-                                        <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
-                                                    <form action="{$_layoutParams.root}" method="post">
+
+                                    <div class="panel box box-warning">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#objetivo_general">
+                                                    Objetivo General
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="objetivo_general" class="panel-collapse collapse">
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-offset-1">
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="">Consensuado con la familia :</label>
-                                                                        <textarea name="Consensuado" id="" rows="5"
+                                                                        <textarea name="Consensuado_familia" id="" rows="5"
                                                                             class="form-control"></textarea>
                                                                     </div>
                                                                 </div>
@@ -235,62 +220,55 @@
                                                                     <div class="form-group">
                                                                         <label for="">Del equipo Consensuado con la
                                                                             familia:</label>
-                                                                        <textarea name="del_equipo" id="" rows="5"
-                                                                            class="form-control"></textarea>
+                                                                        <textarea name="del_equipo" rows="5" class="form-control"></textarea>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <button type="submit" class="btn btn-success pull-right">Agregar</button>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- </form> -->
                                 </div>
+                                <!-- /.box-body -->
                             </div>
+                            <!-- /.box -->
+
+
+
                         </div>
-                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box -->
-                    <div class="box box-solid">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Area</h3>
+                    <div class="col-md-12">
+                        <!-- <form action="{$_layoutParams.root}tutoras/ninas/nuevaNina" method="POST" id="form-ninas"> -->
+                        <!-- <input type="hidden" name="guardar" value="1"> -->
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Area</h3>
+                                <div class="form-group col-md-4 pull-right">
+                                    <select id="disabledSelect" class="form-control ">
+                                        <option value="">Dinamicas Intrafamiliares</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group form-group-sm">
-                                    <label for="disabledSelect">Dinamicas Intrafamiliares</label>
-                                    <select id="disabledSelect" class="form-control "></select>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="box-group" id="accordion">
+                                    <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                    <div class="panel box box-primary">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#diag-area">
+                                                    Diagnostico del area
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="diag-area" class="panel-collapse collapse">
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-offset-1">
 
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="box-group" id="accordion">
-                                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                                <div class="panel box box-primary">
-                                    <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#diag-area">
-                                                Diagnostico del area
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="diag-area" class="panel-collapse collapse">
-                                        <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
-                                                    <form action="{$_layoutParams.root}tutoras/ninas/nuevaNina" method="POST"
-                                                        enctype="multipart/form-data" id="form-ninas">
-                                                        <input type="hidden" name="guardar" value="1">
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <!-- parte lateral foto -->
@@ -299,8 +277,8 @@
                                                                         <div class="form-group">
 
                                                                             <label for="">Descripcion</label>
-                                                                            <textarea name="del_equipo" id="" rows="5"
-                                                                                class="form-control"></textarea>
+                                                                            <textarea name="diagnostico_area" id=""
+                                                                                rows="5" class="form-control"></textarea>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -308,33 +286,32 @@
 
                                                                 </div>
                                                             </div>
-                                                            <!-- row 1 -->
-                                                            <div class="row" style="margin-bottom: 1rem;">
-                                                                <div class="col-md-12 ">
-                                                                    <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                                                                </div>
+                                                        </div>
+                                                        <!-- row 1 -->
+                                                        <div class="row" style="margin-bottom: 1rem;">
+                                                            <div class="col-md-12 ">
+                                                                <button type="submit" class="btn btn-primary pull-right">Guardar</button>
                                                             </div>
-                                                    </form>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel box box-warning">
-                                    <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#infomante">
-                                                Objetivo del area
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="infomante" class="panel-collapse collapse">
-                                        <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
-                                                    <form action="{$_layoutParams.root}tutoras/ninas/nuevaNina" method="POST"
-                                                        enctype="multipart/form-data" id="form-ninas">
-                                                        <input type="hidden" name="guardar" value="1">
+                                    <div class="panel box box-warning">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#objetivo">
+                                                    Objetivo del area
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="objetivo" class="panel-collapse collapse">
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-offset-1">
+
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <!-- parte lateral foto -->
@@ -343,118 +320,103 @@
                                                                         <div class="form-group">
 
                                                                             <label for="">Descripcion</label>
-                                                                            <textarea name="del_equipo" id="" rows="5"
+                                                                            <textarea name="objetivo_area" id="" rows="5"
                                                                                 class="form-control"></textarea>
                                                                         </div>
                                                                     </div>
-
-
                                                                 </div>
-
-
-
-
-
                                                                 <div class="col-md-4">
 
                                                                 </div>
-
-
                                                             </div>
-                                                            <!-- row 1 -->
-                                                            <div class="row" style="margin-bottom: 1rem;">
-                                                                <div class="col-md-12 ">
-                                                                    <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                                                                </div>
+                                                        </div>
+                                                        <!-- row 1 -->
+                                                        <div class="row" style="margin-bottom: 1rem;">
+                                                            <div class="col-md-12 ">
+                                                                <button type="submit" class="btn btn-primary pull-right">Guardar</button>
                                                             </div>
-                                                    </form>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="panel box box-warning">
-                                    <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#Activi">
-                                                Actividades del area
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="Activi" class="panel-collapse collapse">
-                                        <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
-                                                    <form action="{$_layoutParams.root}" method="post">
+                                    <div class="panel box box-warning">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#Activi">
+                                                    Actividades del area
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="Activi" class="panel-collapse collapse">
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-offset-1">
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label for="">Descripcion</label>
-                                                                        <textarea name="descripcion" id="" rows="5"
+                                                                        <textarea name="act_descripcion" id="" rows="5"
                                                                             class="form-control"></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="">Responsable:</label>
-                                                                        <textarea name="responsable" id="" rows="5"
+                                                                        <textarea name="act_responsable" id="" rows="5"
                                                                             class="form-control"></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="">Tiempo</label>
-                                                                        <textarea name="tiempo" id="" rows="5" class="form-control"></textarea>
+                                                                        <textarea name="act_tiempo" id="" rows="5"
+                                                                            class="form-control"></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="">Evaluacion</label>
-                                                                        <textarea name="evaluacion" id="" rows="5"
+                                                                        <textarea name="act_evaluacion" id="" rows="5"
                                                                             class="form-control"></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="">Observaciones</label>
-                                                                        <textarea name="observaciones" id="" rows="5"
+                                                                        <textarea name="act_observaciones" id="" rows="5"
                                                                             class="form-control"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <button type="submit" class="btn btn-success pull-right">Agregar</button>
-                                                                </div>
-                                                            </div>
                                                         </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel box box-warning">
-                                    <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#situacion">
-                                                Evaluacion global de todas las areas
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="situacion" class="panel-collapse collapse">
-                                        <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
-                                                    <form action="{$_layoutParams.root}" method="post">
+                                    <div class="panel box box-warning">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#situacion">
+                                                    Evaluacion global de todas las areas
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="situacion" class="panel-collapse collapse">
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-offset-1">
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
 
-                                                                        <textarea name="vestimenta" id="" rows="5"
+                                                                        <textarea name="evaluacion_global" id="" rows="5"
                                                                             class="form-control"></textarea>
                                                                     </div>
                                                                 </div>
@@ -465,20 +427,21 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                    </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- /.box-body -->
                                 </div>
+                                <!-- /.box -->
                             </div>
-                            <!-- /.box-body -->
+                            <!-- </form> -->
                         </div>
-                        <!-- /.box -->
-                    </div>
-                </div>
+
+                </form>
 
             </div>
         </div>
     </div>
-</div>

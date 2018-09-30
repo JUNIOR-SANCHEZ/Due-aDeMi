@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">duenademi2</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="ninas" view="standard">
+<left>40</left>
+<top>32</top>
+<width>220</width>
+<height>197</height>
+<sql_create_table>CREATE TABLE `ninas` (
+  `id_nina` int(11) NOT NULL AUTO_INCREMENT,
+  `nombres` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `apellidos` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `cedula` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `telefono` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `email` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
+  `ficha_ingreso` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id_nina`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="datos_pgf" view="standard">
+<left>394</left>
+<top>60</top>
+<width>259</width>
+<height>248</height>
+<sql_create_table>CREATE TABLE `datos_pgf` (
+  `id_pgf` int(11) NOT NULL AUTO_INCREMENT,
+  `familia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `etnia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `acogimiento` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha_elaboracion` date NOT NULL,
+  `proxima_evaluacion` date NOT NULL,
+  `profesional` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `cedula` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `nina` int(11) NOT NULL,
+  `diag_sit` int(11) NOT NULL,
+  `obj_gene` int(11) NOT NULL,
+  `area` int(11) NOT NULL,
+  PRIMARY KEY (`id_pgf`),
+  KEY `D_N` (`nina`),
+  KEY `PGF_DIAG` (`diag_sit`),
+  KEY `PGF_OBJ` (`obj_gene`),
+  KEY `PGF_AREA` (`area`),
+  CONSTRAINT `PGF_AREA` FOREIGN KEY (`area`) REFERENCES `datos_area` (`id_area`),
+  CONSTRAINT `PGF_DIAG` FOREIGN KEY (`diag_sit`) REFERENCES `diagnostico_situacion` (`id_diagnostico_situacion`),
+  CONSTRAINT `PGF_NINA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`),
+  CONSTRAINT `PGF_OBJ` FOREIGN KEY (`obj_gene`) REFERENCES `objetivo_general` (`id_objetivo`)
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="diagnostico_situacion" view="standard">
+<left>772</left>
+<top>33</top>
+<width>307</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `diagnostico_situacion` (
+  `id_diagnostico_situacion` int(11) NOT NULL AUTO_INCREMENT,
+  `familia` varchar(50) NOT NULL,
+  `equipo` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_diagnostico_situacion`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="objetivo_general" view="colnames">
+<left>40</left>
+<top>300</top>
+<width>165</width>
+<height>146</height>
+<sql_create_table>CREATE TABLE `objetivo_general` (
+  `id_objetivo` int(10) NOT NULL AUTO_INCREMENT,
+  `consensuado_familia` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `consensuado_equipo` varchar(50) CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY (`id_objetivo`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="datos_area" view="standard">
+<left>250</left>
+<top>336</top>
+<width>246</width>
+<height>163</height>
+<sql_create_table>CREATE TABLE `datos_area` (
+  `id_area` int(11) NOT NULL AUTO_INCREMENT,
+  `diagnostico_area` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `objetivo_area` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `evaluacion_global` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `actividad` int(11) NOT NULL,
+  PRIMARY KEY (`id_area`),
+  KEY `PGF_AREA_ACTIVI` (`actividad`),
+  CONSTRAINT `PGF_AREA_ACTIVI` FOREIGN KEY (`actividad`) REFERENCES `actividades_area` (`id_actividad`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="actividades_area" view="colnames">
+<left>626</left>
+<top>402</top>
+<width>128</width>
+<height>180</height>
+<sql_create_table>CREATE TABLE `actividades_area` (
+  `id_actividad` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `responsable` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `tiempo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `evaluacion` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `observaciones` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`id_actividad`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

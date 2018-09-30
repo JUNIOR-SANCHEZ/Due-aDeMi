@@ -2,7 +2,8 @@
 SQLyog Ultimate v11.11 (64 bit)
 MySQL - 5.5.5-10.1.33-MariaDB : Database - duenademi2
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -58,6 +59,89 @@ CREATE TABLE `informantes` (
 /*Data for the table `informantes` */
 
 insert  into `informantes`(`id_informantes`,`nombres`,`apellidos`,`direccion`,`telefono`,`institucion`,`documento_ingreso`,`nina`) values (1,'LAURA NICOL','APOLO GUZMAN','MACHALA','0967687883','SAN JUAN BAUTISTA','WORD',75);
+/*Table structure for table `actividades_area` */
+
+DROP TABLE IF EXISTS `actividades_area`;
+
+CREATE TABLE `actividades_area` (
+  `id_actividad` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `responsable` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `tiempo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `evaluacion` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `observaciones` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`id_actividad`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+/*Data for the table `actividades_area` */
+
+insert  into `actividades_area`(`id_actividad`,`descripcion`,`responsable`,`tiempo`,`evaluacion`,`observaciones`) values (3,'','','','',''),(4,'','','','',''),(5,'','','','',''),(6,'','','','',''),(7,'','','','',''),(10,'nn','nn','nnn','nn','nn'),(11,'descrip','tiempoo','responsable','evalua','observa');
+
+/*Table structure for table `datos_area` */
+
+DROP TABLE IF EXISTS `datos_area`;
+
+CREATE TABLE `datos_area` (
+  `id_area` int(11) NOT NULL AUTO_INCREMENT,
+  `diagnostico_area` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `objetivo_area` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `evaluacion_global` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `actividad` int(11) NOT NULL,
+  PRIMARY KEY (`id_area`),
+  KEY `PGF_AREA_ACTIVI` (`actividad`),
+  CONSTRAINT `PGF_AREA_ACTIVI` FOREIGN KEY (`actividad`) REFERENCES `actividades_area` (`id_actividad`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `datos_area` */
+
+insert  into `datos_area`(`id_area`,`diagnostico_area`,`objetivo_area`,`evaluacion_global`,`actividad`) values (1,'','','',3),(2,'','','',4),(3,'','','',5),(4,'','','',6),(5,'','','',7),(8,'nnn','nnn','nnn',10),(9,'descripcionnn','objetivossss','evaluacion globas de todas areas',11);
+
+/*Table structure for table `datos_pgf` */
+
+DROP TABLE IF EXISTS `datos_pgf`;
+
+CREATE TABLE `datos_pgf` (
+  `id_pgf` int(11) NOT NULL AUTO_INCREMENT,
+  `familia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `etnia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `acogimiento` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha_elaboracion` date NOT NULL,
+  `proxima_evaluacion` date NOT NULL,
+  `profesional` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `cedula` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `nina` int(11) NOT NULL,
+  `diag_sit` int(11) NOT NULL,
+  `obj_gene` int(11) NOT NULL,
+  `area` int(11) NOT NULL,
+  PRIMARY KEY (`id_pgf`),
+  KEY `D_N` (`nina`),
+  KEY `PGF_DIAG` (`diag_sit`),
+  KEY `PGF_OBJ` (`obj_gene`),
+  KEY `PGF_AREA` (`area`),
+  CONSTRAINT `PGF_AREA` FOREIGN KEY (`area`) REFERENCES `datos_area` (`id_area`),
+  CONSTRAINT `PGF_DIAG` FOREIGN KEY (`diag_sit`) REFERENCES `diagnostico_situacion` (`id_diagnostico_situacion`),
+  CONSTRAINT `PGF_NINA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`),
+  CONSTRAINT `PGF_OBJ` FOREIGN KEY (`obj_gene`) REFERENCES `objetivo_general` (`id_objetivo`)
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `datos_pgf` */
+
+insert  into `datos_pgf`(`id_pgf`,`familia`,`etnia`,`acogimiento`,`fecha_elaboracion`,`proxima_evaluacion`,`profesional`,`cedula`,`nina`,`diag_sit`,`obj_gene`,`area`) values (92,'ndnd','jcjcjc','jdjjd','0000-00-00','0000-00-00','ndnnd','ndnnd',7,6,2,1),(93,'nfnfnf','jfjfj','nfjnfnf','0000-00-00','0000-00-00','nfnnf','nfnf',7,7,3,2),(94,'nxn','jdjd','ndnd','0000-00-00','0000-00-00','dhdnd','jdndn',7,8,4,3),(95,'BDHD','JDDJ','DNHDHD','0000-00-00','0000-00-00','NJDJND','DJD',7,9,5,4),(96,'dd','ndndnd','dhdhdhd','0000-00-00','0000-00-00','ndndnd','jdjdjd',7,10,6,5),(99,'','vdvdvdv','bdvdbd','0000-00-00','0000-00-00','ppp','ppppp',7,13,9,8),(100,'','etnia','causa','0000-00-00','0000-00-00','profesional','cedula',7,14,10,9);
+
+/*Table structure for table `diagnostico_situacion` */
+
+DROP TABLE IF EXISTS `diagnostico_situacion`;
+
+CREATE TABLE `diagnostico_situacion` (
+  `id_diagnostico_situacion` int(11) NOT NULL AUTO_INCREMENT,
+  `familia` varchar(50) NOT NULL,
+  `equipo` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_diagnostico_situacion`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+/*Data for the table `diagnostico_situacion` */
+
+insert  into `diagnostico_situacion`(`id_diagnostico_situacion`,`familia`,`equipo`) values (2,'rolando','romero'),(3,'rolando','romero'),(4,'rolando','romero'),(5,'rolando','romero'),(6,'ndnd','ndndnd'),(7,'nfnfnf','nfnfnf'),(8,'nxn','xnnx'),(9,'BDHD','NSNS'),(10,'dd','dddd'),(13,'nnn','nnnn'),(14,'de la familia','del equipo');
 
 /*Table structure for table `ninas` */
 
@@ -84,6 +168,21 @@ CREATE TABLE `ninas` (
 /*Data for the table `ninas` */
 
 insert  into `ninas`(`id_nina`,`fecha_ingreso`,`nombres`,`apellidos`,`lugar_nacimiento`,`fecha_nacimiento`,`foto`,`cedula`,`telefono`,`direccion`,`tipo_medida`,`numero_medida`,`fecha_medida`,`organiacion_persona`) values (75,'2018-09-24','LAURA NICOL','APOLO GUZMAN','MACHALA','2003-02-21','upl_5ba927dc00115.jpg','0706674819','0967687883','MACHALA','25','25','2018-06-25','MARTHA AGUIRRE CALDERON');
+
+/*Table structure for table `objetivo_general` */
+
+DROP TABLE IF EXISTS `objetivo_general`;
+
+CREATE TABLE `objetivo_general` (
+  `id_objetivo` int(10) NOT NULL AUTO_INCREMENT,
+  `consensuado_familia` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `consensuado_equipo` varchar(50) CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY (`id_objetivo`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `objetivo_general` */
+
+insert  into `objetivo_general`(`id_objetivo`,`consensuado_familia`,`consensuado_equipo`) values (1,'cc','rr'),(2,'neene','nebebe'),(3,'nfnfn','nfnfnf'),(4,'mm','mm'),(5,'BSBS','NSNBS'),(6,'dddd','dddd'),(9,'nnn','nnn'),(10,'consensuado familia','equipo consensuado');
 
 /*Table structure for table `permisos` */
 

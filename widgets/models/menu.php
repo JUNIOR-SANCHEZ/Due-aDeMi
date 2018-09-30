@@ -46,20 +46,18 @@ class menuModelWidget extends Model
             );
         }
         if ($this->_acl->permiso("add_pgf")) {
-            $menus["sidenav"][] =  array(
-                "id" => "pgf",
-                "title" => "P G F ",
-                "icon" => "",
-                "link" => BASE_URL . "tutoras/PGF",
-                "sub-menu"=>array()
-            );
-        }
-        if ($this->_acl->permiso("add_pgf")) {
             $menus["sidenav"][] = array(
-                "id" => "pfc",
-                "title" => "P F C",
-                "icon" => "",
-                "link" => BASE_URL . "tutoras/docs/tipoDoc/pfc",
+                "id" => "dir_pgf",
+                "title" => "P G F",
+                "icon" => "fa-file",
+                "sub-menu" =>  array(
+                    array(
+                    "id" => "pgf",
+                    "title" => "Nueva PGF",
+                    "icon" => "fa-bookmark",
+                    "link" => BASE_URL . "tutoras/PGF"
+                     )
+                )
             );
         }
         if ($this->_acl->permiso("admin_access")) {

@@ -182,11 +182,6 @@
                                                                         <textarea name="diag_equipo" id="" rows="5" class="form-control"></textarea>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <button type="submit" class="btn btn-success pull-right">Agregar</button>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -288,12 +283,6 @@
                                                             </div>
                                                         </div>
                                                         <!-- row 1 -->
-                                                        <div class="row" style="margin-bottom: 1rem;">
-                                                            <div class="col-md-12 ">
-                                                                <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                                                            </div>
-                                                        </div>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -331,12 +320,6 @@
                                                             </div>
                                                         </div>
                                                         <!-- row 1 -->
-                                                        <div class="row" style="margin-bottom: 1rem;">
-                                                            <div class="col-md-12 ">
-                                                                <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                                                            </div>
-                                                        </div>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -418,12 +401,6 @@
 
                                                                         <textarea name="evaluacion_global" id="" rows="5"
                                                                             class="form-control"></textarea>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <button type="submit" class="btn btn-success pull-right">Agregar</button>
                                                                     </div>
                                                                 </div>
                                                             </div>

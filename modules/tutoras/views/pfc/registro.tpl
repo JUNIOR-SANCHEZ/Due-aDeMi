@@ -6,26 +6,26 @@
                     <div class="box box-solid">
                         <div class="box-header with-border">
                             <h3 class="box-title">PLAN DE FORTALECIMIENTO COMUNITARIO</h3>
+                            <button type="button" class="btn btn-primary pull-right" id="btn-guardar-pfc">Guardar</button>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="box-group" id="accordion">
                                 <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                                <div class="panel box box-primary">
-                                    <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#datos-identificacion">
-                                                Datos generales de la comunidad a intervenir
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="datos-identificacion" class="panel-collapse collapse ">
-                                        <div class="box-body">
-                                            <div class="row">
-                                                <div class=" col-md-10 col-md-offset-1 ">
-                                                    <form action="{$_layoutParams.root}tutoras/PFC/nuevoPfc" method="POST"
-                                                        enctype="multipart/form-data" id="form-datos-generales">
-                                                        <input type="hidden" name="guardar" value="1">
+                                <form action="{$_layoutParams.root}tutoras/PFC/nuevoPfc" method="post" id="form-pfc">
+                                    <input type="hidden" name="guardar" value="1">
+                                    <div class="panel box box-primary">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#datos-identificacion">
+                                                    Datos generales de la comunidad a intervenir
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="datos-identificacion" class="panel-collapse collapse ">
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class=" col-md-10 col-md-offset-1 ">
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="row">
@@ -93,7 +93,8 @@
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
-                                                                            <label for="">Nro. de NNA en el servicio
+                                                                            <label for="">Nro. de NNA en el
+                                                                                servicio
                                                                                 que proviene de la comunidad a
                                                                                 intervenir:</label>
                                                                             <div class="input-group">
@@ -108,7 +109,8 @@
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
-                                                                            <label for="">Nro de familia en el servicio
+                                                                            <label for="">Nro de familia en el
+                                                                                servicio
                                                                                 que provienen de la comunidad a
                                                                                 intervenir:</label>
                                                                             <div class="input-group">
@@ -124,7 +126,8 @@
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
-                                                                            <label for="">Fecha eleboración del plan:</label>
+                                                                            <label for="">Fecha eleboración del
+                                                                                plan:</label>
                                                                             <div class="input-group">
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-calendar"
@@ -138,7 +141,8 @@
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
-                                                                            <label for="">Fecha de próxima evaluación
+                                                                            <label for="">Fecha de próxima
+                                                                                evaluación
                                                                                 del plan</label>
                                                                             <div class="input-group">
                                                                                 <div class="input-group-addon">
@@ -159,31 +163,29 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel box box-warning">
-                                    <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#infomante">
-                                                Objetivos
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="infomante" class="panel-collapse collapse ">
-                                        <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
-                                                    <form action="{$_layoutParams.root}tutoras/ninas/nuevoInformante"
-                                                        method="post" id="form-informante">
+                                    <div class="panel box box-warning">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#infomante">
+                                                    Objetivos
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="infomante" class="panel-collapse collapse ">
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-offset-1">
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
-                                                                        <label for="">Diagnostoco participativo de la
+                                                                        <label for="">Diagnostoco participativo de
+                                                                            la
                                                                             comunidad::</label>
                                                                         <textarea name="diag_part_comunidad" class="form-control"
                                                                             rows="3" required="required"></textarea>
@@ -199,23 +201,23 @@
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label for="">Objetivo Especificos</label>
-                                                                        <textarea name="obj_general" class="form-control"
+                                                                        <textarea name="obj_especificos" class="form-control"
                                                                             rows="3" required="required"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                                 <div class="panel box box-warning">
                                     <div class="box-header with-border">
                                         <h4 class="box-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#situacion">
-                                                Intervenciones  
+                                                Intervenciones
                                             </a>
                                         </h4>
                                     </div>
@@ -227,16 +229,17 @@
                                                         method="post" id="form-descripcion">
                                                         <input type="hidden" name="guardar" value="1">
                                                         <div class="col-md-12">
-                                                            
+
                                                             <div class="row">
                                                                 <div class=" col-md-12">
                                                                     <div class="form-group">
-                                                                      <label for=""></label>
-                                                                      <textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
+                                                                        <label for=""></label>
+                                                                        <textarea name="" id="input" class="form-control"
+                                                                            rows="3" required="required"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </form>
                                                 </div>

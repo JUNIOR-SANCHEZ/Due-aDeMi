@@ -13,40 +13,45 @@ class pfcModel extends Model{
     }
 
     public function nuevoPfc(
-        $fecha_elab,
-        $fecha_eval,
-        $nina,
-        $nombre,
-        $canton,
-        $parroquia,
-        $num_fami,
-        $num_nna
+       $pfc,
+       $obj
     )
     {
         try{
-            $this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->_db->beginTransaction();
-            $sql = "INSERT INTO documentos 
+            /**
+             * INSERTAR EN TABLA OBJ_PFC
+             */
+            $sql = "INSERT INTO obj_pfc 
             VALUES 
-            (NULL, :fecha_elab, :fecha_eval, :nina, 1)";
+            (NULL, 
+            :diag_part_comu,
+            :obj_gen,
+            :obj_esp
+            )";
             $stmt = $this->_db->prepare($sql);
-            $stmt->bindValue(":fecha_elab",$fecha_elab,PDO::PARAM_STR);
-            $stmt->bindValue(":fecha_eval",$fecha_eval,PDO::PARAM_STR);
-            $stmt->bindValue(":nina",$nina,PDO::PARAM_INT);
-            $stmt->execute();
-            $endId = $this->_db->lastInsertId();
-            $sql = "INSERT INTO pfc 
-            (nombre,canton,parroquia,num_familia_servicio,num_nna_servicio,documento) 
+            $stmt->execute($obj);
+            $lastObj = $this->_db->lastInsertId();
+            /**
+             * INSERTAR EN TABLA DATOS_PFC
+             */
+            $sql = "INSERT INTO datos_pfc 
             VALUES 
-            (:nombre, :canton, :parroquia, :num_fami, :num_nna, $endId)";
+            (NULL, 
+            :nombre, 
+            :canton, 
+            :parroquia, 
+            :num_fami, 
+            :num_nna, 
+            :fecha_elab,
+            :fecha_eval,
+            :nina,
+            $lastObj
+            )";
             $stmt = $this->_db->prepare($sql);
-            $stmt->bindValue(":nombre",$nombre,PDO::PARAM_STR);
-            $stmt->bindValue(":canton",$canton,PDO::PARAM_STR);
-            $stmt->bindValue(":parroquia",$parroquia,PDO::PARAM_STR);
-            $stmt->bindValue(":num_fami",$num_fami,PDO::PARAM_STR);
-            $stmt->bindValue(":num_nna",$num_nna,PDO::PARAM_STR);
-            $stmt->execute();
+            $stmt->execute($pfc);
             $endId = $this->_db->lastInsertId();
+
             $this->_db->commit(); 
             return $endId;
         }catch(PDOException $e){

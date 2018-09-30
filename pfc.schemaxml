@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemadesigner version="6.5">
 <source>
-<database charset="utf8" collation="utf8_spanish2_ci">duenademi2</database>
+<database charset="latin1" collation="latin1_swedish_ci">duenademi2</database>
 </source>
 <canvas zoom="100">
 <tables>
-<table name="pfc" view="standard">
-<left>588</left>
-<top>103</top>
+<table name="datos_pfc" view="standard">
+<left>574</left>
+<top>78</top>
 <width>272</width>
 <height>282</height>
-<sql_create_table>CREATE TABLE `pfc` (
-  `id_datos_generales` int(11) NOT NULL AUTO_INCREMENT,
+<sql_create_table>CREATE TABLE `datos_pfc` (
+  `id_pfc` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `canton` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `parroquia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
@@ -23,12 +23,12 @@
   `fecha_elab` date NOT NULL,
   `fecha_eval` date NOT NULL,
   `nina` int(11) NOT NULL,
-  PRIMARY KEY (`id_datos_generales`)
+  PRIMARY KEY (`id_pfc`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="ninas" view="standard">
-<left>113</left>
-<top>90</top>
+<left>83</left>
+<top>64</top>
 <width>270</width>
 <height>311</height>
 <sql_create_table>CREATE TABLE `ninas` (

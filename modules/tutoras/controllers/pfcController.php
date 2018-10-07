@@ -1,53 +1,151 @@
 <?php
 
-
-
-class pfcController extends tutorasController{
+class pfcController extends tutorasController
+{
     private $_sql;
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
         $this->_sql = $this->loadModel("pfc");
     }
     public function index()
     {
         $this->_view->setJs(array("ajax"));
-        $this->_view->assign("nina",$this->_sql->nina());
-        $this->_view->renderizar("registro","pfc");
+        $this->_view->assign("nina", $this->_sql->nina());
+        $this->_view->renderizar("registro", "pfc");
     }
     public function nuevoPfc()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            if($this->getInt("guardar") == 1){
+            if ($this->getInt("guardar") == 1) {
                 $resp = $this->_sql->nuevoPfc(
                     array(
-                        ":nombre"=>$this->getText("nombre"),
-                        ":canton"=> $this->getText("canton"),
-                        ":parroquia"=>$this->getText("parroquia"),
-                        ":num_fami"=>$this->getText("nro_familia"),
-                        ":num_nna"=>$this->getText("nro_nna"),
-                        ":fecha_elab"=>$this->getText("fecha_elaboracion"),
-                        ":fecha_eval"=>$this->getText("fecha_evaluacion"),
-                        ":nina"=>$this->getText("diag_part_comunidad")
+                        ":nombre" => $this->getText("nombre"),
+                        ":canton" => $this->getText("canton"),
+                        ":parroquia" => $this->getText("parroquia"),
+                        ":num_fami" => $this->getText("nro_familia"),
+                        ":num_nna" => $this->getText("nro_nna"),
+                        ":fecha_elab" => $this->getText("fecha_elaboracion"),
+                        ":fecha_eval" => $this->getText("fecha_evaluacion"),
+                        ":nina" => $this->getText("diag_part_comunidad"),
                     ),
                     array(
-                        ":diag_part_comu"=>$this->getText("diag_part_comunidad"),
-                        ":obj_gen"=>$this->getText("obj_general"),
-                        ":obj_esp"=>$this->getText("obj_especificos")
-                        )
+                        ":diag_part_comu" => $this->getText("diag_part_comunidad"),
+                        ":obj_gen" => $this->getText("obj_general"),
+                        ":obj_esp" => $this->getText("obj_especificos"),
+                    )
                 );
-                    
+
                 if ($resp == 0) {
                     echo json_encode(array("error" => true, "mensaje" => $resp));
                     exit;
                 }
-                echo json_encode(array("error" => false, "mensaje" => "Se a rregistrado con exito","id"=>$resp));
+                echo json_encode(array("error" => false, "mensaje" => "Se a rregistrado con exito", "id" => $resp));
                 exit;
             }
             echo json_encode(array("error" => true, "mensaje" => "No se ha enviado guardar"));
-                exit;
+            exit;
         } else {
             echo json_encode(array("error" => true, "mensaje" => "Error Processing Request"));
             exit;
         }
+    }
+
+    public function pdf()
+    {
+        $pdf = new MyPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('Julio Sanchez Gaona');
+        $pdf->SetTitle('DEÑA DE MI');
+        $pdf->SetSubject('PDF de plan comunitario familiar');
+        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+
+        
+        $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE . ' 001', PDF_HEADER_STRING, array(0, 64, 255), array(0, 64, 128));
+        $pdf->setFooterData(array(0, 64, 0), array(0, 64, 128));
+
+
+        $pdf->setHeaderFont(array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+        $pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+
+        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+
+        $pdf->SetAutoPageBreak(true, PDF_MARGIN_BOTTOM);
+
+
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+
+        if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
+            require_once dirname(__FILE__) . '/lang/eng.php';
+            $pdf->setLanguageArray($l);
+        }
+
+
+        $pdf->setFontSubsetting(true);
+
+        $pdf->SetFont('dejavusans', '', 14, '', true);
+
+
+        $pdf->AddPage();
+
+
+        $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
+
+
+        $html = <<<EOD
+        <style>
+            table{
+                
+                border-collapse: collapse;
+            }
+            table, tr, th, td{
+                border: 1px solid #000;
+                font-size: 12px;
+            }
+            table tr th{
+                width: 35%;
+                padding-top: 10px;
+                font-weight:bold;
+
+            }
+            table tr td{
+                width: 60%;
+                padding: 10px;
+            }
+        </style>
+        <br>
+        <div class="titulo">FICHA DE INGRESO DE LA  NIÑA NIÑO Y ADOLECENTE</div>
+        <br>
+        <table >
+            <tr>
+                <th  >Nombres y apellidos de la niña, niño adolescente</th>
+                <td>Lorem ipsum dolor sit amet.</td>
+                
+            </tr>
+            <tr>
+                <th>Edad</th>
+                <td>Lorem ipsum dolor sit amet.</td>
+                
+            </tr>
+        </table>
+EOD;
+
+   
+        $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+
+        $pdf->Output('example_001.pdf', 'I');
+
+
+
     }
 }

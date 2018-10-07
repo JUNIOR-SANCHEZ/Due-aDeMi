@@ -77,4 +77,15 @@ class ninasModel extends Model
         return $this->_db->lastInsertId();
     }
 
+    public function ninaView($id)
+    {
+        $stmt = $this->_db->prepare("SELECT * FROM ninas WHERE id_nina = :nina");
+         $stmt->execute(
+            array(
+                ":nina"=>$id
+            )
+        );
+        $res = $stmt->fetch(PDO::FETCH_OBJ);
+        return $res;
+    }
 }

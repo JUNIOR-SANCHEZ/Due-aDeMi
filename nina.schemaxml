@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemadesigner version="6.5">
 <source>
-<database charset="utf8" collation="utf8_spanish2_ci">duenademi2</database>
+<database charset="latin1" collation="latin1_swedish_ci">duenademi2</database>
 </source>
 <canvas zoom="100">
 <tables>
@@ -43,13 +43,13 @@
   `documento_ingreso` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `nina` int(11) NOT NULL,
   PRIMARY KEY (`id_informantes`),
-  UNIQUE KEY `I_NNA` (`nina`),
-  CONSTRAINT `I_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
+  KEY `NNA_INFO` (`nina`),
+  CONSTRAINT `NNA_INFO` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="descripciones" view="standard">
-<left>381</left>
-<top>357</top>
+<left>472</left>
+<top>281</top>
 <width>296</width>
 <height>197</height>
 <sql_create_table>CREATE TABLE `descripciones` (
@@ -62,7 +62,7 @@
   `nina` int(11) NOT NULL,
   PRIMARY KEY (`id_descripciones`),
   UNIQUE KEY `D_NNA` (`nina`),
-  CONSTRAINT `D_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
+  CONSTRAINT `NNA_DESC` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 </tables>

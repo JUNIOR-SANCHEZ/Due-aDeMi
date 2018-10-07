@@ -6,8 +6,8 @@
 <canvas zoom="100">
 <tables>
 <table name="datos_pfc" view="standard">
-<left>574</left>
-<top>78</top>
+<left>349</left>
+<top>66</top>
 <width>272</width>
 <height>282</height>
 <sql_create_table>CREATE TABLE `datos_pfc` (
@@ -27,8 +27,8 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="ninas" view="standard">
-<left>83</left>
-<top>64</top>
+<left>25</left>
+<top>36</top>
 <width>270</width>
 <height>311</height>
 <sql_create_table>CREATE TABLE `ninas` (
@@ -50,8 +50,8 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="obj_pfc" view="standard">
-<left>921</left>
-<top>84</top>
+<left>770</left>
+<top>209</top>
 <width>213</width>
 <height>146</height>
 <sql_create_table>CREATE TABLE `obj_pfc` (

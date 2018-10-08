@@ -6,11 +6,12 @@ class docsController extends tutorasController
     public function __construct()
     {
         parent::__construct();
-        $this->_docs = $this->loadModel('docs');
+        // $this->_docs = $this->loadModel('docs');
     }
 
     public function index()
     {
+        $this->_view->renderizar("nuevo");
     }
     /**
      * MUESTRO EN LA APLICACION LA VISTA NUEVO, DEL PFC

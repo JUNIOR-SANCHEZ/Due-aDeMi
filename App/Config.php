@@ -6,6 +6,8 @@ define('DEFAULT_LAYOUT', 'default');
 define('SESSION_TIME', 0);
 define('APP_NAME', 'Comil-3');
 define('APP_SLOGAN', '..........');
+define('APP_LOGO',ROOT."public".DS."img".DS."logounidad.jpg");
+
 define('APP_COMPANY', '');
 define('HASH_KEY', '5a7e9b2d3cbf6');
 define('METHOD', 'AES-256-CBC');

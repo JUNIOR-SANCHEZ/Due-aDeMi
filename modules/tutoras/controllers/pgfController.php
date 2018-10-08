@@ -11,7 +11,6 @@ class pgfController extends tutorasController
     public function index(){
         $this->_view->setJs(array('ajax'));
         $this->_view->assign('nina',$this->_pgf->nina());
-
         $this->_view->renderizar("nuevo");
     }
     public function nuevopgf()
@@ -49,8 +48,6 @@ class pgfController extends tutorasController
                     ":cedula"=>$this->getText('cedula'),
                     ":nina"=>$this->getInt('nina')
                     )
-
-
                 );
                 if($resp == 0){
                     echo json_encode(array("error"=>true,"mensaje"=>$resp));

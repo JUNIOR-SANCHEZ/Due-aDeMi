@@ -98,4 +98,22 @@ class pgfModel extends Model
                 return $e->getMessage();
             }      
     }
+    public function Datos_PGF($R)
+    {
+        $a= $this->_db->prepare("SELECT 
+        pgf.*, n.`apellidos`,n.`nombres`, diag.`familia` AS diag_fami, diag.`equipo`, obj_gene.*, dt_are.*
+        FROM 
+        datos_pgf pgf, ninas n,diagnostico_situacion diag,objetivo_general obj_gene , datos_area dt_are
+        WHERE n.`id_nina` = pgf.`nina`
+        AND pgf.`diag_sit` = diag.`id_diagnostico_situacion`
+        AND pgf.`obj_gene`= obj_gene.`id_objetivo`
+        AND pgf.`area`= dt_are.`id_area`
+        AND pgf.id_pgf=:id;");
+        $a->execute(array(":id"=>$R));
+        $res = $a->fetch(PDO::FETCH_OBJ);
+        return $res;
+    }
+
+
+
 }

@@ -213,40 +213,53 @@
                                         </div>
                                     </div>
                                 </form>
-                                <div class="panel box box-warning">
-                                    <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#situacion">
-                                                Intervenciones
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="situacion" class="panel-collapse collapse in">
-                                        <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-md-10 col-md-offset-1">
-                                                    <form action="{$_layoutParams.root}tutoras/ninas/nuevaDescripcion"
-                                                        method="post" id="form-descripcion">
-                                                        <input type="hidden" name="guardar" value="1">
-                                                        <div class="col-md-12">
-
-                                                            <div class="row">
-                                                                <div class=" col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label for=""></label>
-                                                                        <textarea name="" id="input" class="form-control"
-                                                                            rows="3" required="required"></textarea>
+                                <form id="form-intervencion">
+                                    <div class="panel box box-warning">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#situacion">
+                                                    Intervenciones
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="situacion" class="panel-collapse collapse in">
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-offset-1">
+                                                            <div class="col-md-12">
+                                                                <div class="row">
+                                                                    <div class=" col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="">Metas:</label>
+                                                                            <textarea name="meta" id="input" class="form-control"
+                                                                                rows="3" required="required"></textarea>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="">Indicadores:</label>
+                                                                            <textarea name="indicador" id="input" class="form-control"
+                                                                                rows="3" required="required"></textarea>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="">Actividades:</label>
+                                                                            <textarea name="actividad" id="input" class="form-control"
+                                                                                rows="3" required="required"></textarea>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
 
-                                                        </div>
-                                                    </form>
+                                                                    <div class="col-md-12">
+                                                                        <button type="submit" class="btn btn-info pull-right">Agregar</button>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                         <!-- /.box-body -->

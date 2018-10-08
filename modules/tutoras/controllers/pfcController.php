@@ -10,7 +10,7 @@ class pfcController extends tutorasController{
     }
     public function index()
     {
-        $this->_view->setJs(array("ajax"));
+        $this->_view->setJs(array("json","ajax"));
         $this->_view->assign("nina",$this->_sql->nina());
         $this->_view->renderizar("registro","pfc");
     }

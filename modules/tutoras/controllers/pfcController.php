@@ -10,12 +10,15 @@ class pfcController extends tutorasController{
     }
     public function index()
     {
-        $this->_view->setJs(array("json","ajax"));
+        $this->_view->setJs(array("ajax"));
         $this->_view->assign("nina",$this->_sql->nina());
         $this->_view->renderizar("registro","pfc");
     }
+    /**
+     * FUNCION QUE PERMITE REGITRA UN PLAN DE FORTALECIMIENTO COMUNITARIO
+     */
     public function nuevoPfc()
-    {
+    { 
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             if($this->getInt("guardar") == 1){
                 $resp = $this->_sql->nuevoPfc(
@@ -33,20 +36,22 @@ class pfcController extends tutorasController{
                         ":diag_part_comu"=>$this->getText("diag_part_comunidad"),
                         ":obj_gen"=>$this->getText("obj_general"),
                         ":obj_esp"=>$this->getText("obj_especificos")
-                        )
+                    ),
+                    $_POST["intervencion"],
+                    $_POST["seguimiento"],
+                    $_POST["responsable"]
                 );
                     
-                if ($resp == 0) {
-                    echo json_encode(array("error" => true, "mensaje" => $resp));
+                if (!$resp) {
+                    echo false;
                     exit;
                 }
-                echo json_encode(array("error" => false, "mensaje" => "Se a rregistrado con exito","id"=>$resp));
+                echo true;
                 exit;
             }
-            echo json_encode(array("error" => true, "mensaje" => "No se ha enviado guardar"));
-                exit;
+            
         } else {
-            echo json_encode(array("error" => true, "mensaje" => "Error Processing Request"));
+            echo "Error Processing Request";
             exit;
         }
     }

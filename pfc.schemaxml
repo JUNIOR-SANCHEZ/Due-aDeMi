@@ -6,10 +6,10 @@
 <canvas zoom="100">
 <tables>
 <table name="datos_pfc" view="standard">
-<left>349</left>
-<top>66</top>
+<left>336</left>
+<top>9</top>
 <width>272</width>
-<height>282</height>
+<height>280</height>
 <sql_create_table>CREATE TABLE `datos_pfc` (
   `id_pfc` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
@@ -24,11 +24,11 @@
   PRIMARY KEY (`id_pfc`),
   KEY `PFC_OBJ` (`objetivos`),
   CONSTRAINT `PFC_OBJ` FOREIGN KEY (`objetivos`) REFERENCES `obj_pfc` (`id_obj`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="ninas" view="standard">
-<left>25</left>
-<top>36</top>
+<left>23</left>
+<top>27</top>
 <width>270</width>
 <height>311</height>
 <sql_create_table>CREATE TABLE `ninas` (
@@ -50,17 +50,68 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="obj_pfc" view="standard">
-<left>770</left>
-<top>209</top>
+<left>99</left>
+<top>371</top>
 <width>213</width>
-<height>146</height>
+<height>144</height>
 <sql_create_table>CREATE TABLE `obj_pfc` (
   `id_obj` int(11) NOT NULL AUTO_INCREMENT,
   `diag_part` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `general` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `especificos` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_obj`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="intervenciones" view="standard">
+<left>804</left>
+<top>-2</top>
+<width>251</width>
+<height>214</height>
+<sql_create_table>CREATE TABLE `intervenciones` (
+  `id_intervenciones` int(11) NOT NULL AUTO_INCREMENT,
+  `meta` varchar(100) NOT NULL,
+  `indicador` varchar(100) NOT NULL,
+  `actividad` varchar(100) NOT NULL,
+  `tiempo` varchar(100) NOT NULL,
+  `recurso` varchar(100) NOT NULL,
+  `responsable` varchar(100) NOT NULL,
+  `pfc` int(11) NOT NULL,
+  PRIMARY KEY (`id_intervenciones`),
+  KEY `PFC_INTE` (`pfc`),
+  CONSTRAINT `PFC_INTE` FOREIGN KEY (`pfc`) REFERENCES `datos_pfc` (`id_pfc`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="seguimientos" view="standard">
+<left>580</left>
+<top>329</top>
+<width>237</width>
+<height>180</height>
+<sql_create_table>CREATE TABLE `seguimientos` (
+  `id_seguimientos` int(11) NOT NULL AUTO_INCREMENT,
+  `actividad` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `dificultad` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `resultado` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `observacion` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `pfc` int(11) NOT NULL,
+  PRIMARY KEY (`id_seguimientos`),
+  KEY `PFC_SEGUI` (`pfc`),
+  CONSTRAINT `PFC_SEGUI` FOREIGN KEY (`pfc`) REFERENCES `datos_pfc` (`id_pfc`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="responsables" view="standard">
+<left>863</left>
+<top>235</top>
+<width>243</width>
+<height>146</height>
+<sql_create_table>CREATE TABLE `responsables` (
+  `id_responsables` int(11) NOT NULL AUTO_INCREMENT,
+  `responsable` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `rol` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `pfc` int(11) NOT NULL,
+  PRIMARY KEY (`id_responsables`),
+  KEY `PFC_RESPONSABLE` (`pfc`),
+  CONSTRAINT `PFC_RESPONSABLE` FOREIGN KEY (`pfc`) REFERENCES `datos_pfc` (`id_pfc`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 </tables>
 </canvas>

@@ -1,29 +1,35 @@
 $(document).ready(function () {
-    var id = 0;
+    var info_nna = [];
+    var fami_nna = [];
     /**
      * FORMULARIO NINA O ADOLECENTE
      */
-    $('#form-ninas').on('submit', function (e) {
+    $('#enviar-nna').on('click', function (e) {
         e.preventDefault();
-
-        var _data = new FormData(document.getElementById('form-ninas'))
-        var _url = $(this).attr("action");
-        var _method = $(this).attr("method")
+        var form1 = $('#form-ninas').serializeFormJSON();
+        var ruta = $('#form-ninas').attr("action");
+        var form2 = $('#form-descripcion').serializeFormJSON();
+        var form = $.extend( true, form1, form2 );
+        form.informante =  info_nna;
+        form.familia = fami_nna;
+        
+        console.log(form);
 
         $.ajax({
-            url: _url,
-            type: _method,
-            data: _data,
-            dataType: "json",
-            contentType: false,
-            processData: false,
+            url: ruta,
+            type: "POST",
+            data: form,
+            // contentType: false,
+            // processData: false,
             beforeSend: function () {},
             success: function (response) {
-                if (response["error"] == false) {
-                    console.log(response["mensaje"] + response["id"]);
-                    id = response["id"];
+
+                console.log(response);
+                
+                if (response == true) {
+                    alert("Se registro con exito");
                 } else {
-                    console.log(response["mensaje"]);
+                    alert("Ha ocurrido un error");
                 }
             }
         })
@@ -31,33 +37,16 @@ $(document).ready(function () {
 
     $('#form-informante').on('submit', function (e) {
         e.preventDefault();
-        var dato = $(this).serialize() + "&nina=" + parseInt(id);
-        var url = $(this).attr('action');
-        $.post(url, dato, function (response) {
-            console.log(response);
-            if (response["error"] == false) {
-                console.log(response["mensaje"]);
-
-            } else {
-                console.log(response["mensaje"]);
-            }
-        }, "json");
+        var data = $(this).serializeFormJSON();
+        info_nna.push(data)
+        $(this)[0].reset();
     });
 
-    $("#form-descripcion").on("submit", function (e) {
+    $("#form-familiares").on("submit", function (e) {
         e.preventDefault();
-        var datos = $(this).serialize()+"&nina="+parseInt(id);
-        var url = $(this).attr("action");
-        console.log(datos);
-        $.post(url, datos, function (response) {
-            console.log(response);
-            $("#error").html(`${response}`)
-            if (response["error"] == false) {
-                console.log(response["mensaje"]);
-            } else {
-                console.log(response["mensaje"]);
-            }
-        },"json");
+        var data = $(this).serializeFormJSON();
+        fami_nna.push(data)
+        $(this)[0].reset();
 
     });
 

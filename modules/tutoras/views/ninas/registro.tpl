@@ -6,6 +6,7 @@
                     <div class="box box-solid">
                         <div class="box-header with-border">
                             <h3 class="box-title">FICHA DE INGRESO DE NIÑA O ADOLECENTE</h3>
+                            <button type="button" class="btn btn-primary pull-right" id="enviar-nna">Guardar</button>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -217,12 +218,6 @@
 
 
                                                         </div>
-                                                        <!-- row 1 -->
-                                                        <div class="row" style="margin-bottom: 1rem;">
-                                                            <div class="col-md-12 ">
-                                                                <button type="submit" class="btn btn-primary pull-right">Guardar</button>
-                                                            </div>
-                                                        </div>
                                                     </form>
                                                 </div>
                                             </div>
@@ -241,9 +236,7 @@
                                         <div class="box-body">
                                             <div class="row">
                                                 <div class="col-md-10 col-md-offset-1">
-                                                    <form action="{$_layoutParams.root}tutoras/ninas/nuevoInformante"
-                                                        method="post" id="form-informante">
-                                                        <input type="hidden" name="guardar" value="1">
+                                                    <form id="form-informante">
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-6">
@@ -327,12 +320,10 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <button type="submit" class="btn btn-success pull-right">Agregar</button>
+                                                                    <button type="submit" class="btn btn-info pull-right">Agregar</button>
                                                                 </div>
                                                             </div>
                                                         </div>
-
-
                                                     </form>
                                                 </div>
                                             </div>
@@ -351,52 +342,173 @@
                                         <div class="box-body">
                                             <div class="row">
                                                 <div class="col-md-10 col-md-offset-1">
-                                                    <form action="{$_layoutParams.root}tutoras/ninas/nuevaDescripcion"
-                                                        method="post" id="form-descripcion">
-                                                        <input type="hidden" name="guardar" value="1">
+                                                    <form id="form-descripcion">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="">Detalle con la vestimenta que
+                                                                        ingresa:</label>
+                                                                    <textarea name="vestimenta" id="" rows="5" class="form-control"></textarea>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="">Estado de salud al momento del
+                                                                        ingreso:</label>
+                                                                    <textarea name="salud" id="" rows="5" class="form-control"
+                                                                        required></textarea>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="">Existe señales evidentes de
+                                                                        maltrato físico al momento de ingresar
+                                                                        SI/NO detallar:</label>
+                                                                    <textarea name="maltrato-fisico" id="" rows="5"
+                                                                        class="form-control" required></textarea>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="">La NNA ingresa con pertenencias
+                                                                        personales SI/NO detallar:</label>
+                                                                    <textarea name="pertenencias" id="" rows="5" class="form-control"
+                                                                        required></textarea>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="">Observaciones generales:</label>
+                                                                    <textarea name="observaciones-generales" id="" rows="5"
+                                                                        class="form-control" required></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel box box-warning">
+                                    <div class="box-header with-border">
+                                        <h4 class="box-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#familiares">
+                                                Datos de los padres ofamiliares a cargo de la NNA
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="familiares" class="panel-collapse collapse ">
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <form id="form-familiares">
                                                         <div class="col-md-12">
                                                             <div class="row">
-                                                                <div class="col-md-12">
+                                                                <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="">Detalle con la vestimenta que
-                                                                            ingresa:</label>
-                                                                        <textarea name="vestimenta" id="" rows="5"
-                                                                            class="form-control"></textarea>
+                                                                        <label for="">Nombres:</label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-addon">
+                                                                                <i class="fa fa-user"></i>
+                                                                            </div>
+                                                                            <input type="text" name="nombres" class="form-control"
+                                                                                placeholder="Nombres">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-12">
+                                                                <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="">Estado de salud al momento del
-                                                                            ingreso:</label>
-                                                                        <textarea name="salud" id="" rows="5" class="form-control" required></textarea>
+                                                                        <label for="">Apellidos:</label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-addon">
+                                                                                <i class="fa fa-user"></i>
+                                                                            </div>
+                                                                            <input type="text" name="apellidos" class="form-control"
+                                                                                placeholder="Apellidos">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-12">
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="">Existe señales evidentes de
-                                                                            maltrato físico al momento de ingresar
-                                                                            SI/NO detallar:</label>
-                                                                        <textarea name="maltrato-fisico" id="" rows="5" class="form-control" required></textarea>
+                                                                        <label for="">Parentesco:</label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-addon">
+                                                                                <!-- <i class="fa fa-user"></i> -->
+                                                                            </div>
+                                                                            <input type="text" name="parentesco" class="form-control"
+                                                                                placeholder="Institucion" required>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-12">
+                                                                <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="">La NNA ingresa con pertenencias
-                                                                            personales SI/NO detallar:</label>
-                                                                        <textarea name="pertenencias" id="" rows="5"
-                                                                            class="form-control" required></textarea>
+                                                                        <label for="">Edad:</label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-addon">
+                                                                                <!-- <i class="fa fa-user"></i> -->
+                                                                            </div>
+                                                                            <input type="text" name="edad" class="form-control"
+                                                                                placeholder="Institucion" required>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-12">
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="">Observaciones generales:</label>
-                                                                        <textarea name="observaciones-generales" id="" rows="5" class="form-control" required></textarea>
+                                                                        <label for="">Dirección:</label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-addon">
+                                                                                <!-- <i class="fa fa-user"></i> -->
+                                                                            </div>
+                                                                            <input type="text" name="direccion" class="form-control"
+                                                                                placeholder="Dirección" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="">Telf:</label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-addon">
+                                                                                <i class="fa fa-phone"></i>
+                                                                            </div>
+                                                                            <input type="text" name="phone" class="form-control"
+                                                                                placeholder="Telefono" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="">Cedula:</label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-addon">
+                                                                                <i class="fa fa-file-archive-o"></i>
+                                                                            </div>
+                                                                            <input type="text" name="cedula" class="form-control"
+                                                                                required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="">Lugar de trabajo:</label>
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-addon">
+                                                                                <i class="fa fa-file-archive-o"></i>
+                                                                            </div>
+                                                                            <input type="text" name="trabajo" class="form-control"
+                                                                                required>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <button type="submit" class="btn btn-success pull-right">Agregar</button>
+                                                                    <button type="submit" class="btn btn-info pull-right">Agregar</button>
                                                                 </div>
                                                             </div>
                                                         </div>

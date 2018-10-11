@@ -65,7 +65,7 @@
     <script src="{$_layoutParams.AdminLTE_js}"></script>
     <!-- <script src="{$_layoutParams.dashboard_js}"></script> -->
     <script src="{$_layoutParams.demo_js}"></script>
-
+    <script src="{$_layoutParams.root}public/js/add_function_query.js"></script>
 
 
 

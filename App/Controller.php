@@ -24,6 +24,15 @@ abstract class Controller {
     protected function setTipo($value){
         $this->_tipo = $value;
     }
+    protected function push_array($array1 ,$array2)
+    {
+        # code...
+        foreach($array2 as $item){
+            array_push($array1,$item);
+        }
+        return $array1;
+        
+    }
 
     protected function loadModel($modelo, $modulo = false) {
         $modelo = $modelo . "Model";

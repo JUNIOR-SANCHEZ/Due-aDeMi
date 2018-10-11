@@ -2,13 +2,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="row">
-                <form action="{$_layoutParams.root}tutoras/pgf/nuevopgf" method="post" id="form-pgf">
+                <form action="{$_layoutParams.root}tutoras/pgf/nuevo_paina" method="post" id="form-paina">
                     <input type="hidden" name="guardar" value="1">
                     <div class="col-md-12">
                         <div class="box box-solid">
                             <div class="box-header with-border">
-                                <h3 class="box-title">PROYECTO GLOBAL DE FAMILIA</h3>
-                                <button type="button" class="btn btn-primary pull-right " id="btn-guardar-pgf">Guardar</button>
+                                <h3 class="box-title">PROYECTO INTEGRAL DE ATENCION A LA NIÑA, NIÑO Y ADOLECENTE -
+                                    PAINA</h3>
+                                <button type="button" class="btn btn-primary pull-right " id="btn-guardar-paina">Guardar</button>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -17,7 +18,7 @@
                                         <div class="box-header with-border">
                                             <h4 class="box-title">
                                                 <a data-toggle="collapse" data-parent="#accordion" href="#datos-identificacion">
-                                                    Datos de indentificación
+                                                    Datos Generales
                                                 </a>
                                             </h4>
                                         </div>
@@ -152,42 +153,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="panel box box-warning">
-                                        <div class="box-header with-border">
-                                            <h4 class="box-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#infomante">
-                                                    Diagnostico de la situación
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="infomante" class="panel-collapse collapse ">
-                                            <div class="box-body">
-                                                <div class="row">
-                                                    <div class="col-md-10 col-md-offset-1">
-                                                        <div class="col-md-12">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">De la famila:</label>
-                                                                        <textarea name="diag_familia" id="" rows="5"
-                                                                            class="form-control"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Del Equipo:</label>
-                                                                        <textarea name="diag_equipo" id="" rows="5"
-                                                                            class="form-control"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="panel box box-warning">
                                         <div class="box-header with-border">
                                             <h4 class="box-title">
@@ -201,21 +166,9 @@
                                                 <div class="row">
                                                     <div class="col-md-10 col-md-offset-1">
                                                         <div class="col-md-12">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Consensuado con la familia :</label>
-                                                                        <textarea name="Consensuado_familia" id="" rows="5"
-                                                                            class="form-control"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Del equipo Consensuado con la
-                                                                            familia:</label>
-                                                                        <textarea name="del_equipo" rows="5" class="form-control"></textarea>
-                                                                    </div>
-                                                                </div>
+                                                            <div class="form-group">
+                                                                <textarea name="Consensuado_familia" id="" rows="5"
+                                                                    class="form-control"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -233,173 +186,131 @@
                 </form>
                 <form id="form-area">
                     <div class="col-md-12">
-                        <div class="box box-solid">
-                            <div class="box-header with-border">
-                                <h2 class="box-title">Area</h2>
-                                <button type="submit" class="btn btn-info pull-right">Argregar</button>
-                                <div class="form-group col-md-4 pull-right">
-                                    <select id="disabledSelect" name="area_acomp" class="form-control ">
-                                        <option value="">Seleccionar:</option>
-                                        {foreach item=list from=$desarrollo_pers}
-                                        <option value="{$list['id_area_acomp']}">{$list['descripcion_area_acomp']}</option>
-                                        {/foreach}
-                                    </select>
+                        <form id="form-area">
+                            <input type="hidden" name="guardar" value="1">
+                            <div class="box box-solid">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Area</h3>
+                                    <button type="submit" class="btn btn-info pull-right">Agregar</button>
+                                    <div class="form-group col-md-4 pull-right">
+                                        <select id="disabledSelect" class="form-control ">
+                                            <option value="">Seleccionar:</option>
+                                            {foreach item=list from=$desarrollo_pers}
+                                            <option value="{$list['id_area_acomp']}">{$list['descripcion_area_acomp']}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="box-group" id="accordion">
-                                    <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                                    <div class="panel box box-primary">
-                                        <div class="box-header with-border">
-                                            <h4 class="box-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#diag-area">
-                                                    Diagnostico del area
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="diag-area" class="panel-collapse collapse">
-                                            <div class="box-body">
-                                                <div class="row">
-                                                    <div class="col-md-10 col-md-offset-1">
-
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <!-- parte lateral foto -->
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-
-                                                                            <label for="">Descripcion</label>
-                                                                            <textarea name="diagnostico_area" id=""
-                                                                                rows="5" class="form-control"></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- row 1 -->
-                                                    </div>
-                                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="box-group" id="accordion">
+                                        <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                        <div class="panel box box-primary">
+                                            <div class="box-header with-border">
+                                                <h4 class="box-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#diag-area">
+                                                        Diagnostico del area
+                                                    </a>
+                                                </h4>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel box box-warning">
-                                        <div class="box-header with-border">
-                                            <h4 class="box-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#objetivo">
-                                                    Objetivo del area
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="objetivo" class="panel-collapse collapse">
-                                            <div class="box-body">
-                                                <div class="row">
-                                                    <div class="col-md-10 col-md-offset-1">
-
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <!-- parte lateral foto -->
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-
-                                                                            <label for="">Descripcion</label>
-                                                                            <textarea name="objetivo_area" id="" rows="5"
-                                                                                class="form-control"></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- row 1 -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="panel box box-warning">
-                                        <div class="box-header with-border">
-                                            <h4 class="box-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#Activi">
-                                                    Actividades del area
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="Activi" class="panel-collapse collapse">
-                                            <div class="box-body">
-                                                <div class="row">
-                                                    <div class="col-md-10 col-md-offset-1">
-                                                        <div class="col-md-12">
+                                            <div id="diag-area" class="panel-collapse collapse">
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-md-offset-1">
                                                             <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label for="">Descripcion</label>
-                                                                        <textarea name="act_descripcion" id="" rows="5"
-                                                                            class="form-control"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Responsable:</label>
-                                                                        <textarea name="act_responsable" id="" rows="5"
-                                                                            class="form-control"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Tiempo</label>
-                                                                        <textarea name="act_tiempo" id="" rows="5"
-                                                                            class="form-control"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Evaluacion</label>
-                                                                        <textarea name="act_evaluacion" id="" rows="5"
-                                                                            class="form-control"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Observaciones</label>
-                                                                        <textarea name="act_observaciones" id="" rows="5"
+                                                                        <textarea name="diagnostico_area" id="" rows="5"
                                                                             class="form-control"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <!-- row 1 -->
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="panel box box-warning">
-                                        <div class="box-header with-border">
-                                            <h4 class="box-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#situacion">
-                                                    Evaluacion global de todas las areas
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="situacion" class="panel-collapse collapse">
-                                            <div class="box-body">
-                                                <div class="row">
-                                                    <div class="col-md-10 col-md-offset-1">
-                                                        <div class="col-md-12">
+                                        <div class="panel box box-warning">
+                                            <div class="box-header with-border">
+                                                <h4 class="box-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#objetivo">
+                                                        Objetivo del area
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="objetivo" class="panel-collapse collapse">
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-md-offset-1">
+
                                                             <div class="row">
                                                                 <div class="col-md-12">
+                                                                    <!-- parte lateral foto -->
                                                                     <div class="form-group">
 
-                                                                        <textarea name="evaluacion_global" id="" rows="5"
+                                                                        <label for="">Descripcion</label>
+                                                                        <textarea name="objetivo_area" id="" rows="5"
                                                                             class="form-control"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- row 1 -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel box box-warning">
+                                            <div class="box-header with-border">
+                                                <h4 class="box-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#Activi">
+                                                        Actividades del area
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="Activi" class="panel-collapse collapse">
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-md-offset-1">
+                                                            <div class="col-md-12">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="">Descripcion</label>
+                                                                            <textarea name="act_descripcion" id="" rows="5"
+                                                                                class="form-control"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="">Responsable:</label>
+                                                                            <textarea name="act_responsable" id="" rows="5"
+                                                                                class="form-control"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="">Tiempo</label>
+                                                                            <textarea name="act_tiempo" id="" rows="5"
+                                                                                class="form-control"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="">Evaluacion</label>
+                                                                            <textarea name="act_evaluacion" id="" rows="5"
+                                                                                class="form-control"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="">Observaciones</label>
+                                                                            <textarea name="act_observaciones" id=""
+                                                                                rows="5" class="form-control"></textarea>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -408,14 +319,42 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="panel box box-warning">
+                                            <div class="box-header with-border">
+                                                <h4 class="box-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#situacion">
+                                                        Evaluacion global de todas las areas
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="situacion" class="panel-collapse collapse">
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-md-offset-1">
+                                                            <div class="col-md-12">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+
+                                                                            <textarea name="evaluacion_global" id=""
+                                                                                rows="5" class="form-control"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
                                     </div>
-                                    <!-- /.box-body -->
+                                    <!-- /.box -->
                                 </div>
-                                <!-- /.box -->
+                                <!-- </form> -->
                             </div>
-                            <!-- </form> -->
-                        </div>
+                        </form>
+                    </div>
                 </form>
             </div>
         </div>
-    </div>

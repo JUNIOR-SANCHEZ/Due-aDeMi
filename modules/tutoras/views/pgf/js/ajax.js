@@ -7,6 +7,8 @@ $(document).ready(function (){
         var form = $("#form-pgf").serializeFormJSON();
         var ruta = $("#form-pgf").attr("action");
         form.area = area;
+        console.log(form);
+        
         if(area.length > 0 ){
             $.post(ruta,form,function(response){
                 console.log (response)
@@ -23,7 +25,7 @@ $(document).ready(function (){
             alert("Debe llenar todo los campos");
         }
         
-    });
+    }); 
     
     $('#form-area').on("submit", function (e) {
         e.preventDefault();
@@ -32,4 +34,4 @@ $(document).ready(function (){
         $(this)[0].reset();
     });
     
-})
+})      

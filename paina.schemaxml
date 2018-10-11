@@ -6,9 +6,9 @@
 <canvas zoom="100">
 <tables>
 <table name="ninas" view="standard">
-<left>12</left>
-<top>16</top>
-<width>268</width>
+<left>29</left>
+<top>6</top>
+<width>270</width>
 <height>311</height>
 <sql_create_table>CREATE TABLE `ninas` (
   `id_nina` int(11) NOT NULL AUTO_INCREMENT,
@@ -24,11 +24,6 @@
   `tipo_medida` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `numero_medida` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `fecha_medida` date NOT NULL,
-<<<<<<< HEAD
-  `organiacion_persona` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  PRIMARY KEY (`id_nina`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
-=======
   `orga_persona` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `desc_vestimenta` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `desc_maltrato_fisico` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
@@ -37,15 +32,14 @@
   `desc_estado_salud` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_nina`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
->>>>>>> version-1.1
 </table>
-<table name="pgf" view="standard">
-<left>349</left>
-<top>5</top>
-<width>266</width>
-<height>299</height>
-<sql_create_table>CREATE TABLE `pgf` (
-  `id_pgf` int(11) NOT NULL AUTO_INCREMENT,
+<table name="paina" view="standard">
+<left>381</left>
+<top>26</top>
+<width>259</width>
+<height>282</height>
+<sql_create_table>CREATE TABLE `paina` (
+  `id_paina` int(11) NOT NULL AUTO_INCREMENT,
   `familia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `etnia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `acogimiento` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
@@ -53,21 +47,30 @@
   `proxima_evaluacion` date NOT NULL,
   `profesional` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `cedula` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `diag_sit_familia` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `diag_sit_equipo` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `obj_gene_familia` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `obj_gene_equipo` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `obj_general` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `nina` int(11) NOT NULL,
-  PRIMARY KEY (`id_pgf`),
-  KEY `PFG_OBJ_GEN` (`obj_gene_familia`),
-  KEY `PGF_DIAG_SIT` (`diag_sit_familia`),
-  KEY `PGF_NNA` (`nina`),
-  CONSTRAINT `PGF_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+  PRIMARY KEY (`id_paina`),
+  KEY `PAINA_NNA` (`nina`),
+  CONSTRAINT `PAINA_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
+</table>
+<table name="area_acomp" view="standard">
+<left>370</left>
+<top>347</top>
+<width>293</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `area_acomp` (
+  `id_area_acomp` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion_area_acomp` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `tipo_area_acomp` int(11) NOT NULL,
+  PRIMARY KEY (`id_area_acomp`),
+  KEY `AREAACOMP_AREATIPOACOMP` (`tipo_area_acomp`),
+  CONSTRAINT `AREAACOMP_AREATIPOACOMP` FOREIGN KEY (`tipo_area_acomp`) REFERENCES `areas_tipo_area_acomp` (`id_tipo_area`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
 <table name="area" view="standard">
-<left>809</left>
-<top>52</top>
+<left>715</left>
+<top>245</top>
 <width>253</width>
 <height>248</height>
 <sql_create_table>CREATE TABLE `area` (
@@ -87,53 +90,23 @@
   CONSTRAINT `AREA_ACOMP_AREA` FOREIGN KEY (`area_acomp`) REFERENCES `area_acomp` (`id_area_acomp`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
-<table name="area_acomp" view="standard">
-<left>490</left>
-<top>321</top>
-<width>293</width>
-<height>129</height>
-<sql_create_table>CREATE TABLE `area_acomp` (
-  `id_area_acomp` int(11) NOT NULL AUTO_INCREMENT,
-  `descripcion_area_acomp` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `tipo_area_acomp` int(11) NOT NULL,
-  PRIMARY KEY (`id_area_acomp`),
-  KEY `AREAACOMP_AREATIPOACOMP` (`tipo_area_acomp`),
-  CONSTRAINT `AREAACOMP_AREATIPOACOMP` FOREIGN KEY (`tipo_area_acomp`) REFERENCES `areas_tipo_area_acomp` (`id_tipo_area`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
-</table>
-<table name="pgf_area" view="standard">
-<left>632</left>
-<top>11</top>
-<width>140</width>
+<table name="paina_area" view="standard">
+<left>747</left>
+<top>51</top>
+<width>145</width>
 <height>112</height>
-<sql_create_table>CREATE TABLE `pgf_area` (
-  `pgf` int(11) NOT NULL,
+<sql_create_table>CREATE TABLE `paina_area` (
+  `paina` int(11) NOT NULL,
   `area` int(11) NOT NULL,
-  KEY `PGFAREA_PGF` (`pgf`),
-  KEY `PGFAREA_AREA` (`area`),
-  CONSTRAINT `PGFAREA_AREA` FOREIGN KEY (`area`) REFERENCES `area` (`id_area`),
-  CONSTRAINT `PGFAREA_PGF` FOREIGN KEY (`pgf`) REFERENCES `pgf` (`id_pgf`)
+  KEY `PAA_AREA` (`area`),
+  KEY `PAA_PAINA` (`paina`),
+  CONSTRAINT `PAA_AREA` FOREIGN KEY (`area`) REFERENCES `area` (`id_area`),
+  CONSTRAINT `PAA_PAINA` FOREIGN KEY (`paina`) REFERENCES `paina` (`id_paina`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
 </table>
-<<<<<<< HEAD
-<table name="actividades_area" view="colnames">
-<left>733</left>
-<top>296</top>
-<width>128</width>
-<height>180</height>
-<sql_create_table>CREATE TABLE `actividades_area` (
-  `id_actividad` int(11) NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `responsable` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `tiempo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `evaluacion` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `observaciones` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  PRIMARY KEY (`id_actividad`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci</sql_create_table>
-=======
 <table name="areas_tipo_area_acomp" view="standard">
-<left>190</left>
-<top>359</top>
+<left>72</left>
+<top>386</top>
 <width>215</width>
 <height>112</height>
 <sql_create_table>CREATE TABLE `areas_tipo_area_acomp` (
@@ -141,7 +114,6 @@
   `tipo` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_tipo_area`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci</sql_create_table>
->>>>>>> version-1.1
 </table>
 </tables>
 </canvas>

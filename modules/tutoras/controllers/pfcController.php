@@ -20,22 +20,25 @@ class pfcController extends tutorasController
     public function nuevoPfc()
     { 
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            if ($this->getInt("guardar") == 1) {
+            if($this->getInt("guardar") == 1){
+                echo "<pre>";print_r($_POST);
+                exit;
                 $resp = $this->_sql->nuevoPfc(
                     array(
-                        ":nombre" => $this->getText("nombre"),
-                        ":canton" => $this->getText("canton"),
-                        ":parroquia" => $this->getText("parroquia"),
-                        ":num_fami" => $this->getText("nro_familia"),
-                        ":num_nna" => $this->getText("nro_nna"),
-                        ":fecha_elab" => $this->getText("fecha_elaboracion"),
-                        ":fecha_eval" => $this->getText("fecha_evaluacion"),
-                        ":nina" => $this->getText("diag_part_comunidad"),
-                    ),
-                    array(
+                        ":nombre"=>$this->getText("nombre"),
+                        ":canton"=> $this->getText("canton"),
+                        ":parroquia"=>$this->getText("parroquia"),
+                        ":num_fami"=>$this->getText("nro_familia"),
+                        ":num_nna"=>$this->getText("nro_nna"),
+                        ":fecha_elab"=>$this->getText("fecha_elaboracion"),
+                        ":fecha_eval"=>$this->getText("fecha_evaluacion"),
+                        ":nina"=>$this->getText("nina"),
                         ":diag_part_comu"=>$this->getText("diag_part_comunidad"),
                         ":obj_gen"=>$this->getText("obj_general"),
                         ":obj_esp"=>$this->getText("obj_especificos")
+                    ),
+                    array(
+                        
                     ),
                     $_POST["intervencion"],
                     $_POST["seguimiento"],

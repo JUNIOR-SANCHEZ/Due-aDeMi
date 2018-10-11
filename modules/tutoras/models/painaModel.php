@@ -1,6 +1,6 @@
 <?php
 
-class pgfModel extends Model
+class painaModel extends Model
 {
     public function __construct()
     {
@@ -13,12 +13,12 @@ class pgfModel extends Model
     }
     public function area_acomp_des_personal()
     {
-        $stmt = $this->_db->query("SELECT * FROM area_acomp WHERE tipo_area_acomp = 1;");
+        $stmt = $this->_db->query("SELECT * FROM area_acomp WHERE tipo_area_acomp = 3;");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function area_acomp_des_social()
     {
-        $stmt = $this->_db->query("SELECT * FROM area_acomp WHERE tipo_area_acomp = 2;");
+        $stmt = $this->_db->query("SELECT * FROM area_acomp WHERE tipo_area_acomp = 4;");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function nuevapgf(

@@ -60,6 +60,21 @@ class menuModelWidget extends Model
                 )
             );
         }
+        if ($this->_acl->permiso("add_paina")) {
+            $menus["sidenav"][] = array(
+                "id" => "dir_paina",
+                "title" => "PAINA",
+                "icon" => "fa-file",
+                "sub-menu" =>  array(
+                    array(
+                    "id" => "paina",
+                    "title" => "Nueva PAINA",
+                    "icon" => "fa-bookmark",
+                    "link" => BASE_URL . "tutoras/paina"
+                     )
+                )
+            );
+        }
         if ($this->_acl->permiso("admin_access")) {
             $menus["sidenav"][] = 
                 array(

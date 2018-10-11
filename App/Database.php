@@ -2,10 +2,9 @@
 
 class Database extends PDO {
 
-    public function __construct() {
+    public function __construct($db_host,$db_name,$db_user,$db_pass,$db_char) {
         parent::__construct(
-                'mysql:host=' . DB_HOST.';dbname=' . DB_NAME, DB_USER, DB_PASS, array(PDO::MYSQL_ATTR_INIT_COMMAND => ' SET NAMES ' . DB_CHAR)
+                'mysql:host=' . $db_host.';dbname=' . $db_name, $db_user, $db_pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => ' SET NAMES ' . $db_char)
         );
     }
-
 }

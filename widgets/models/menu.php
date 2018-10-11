@@ -75,6 +75,22 @@ class menuModelWidget extends Model
                 )
             );
         }
+        if ($this->_acl->permiso("add_preliminar")) {
+            $menus["sidenav"][] = array(
+                "id" => "dir_preliminar",
+                "title" => "PRELIMINAR",
+                "icon" => "fa-file",
+                "sub-menu" =>  array(
+                    array(
+                    "id" => "paina",
+                    "title" => "Nueva Informe",
+                    "icon" => "fa-bookmark",
+                    "link" => BASE_URL . "psicologia/preliminar"
+                     )
+                )
+            );
+        }
+        
         if ($this->_acl->permiso("admin_access")) {
             $menus["sidenav"][] = 
                 array(

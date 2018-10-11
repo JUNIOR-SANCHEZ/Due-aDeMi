@@ -37,6 +37,7 @@ class Bootstrap {
                 call_user_func(array($contoller, $metodo));
             }
         } else {
+            echo $rutaControlador ."<br>";
             throw new Exception("No se encontro la ruta actual");
         }
     }

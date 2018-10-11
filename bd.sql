@@ -35,11 +35,11 @@ CREATE TABLE `area` (
   KEY `PGF_AREA_ACTIVI` (`acti_descripcion`),
   KEY `AREA_ACOMP_AREA` (`area_acomp`),
   CONSTRAINT `AREA_ACOMP_AREA` FOREIGN KEY (`area_acomp`) REFERENCES `area_acomp` (`id_area_acomp`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `area` */
 
-insert  into `area`(`id_area`,`diagnostico_area`,`objetivo_area`,`evaluacion_global`,`acti_descripcion`,`acti_responsable`,`acti_tiempo`,`acti_evaluacion`,`acti_observacion`,`area_acomp`) values (6,'jkfgn','njdfk','jkfdhbfgfjdkbsgjsb','njkgdggfndbgjbj','jkfgjksffn,bn','fdsghbfgjhbfgxmghbsjbh','hjkfgbjhfbgshjgfyygkgbvkbvhkbdfhj','jabfkdbfdhjfbahj',4);
+insert  into `area`(`id_area`,`diagnostico_area`,`objetivo_area`,`evaluacion_global`,`acti_descripcion`,`acti_responsable`,`acti_tiempo`,`acti_evaluacion`,`acti_observacion`,`area_acomp`) values (6,'jkfgn','njdfk','jkfdhbfgfjdkbsgjsb','njkgdggfndbgjbj','jkfgjksffn,bn','fdsghbfgjhbfgxmghbsjbh','hjkfgbjhfbgshjgfyygkgbvkbvhkbdfhj','jabfkdbfdhjfbahj',4),(7,'dddddddddddddddddddddd','ssssssssssssssssssssssss','rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr','sssssssssssssssss','aaaaaaaaaaaaaaaaaaaaaaa','qqqqqqqqqqqqqqq','wwwwwwwwwwwwwww','rrrrrrrrrrrrrrrrrrrrr',5);
 
 /*Table structure for table `area_acomp` */
 
@@ -71,6 +71,40 @@ CREATE TABLE `areas_tipo_area_acomp` (
 /*Data for the table `areas_tipo_area_acomp` */
 
 insert  into `areas_tipo_area_acomp`(`id_tipo_area`,`tipo`) values (1,'Desarrollo Personal'),(2,'Desarrollo Social'),(3,'Dinámicas Intrafamiliares'),(4,'Condiciones Sociocultural');
+
+/*Table structure for table `informes` */
+
+DROP TABLE IF EXISTS `informes`;
+
+CREATE TABLE `informes` (
+  `id_informe` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date NOT NULL,
+  `documento` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `observacion` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `nina` int(11) NOT NULL,
+  `tipo_informe` int(11) NOT NULL,
+  PRIMARY KEY (`id_informe`),
+  KEY `INFOR_NNA` (`nina`),
+  KEY `INFOR_TIPO` (`tipo_informe`),
+  CONSTRAINT `INFOR_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`),
+  CONSTRAINT `INFOR_TIPO` FOREIGN KEY (`tipo_informe`) REFERENCES `informes_tipo` (`id_inf_tipo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `informes` */
+
+/*Table structure for table `informes_tipo` */
+
+DROP TABLE IF EXISTS `informes_tipo`;
+
+CREATE TABLE `informes_tipo` (
+  `id_inf_tipo` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`id_inf_tipo`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `informes_tipo` */
+
+insert  into `informes_tipo`(`id_inf_tipo`,`tipo`) values (1,'Preliminar');
 
 /*Table structure for table `ninas` */
 
@@ -167,9 +201,11 @@ CREATE TABLE `paina` (
   PRIMARY KEY (`id_paina`),
   KEY `PAINA_NNA` (`nina`),
   CONSTRAINT `PAINA_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `paina` */
+
+insert  into `paina`(`id_paina`,`familia`,`etnia`,`acogimiento`,`fecha_elaboracion`,`proxima_evaluacion`,`profesional`,`cedula`,`obj_general`,`nina`) values (2,'','qqqqqqqqqqqqq','qqqqqqqqqqqqqqqqqqq','0000-00-00','0000-00-00','eeeeeeeeee','wwwwwwwwww','ssssssssssssssss',2);
 
 /*Table structure for table `paina_area` */
 
@@ -186,6 +222,8 @@ CREATE TABLE `paina_area` (
 
 /*Data for the table `paina_area` */
 
+insert  into `paina_area`(`paina`,`area`) values (2,7);
+
 /*Table structure for table `permisos` */
 
 DROP TABLE IF EXISTS `permisos`;
@@ -195,11 +233,11 @@ CREATE TABLE `permisos` (
   `permiso` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `key` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_permiso`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 /*Data for the table `permisos` */
 
-insert  into `permisos`(`id_permiso`,`permiso`,`key`) values (1,'Tareas de administracion','admin_access'),(7,'Crear usuarios','add_user'),(8,'Desactivar usuarios','disabled_user'),(9,'Registrar nina','add_nina'),(10,'Registrar plan de fortalecimiento comunitario','add_pfc'),(11,'Agregar plan global familiar','add_pgf'),(12,'Agregar PAINA','add_paina');
+insert  into `permisos`(`id_permiso`,`permiso`,`key`) values (1,'Tareas de administracion','admin_access'),(7,'Crear usuarios','add_user'),(8,'Desactivar usuarios','disabled_user'),(9,'Registrar nina','add_nina'),(10,'Registrar plan de fortalecimiento comunitario','add_pfc'),(11,'Agregar plan global familiar','add_pgf'),(12,'Agregar PAINA','add_paina'),(13,'Agregar Informe Preliminar (Psicología)','add_preliminar');
 
 /*Table structure for table `permisos_role` */
 
@@ -216,7 +254,7 @@ CREATE TABLE `permisos_role` (
 
 /*Data for the table `permisos_role` */
 
-insert  into `permisos_role`(`role`,`permiso`,`valor`) values (1,1,1),(1,2,1),(1,3,1),(1,7,1),(1,8,1),(1,9,0),(1,10,0),(1,11,0),(1,12,0),(5,4,1),(5,9,1),(5,10,1),(6,9,1);
+insert  into `permisos_role`(`role`,`permiso`,`valor`) values (1,1,1),(1,2,1),(1,3,1),(1,7,1),(1,8,1),(1,9,0),(1,10,0),(1,11,0),(1,12,0),(1,13,0),(5,4,1),(5,9,1),(5,10,1),(6,9,1);
 
 /*Table structure for table `permisos_usuario` */
 
@@ -233,7 +271,7 @@ CREATE TABLE `permisos_usuario` (
 
 /*Data for the table `permisos_usuario` */
 
-insert  into `permisos_usuario`(`usuario`,`permiso`,`valor`) values (4,9,1),(4,10,1),(4,11,1),(4,12,1);
+insert  into `permisos_usuario`(`usuario`,`permiso`,`valor`) values (4,9,1),(4,10,1),(4,11,1),(4,12,1),(4,13,1);
 
 /*Table structure for table `pfc` */
 

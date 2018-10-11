@@ -1,8 +1,37 @@
-<div class="content">
+<?php /* Smarty version Smarty-3.1.8, created on 2018-10-11 20:27:33
+         compiled from "C:\xampp\htdocs\DuenaDeMi\modules\tutoras\views\pgf\nuevo.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:14369138295ba66d80b7be32-83093998%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'e070a0d658fc696bbe569214345438d6830653ae' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\DuenaDeMi\\modules\\tutoras\\views\\pgf\\nuevo.tpl',
+      1 => 1539282417,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '14369138295ba66d80b7be32-83093998',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_5ba66d80b817f6_60048265',
+  'variables' => 
+  array (
+    '_layoutParams' => 0,
+    'nina' => 0,
+    'list' => 0,
+    'desarrollo_pers' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5ba66d80b817f6_60048265')) {function content_5ba66d80b817f6_60048265($_smarty_tpl) {?><div class="content">
     <div class="row">
         <div class="col-md-12">
             <div class="row">
-                <form action="{$_layoutParams.root}tutoras/pgf/nuevopgf" method="post" id="form-pgf">
+                <form action="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+tutoras/pgf/nuevopgf" method="post" id="form-pgf">
                     <input type="hidden" name="guardar" value="1">
                     <div class="col-md-12">
                         <div class="box box-solid">
@@ -50,10 +79,17 @@
                                                                                 </div>
                                                                                 <select name="nina" class="form-control">
                                                                                     <option value="0">Seleccione</option>
-                                                                                    {foreach item=list from=$nina}
-                                                                                    <option value="{$list['id_nina']}">{$list['nombres']}
-                                                                                        {$list['apellidos']}</option>
-                                                                                    {/foreach}
+                                                                                    <?php  $_smarty_tpl->tpl_vars['list'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['list']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['nina']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['list']->key => $_smarty_tpl->tpl_vars['list']->value){
+$_smarty_tpl->tpl_vars['list']->_loop = true;
+?>
+                                                                                    <option value="<?php echo $_smarty_tpl->tpl_vars['list']->value['id_nina'];?>
+"><?php echo $_smarty_tpl->tpl_vars['list']->value['nombres'];?>
+
+                                                                                        <?php echo $_smarty_tpl->tpl_vars['list']->value['apellidos'];?>
+</option>
+                                                                                    <?php } ?>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -240,9 +276,15 @@
                                 <div class="form-group col-md-4 pull-right">
                                     <select id="disabledSelect" name="area_acomp" class="form-control ">
                                         <option value="">Seleccionar:</option>
-                                        {foreach item=list from=$desarrollo_pers}
-                                        <option value="{$list['id_area_acomp']}">{$list['descripcion_area_acomp']}</option>
-                                        {/foreach}
+                                        <?php  $_smarty_tpl->tpl_vars['list'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['list']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['desarrollo_pers']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['list']->key => $_smarty_tpl->tpl_vars['list']->value){
+$_smarty_tpl->tpl_vars['list']->_loop = true;
+?>
+                                        <option value="<?php echo $_smarty_tpl->tpl_vars['list']->value['id_area_acomp'];?>
+"><?php echo $_smarty_tpl->tpl_vars['list']->value['descripcion_area_acomp'];?>
+</option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -418,4 +460,4 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div><?php }} ?>

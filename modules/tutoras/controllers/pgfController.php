@@ -194,11 +194,11 @@ class pgfController extends tutorasController
         <tr>
             <td>
             
-                   Familia:  <?=$dato->diag_fami?>
+                   Familia:  <?=$dato->diag_sit_familia?>
 
             </td>
                 <td>
-                Equipo:  <?=$dato->equipo?>
+                Equipo:  <?=$dato->diag_sit_equipo?>
                 </td>
             </tr>
            
@@ -213,11 +213,11 @@ class pgfController extends tutorasController
         <tr>
             <td>
             
-            Consensuado con la familia : <?=$dato->consensuado_familia?>
+            Consensuado con la familia : <?=$dato->obj_gene_familia?>
 
             </td>
                 <td>
-                Del equipo Consensuado con la familia: <?=$dato->consensuado_equipo?>
+                Del equipo Consensuado con la familia: <?=$dato->obj_gene_equipo?>
                 </td>
             </tr>
                       
@@ -244,8 +244,89 @@ class pgfController extends tutorasController
                    <p> -Educacion</p>
                    <p>-Recursos Comunitarios</p>
                    </td>
+           </tr>
+        </table>
+
+        <p></p>
+        <?php
+        $area = $this->_pgf->Datos_AREA($dato->id_pgf);
+        foreach($area as $item ):?>
+        <table border="1" cellspacing="" cellpadding="5" >
+            <tr>
+                <td colspan="1"><strong>Area</strong></td>
+            </tr>
+            <tr>
+                <td colspan="1"><strong>Diagnostico del Area</strong></td>
+            </tr>
+            <tr>
+                <td>
+                <?=$item["diagnostico_area"]?>
+               </td>
+               
         </tr>
         </table>
+        <p></p>
+        <table border="1" cellspacing="" cellpadding="5" >
+            <tr>
+                <td colspan="1"><strong>Objetivo del Area</strong></td>
+            </tr>
+            <tr>
+                <td>
+                <?=$item["objetivo_area"]?>
+               </td>
+           
+           </tr>
+        </table>
+        <p></p>
+        <table border="1" cellspacing="" cellpadding="5" >
+           <tr>
+               <td colspan="2"><strong>Areas</strong></td>
+           </tr> 
+            <tr>
+                <td colspan="2">
+                    <p><strong>Descripcion</strong></p>
+                    <?=$item["acti_descripcion"]?>
+               </td>
+            </tr>
+                
+            <tr>
+                <td>
+                    <p><strong>Responsables</strong></p>
+                    <?=$item["acti_responsable"]?>
+               </td>
+               <td>
+                    <p><strong>Tiempo</strong></p>
+                    <?=$item["acti_tiempo"]?>
+
+               </td>
+            </tr>
+            <tr>
+                <td>
+                    <p><strong>Evaluacion</strong></p>
+                    <?=$item["acti_evaluacion"]?>
+
+               </td>
+               <td>
+                    <p><strong>Observaciones</strong></p>
+                    <?=$item["acti_observacion"]?>
+
+               </td>
+            </tr>
+                        
+        </table>
+        <p></p>
+        <table border="1" cellspacing="" cellpadding="5" >
+            <tr>
+                <td colspan="1"><strong>Evaluacion Global de todas las Areas</strong></td>
+            </tr>
+            <tr>
+                <td>
+                <?=$item["descripcion_area_acomp"]?>
+               </td>
+           
+           </tr>
+        </table>
+        <?php endforeach;?>
         <?php
         $html = ob_get_clean();
         ob_clean();

@@ -1,5 +1,5 @@
 <?php
-class CertificadoController extends tutorasController
+class certificadoController extends tutorasController
 {
     public function __construct(){
         parent::__construct();

@@ -27,25 +27,18 @@ class pfcModel extends Model
         try {
             $this->_db->beginTransaction();
             /**
-             * INSERTAR EN TABLA OBJ_PFC
-             */
-            $sql = "INSERT INTO obj_pfc
-            VALUES
-            (NULL, :diag_part_comu, :obj_gen, :obj_esp );";
-            $stmt = $this->_db->prepare($sql);
-            $stmt->execute($obj);
-            $lastObj = $this->_db->lastInsertId();
-            /**
              * INSERTAR EN TABLA DATOS_PFC
-             */
-            $sql = "INSERT INTO datos_pfc
+             */ 
+            $sql = "INSERT INTO pfc
             VALUES
-            (NULL, :nombre, :canton, :parroquia, :num_fami, :num_nna, :fecha_elab, :fecha_eval,:nina, $lastObj );";
+            (NULL, :nombre, :canton, :parroquia, :num_fami, :num_nna, :fecha_elab, :fecha_eval, :diag_part_comu, :obj_gen, :obj_esp,:nina );";
             $stmt = $this->_db->prepare($sql);
             $stmt->execute($pfc);
             $lastPfc = $this->_db->lastInsertId();
-
-            $sql = "INSERT INTO intervenciones VALUES (NULL,:meta,:indicador,:actividad,:tiempo,:recurso,:responsable,$lastPfc);";
+            /**
+             * 
+             */
+            $sql = "INSERT INTO pfc_intervenciones VALUES (NULL,:meta,:indicador,:actividad,:tiempo,:recurso,:responsable,$lastPfc);";
             $stmt = $this->_db->prepare($sql);
             foreach ($inter as $item) {
                 $stmt->execute(array(
@@ -57,8 +50,10 @@ class pfcModel extends Model
                     ":responsable" => $item["responsable"],
                 ));
             }
-
-            $sql = "INSERT INTO seguimientos VALUES (NULL,:actividad,:dificultad,:resultado,:observacion,$lastPfc);";
+            /**
+             * 
+             */
+            $sql = "INSERT INTO pfc_seguimientos VALUES (NULL,:actividad,:dificultad,:resultado,:observacion,$lastPfc);";
             $stmt = $this->_db->prepare($sql);
             foreach ($segui as $item) {
                 $stmt->execute(array(
@@ -67,13 +62,16 @@ class pfcModel extends Model
                     ":resultado" => $item["resultado"],
                     ":observacion" => $item["observacion"],
                 ));
-
             }
-            $sql = "INSERT INTO responsables VALUES (NULL, :responsable, :rol, $lastPfc);";
+            /**
+             * 
+             */
+            $sql = "INSERT INTO pfc_responsables VALUES (NULL, :nombres,:apellidos, :rol, $lastPfc);";
             $stmt = $this->_db->prepare($sql);
             foreach ($respo as $item) {
                 $stmt->execute(array(
-                    ":responsable" => $item["apellido"] . " " . $item["nombre"],
+                    ":nombres" => $item["nombre"] ,
+                    ":apellidos" =>$item["apellido"],
                     ":rol" => $item["rol"]
                 ));
 

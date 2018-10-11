@@ -53,6 +53,28 @@ CREATE TABLE `datos_area` (
 
 insert  into `datos_area`(`id_area`,`diagnostico_area`,`objetivo_area`,`evaluacion_global`,`actividad`) values (1,'','','',3),(2,'','','',4),(3,'','','',5),(4,'','','',6),(5,'','','',7),(8,'nnn','nnn','nnn',10),(9,'descripcionnn','objetivossss','evaluacion globas de todas areas',11);
 
+/*Table structure for table `datos_paina` */
+
+DROP TABLE IF EXISTS `datos_paina`;
+
+CREATE TABLE `datos_paina` (
+  `id_paina` int(11) NOT NULL AUTO_INCREMENT,
+  `familia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `etnia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `acogimiento` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha_elaboracion` date NOT NULL,
+  `proxima_evaluacion` date NOT NULL,
+  `profesional` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `cedula` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
+  `obj_general` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `nina` int(11) NOT NULL,
+  PRIMARY KEY (`id_paina`)
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+/*Data for the table `datos_paina` */
+
+insert  into `datos_paina`(`id_paina`,`familia`,`etnia`,`acogimiento`,`fecha_elaboracion`,`proxima_evaluacion`,`profesional`,`cedula`,`obj_general`,`nina`) values (92,'ndnd','jcjcjc','jdjjd','0000-00-00','0000-00-00','ndnnd','ndnnd','',7),(93,'nfnfnf','jfjfj','nfjnfnf','0000-00-00','0000-00-00','nfnnf','nfnf','',7),(94,'nxn','jdjd','ndnd','0000-00-00','0000-00-00','dhdnd','jdndn','',7),(95,'BDHD','JDDJ','DNHDHD','0000-00-00','0000-00-00','NJDJND','DJD','',7),(96,'dd','ndndnd','dhdhdhd','0000-00-00','0000-00-00','ndndnd','jdjdjd','',7),(99,'','vdvdvdv','bdvdbd','0000-00-00','0000-00-00','ppp','ppppp','',7),(100,'','etnia','causa','0000-00-00','0000-00-00','profesional','cedula','',7);
+
 /*Table structure for table `datos_pfc` */
 
 DROP TABLE IF EXISTS `datos_pfc`;
@@ -255,11 +277,11 @@ CREATE TABLE `permisos` (
   `permiso` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `key` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_permiso`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 /*Data for the table `permisos` */
 
-insert  into `permisos`(`id_permiso`,`permiso`,`key`) values (1,'Tareas de administracion','admin_access'),(7,'Crear usuarios','add_user'),(8,'Desactivar usuarios','disabled_user'),(9,'Registrar nina','add_nina'),(10,'Registrar plan de fortalecimiento comunitario','add_pfc'),(11,'Agregar plan global familiar','add_pgf');
+insert  into `permisos`(`id_permiso`,`permiso`,`key`) values (1,'Tareas de administracion','admin_access'),(7,'Crear usuarios','add_user'),(8,'Desactivar usuarios','disabled_user'),(9,'Registrar nina','add_nina'),(10,'Registrar plan de fortalecimiento comunitario','add_pfc'),(11,'Agregar plan global familiar','add_pgf'),(12,'Agregar PAINA','add_paina');
 
 /*Table structure for table `permisos_role` */
 
@@ -276,7 +298,7 @@ CREATE TABLE `permisos_role` (
 
 /*Data for the table `permisos_role` */
 
-insert  into `permisos_role`(`role`,`permiso`,`valor`) values (1,1,1),(1,2,1),(1,3,1),(1,7,1),(1,8,1),(1,9,0),(1,10,0),(1,11,0),(5,4,1),(5,9,1),(5,10,1),(6,9,1);
+insert  into `permisos_role`(`role`,`permiso`,`valor`) values (1,1,1),(1,2,1),(1,3,1),(1,7,1),(1,8,1),(1,9,0),(1,10,0),(1,11,0),(1,12,0),(5,4,1),(5,9,1),(5,10,1),(6,9,1);
 
 /*Table structure for table `permisos_usuario` */
 
@@ -293,31 +315,7 @@ CREATE TABLE `permisos_usuario` (
 
 /*Data for the table `permisos_usuario` */
 
-insert  into `permisos_usuario`(`usuario`,`permiso`,`valor`) values (4,9,1),(4,10,1),(4,11,1);
-
-/*Table structure for table `pfc` */
-
-DROP TABLE IF EXISTS `pfc`;
-
-CREATE TABLE `pfc` (
-  `id_datos_generales` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `canton` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `parroquia` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `num_familia_servicio` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
-  `num_nna_servicio` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
-  `diag_part_comu` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `ob_general_plan` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `ob_especificos` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `fecha_elab` date NOT NULL,
-  `fecha_eval` date NOT NULL,
-  `nina` int(11) NOT NULL,
-  PRIMARY KEY (`id_datos_generales`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-/*Data for the table `pfc` */
-
-insert  into `pfc`(`id_datos_generales`,`nombre`,`canton`,`parroquia`,`num_familia_servicio`,`num_nna_servicio`,`diag_part_comu`,`ob_general_plan`,`ob_especificos`,`fecha_elab`,`fecha_eval`,`nina`) values (8,'juan','machala','nueve de mayo','255','255','','','','0000-00-00','0000-00-00',0),(9,'juan','machala','nueve de mayo','255','255','','','','0000-00-00','0000-00-00',0);
+insert  into `permisos_usuario`(`usuario`,`permiso`,`valor`) values (4,9,1),(4,10,1),(4,11,1),(4,12,1);
 
 /*Table structure for table `responsables` */
 

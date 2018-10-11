@@ -32,44 +32,53 @@ class ninasController extends tutorasController
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             # VERIFICAMOS SI SE HA ENVIADO POR POST EL CAMPO GUARDAR CON VALOR 1
             if ($this->getInt('guardar') == 1) {
-                $imagen = '';
-                $upload = new file($_FILES['foto']);
-                if ($upload->uploaded) {
-                    $ruta = ROOT . "public" . DS . "img" . DS . "nina" . DS;
-                    $upload->file_new_name_body = 'upl_' . uniqid();
-                    $upload->process($ruta);
-                    if ($upload->processed) {
+                // $upload = new file($_FILES['foto']);
+                // if ($upload->uploaded) {
+                //     $ruta = ROOT . "public" . DS . "img" . DS . "nina" . DS;
+                //     $upload->file_new_name_body = 'upl_' . uniqid();
+                //     $upload->process($ruta);
+                //     if ($upload->processed) {
                         $result = $this->_nina->nuevaNina(
-                            $this->date,
-                            $this->getText("nombres"),
-                            $this->getText("apellidos"),
-                            $this->getText("lugar_nacimiento"),
-                            $this->getText("fecha_nacimiento"),
-                            $upload->file_name_body,
-                            $this->getText("cedula"),
-                            $this->getText("phone"),
-                            $this->getText("direccion"),
-                            $this->getText("tipo-medida"),
-                            $this->getText('num-medida'),
-                            $this->getText('fecha-medida'),
-                            $this->getText('nombre_solicitud')) . "<pre>";
+                            array(
+                                ":fecha_ingreso"=>"201-05-25",
+                                ":nombres"=>$this->getText("nombres"),
+                                ":apellidos"=>$this->getText("apellidos"),
+                                ":lugar_nacimiento"=>$this->getText("lugar_nacimiento"),
+                                ":fecha_nacimiento"=>$this->getText("fecha_nacimiento"),
+                                ":foto"=>"foto.jpg",
+                                ":cedula"=>$this->getText("cedula"),
+                                ":telefono"=>$this->getText("phone"),
+                                ":direccion"=>$this->getText("direccion"),
+                                ":tipo_medida"=>$this->getText("tipo-medida"),
+                                ":numero_medida"=>$this->getText('num-medida'),
+                                ":fecha_medida"=>$this->getText('fecha-medida'),
+                                ":orga_persona"=>$this->getText('nombre_solicitud'),
+                                ":desc_vestimenta"=>$this->getText("vestimenta"),
+                                ":desc_maltrato_fisico"=>$this->getText("maltrato-fisico"),
+                                ":desc_pertenencia"=>$this->getText("pertenencias"),
+                                ":desc_obs_generales"=>$this->getText("observaciones-generales"),
+                                ":desc_estado_salud"=>$this->getText("salud")
+                            ),
+                            $_POST["informante"],
+                            $_POST["familia"]
+                        );
 
-                        if ($result == 0) {
-                            echo json_encode(array("error" => true, "mensaje" => "Ha ocurrido un error al ingresar dato"));
+                        if (!$result) {
+                            echo false;
                             exit;
                         }
-                        echo json_encode(array("error" => false, "mensaje" => "Datos registrados", "id" => $result));
+                        echo true;
                         exit;
 
-                    } else {
-                        echo json_encode(array("error" => true, "mensaje" => $upload->error));
-                    }
-                }
+                    // } else {
+                    //     echo json_encode(array("error" => true, "mensaje" => $upload->error));
+                    // }
+                // }
 
             }
 
         } else {
-            echo json_encode(array("error" => true, "mensaje" => "Error Processing Request"));
+            echo "Error Processing Request";
         }
     }
     public function nuevoInformante()
@@ -103,12 +112,7 @@ class ninasController extends tutorasController
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             if ($this->getInt('guardar') == 1) {
                 $resp = $this->_nina->nuevoDescripcion(
-                    $this->getText("vestimenta"),
-                    $this->getText("salud"),
-                    $this->getText("maltrato-fisico"),
-                    $this->getText("pertenencias"),
-                    $this->getText("observaciones-generales"),
-                    $this->getInt("nina")
+                   
                 );
                 if ($resp == 0) {
                     echo json_encode(array("error" => true, "mensaje" => "Ha ocurrido un error al ingresar los datos"));

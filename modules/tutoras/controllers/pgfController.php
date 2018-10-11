@@ -8,37 +8,23 @@ class pgfController extends tutorasController
         parent::__construct();
         $this->_pgf = $this->loadModel('pgf');
     }
+
+    
     public function index(){
         $this->_view->setJs(array('ajax'));
+        $area_acomp=$this->push_array($this->_pgf->area_acomp_des_personal(),$this->_pgf->area_acomp_des_social()) ;
         $this->_view->assign('nina',$this->_pgf->nina());
-
+        $this->_view->assign('desarrollo_pers',$area_acomp);
+        
         $this->_view->renderizar("nuevo");
     }
     public function nuevopgf()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH'])&& strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
             if($this->getInt('guardar')==1){
+                // echo "<pre>";print_r($_POST);
+                // exit;
                 $resp = $this->_pgf->nuevapgf(
-                    array(
-                        ":descripcion"=>$this->getText('act_descripcion'),
-                        ":tiempo"=>$this->getText("act_tiempo"),
-                        ":responsable"=>$this->getText("act_responsable"),
-                        ":evaluacion"=>$this->getText("act_evaluacion"),
-                        ":observaciones"=>$this->getText("act_observaciones"),
-                    ),
-                    array(
-                        ":diagnostico_area"=>$this->getText('diagnostico_area'),
-                        ":objetivo_area"=>$this->getText('objetivo_area'),
-                        ":evaluacion_global"=>$this->getText('evaluacion_global'),
-                    ),
-                    array(
-                        ":consensuado_familia"=>$this->getText('Consensuado_familia'),
-                        ":consensuado_equipo"=>$this->getText('del_equipo')
-                    ),
-                    array(
-                        ":diag_familia"=>$this->getText('diag_familia'),
-                        ":diag_equipo"=>$this->getText('diag_equipo')
-                    ),
                     array(
                     ":familia"=>$this->getText('familia'),
                     ":etnia"=>$this->getText('etnia'),
@@ -47,21 +33,24 @@ class pgfController extends tutorasController
                     ":proxima_evaluacion"=>$this->getText('fecha_evaluacion'),
                     ":profesional"=>$this->getText('profesional'),
                     ":cedula"=>$this->getText('cedula'),
+                    ":diag_familia"=>$this->getText('diag_familia'),
+                    ":diag_equipo"=>$this->getText('diag_equipo'),
+                    ":consensuado_familia"=>$this->getText('Consensuado_familia'),
+                    ":consensuado_equipo"=>$this->getText('del_equipo'),
                     ":nina"=>$this->getInt('nina')
-                    )
-
-
+                    ),
+                    $_POST['area']
                 );
-                if($resp == 0){
-                    echo json_encode(array("error"=>true,"mensaje"=>$resp));
+                if(!$resp){
+                    echo false;
                 exit; 
                 }
-                echo json_encode(array("error"=>false,"mensaje"=>"Exito","id"=>$resp));
+                echo true;
                 exit; 
             }
         }
         else{
-            echo json_encode(array("error"=>true,"mensaje"=>"Ha ocurrido un error no es una peticion xmlhttprequest"));
+            echo "Ha ocurrido un error no es una peticion xmlhttprequest";
             exit;
         }
     } 

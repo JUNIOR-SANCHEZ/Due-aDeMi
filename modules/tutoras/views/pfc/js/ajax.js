@@ -30,7 +30,9 @@ $(document).ready(function () {
                     $("#form-intervencion")[0].reset();
                     $("#form-seguimiento")[0].reset();
                     $("#form-responsable")[0].reset();
-    
+                    interv = [];
+                    segui = [];
+                    respon = [];
                 } else {
                     alert("Hubo un error")
                 }

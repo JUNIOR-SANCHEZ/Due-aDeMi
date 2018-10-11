@@ -12,6 +12,7 @@ class painaController extends tutorasController
 
     public function index()
     {
+        $this->_view->setJs(array("ajax"));
         $this->_view->assign('nina',$this->_paina->nina());
         $area_acomp=$this->push_array($this->_paina->area_acomp_des_personal(),$this->_paina->area_acomp_des_social()) ;
         $this->_view->assign('nina',$this->_paina->nina());
@@ -35,11 +36,8 @@ class painaController extends tutorasController
                         ":proxima_evaluacion" => $this->getText('fecha_evaluacion'),
                         ":profesional" => $this->getText('profesional'),
                         ":cedula" => $this->getText('cedula'),
-                        ":diag_familia" => $this->getText('diag_familia'),
-                        ":diag_equipo" => $this->getText('diag_equipo'),
-                        ":consensuado_familia" => $this->getText('Consensuado_familia'),
-                        ":consensuado_equipo" => $this->getText('del_equipo'),
-                        ":nina" => $this->getInt('nina'),
+                        ":obj_general" => $this->getText('obj_general'),
+                        ":nina" => $this->getInt('nina')
                     ),
                     $_POST['area']
                 );

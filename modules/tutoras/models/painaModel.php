@@ -21,7 +21,7 @@ class painaModel extends Model
         $stmt = $this->_db->query("SELECT * FROM area_acomp WHERE tipo_area_acomp = 4;");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function nuevapgf(
+    public function nuevo_paina(
         $pfc,
         $area
     ) {
@@ -31,10 +31,7 @@ class painaModel extends Model
             /**
              *
              */
-            $sql = "INSERT INTO pgf VALUES (
-                    NULL,:familia, :etnia, :acogimiento, :fecha_elaboracion,:proxima_evaluacion, :profesional, :cedula,:diag_familia,:diag_equipo,
-                    :consensuado_familia,:consensuado_equipo,:nina);";
-                    
+            $sql = "INSERT INTO paina VALUES (NULL,:familia, :etnia, :acogimiento, :fecha_elaboracion,:proxima_evaluacion, :profesional, :cedula,:obj_general,:nina);";
             $stmt = $this->_db->prepare($sql);
             $stmt->execute($pfc);
             $lastpgf = $this->_db->lastInsertId();
@@ -60,9 +57,8 @@ class painaModel extends Model
                     ":area_acomp"=>$item['area_acomp']
                 ));
                 $lastarea = $this->_db->lastInsertId();
-               $this->_db->query("INSERT INTO pgf_area VALUES ($lastpgf, $lastarea);");
+               $this->_db->query("INSERT INTO paina_area VALUES ($lastpgf, $lastarea);");
             }
-
             $this->_db->commit();
             return true;
         } catch (PDOException $e) {

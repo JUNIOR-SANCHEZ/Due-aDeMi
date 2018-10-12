@@ -35,11 +35,11 @@ CREATE TABLE `area` (
   KEY `PGF_AREA_ACTIVI` (`acti_descripcion`),
   KEY `AREA_ACOMP_AREA` (`area_acomp`),
   CONSTRAINT `AREA_ACOMP_AREA` FOREIGN KEY (`area_acomp`) REFERENCES `area_acomp` (`id_area_acomp`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `area` */
 
-insert  into `area`(`id_area`,`diagnostico_area`,`objetivo_area`,`evaluacion_global`,`acti_descripcion`,`acti_responsable`,`acti_tiempo`,`acti_evaluacion`,`acti_observacion`,`area_acomp`) values (6,'jkfgn','njdfk','jkfdhbfgfjdkbsgjsb','njkgdggfndbgjbj','jkfgjksffn,bn','fdsghbfgjhbfgxmghbsjbh','hjkfgbjhfbgshjgfyygkgbvkbvhkbdfhj','jabfkdbfdhjfbahj',4),(7,'dddddddddddddddddddddd','ssssssssssssssssssssssss','rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr','sssssssssssssssss','aaaaaaaaaaaaaaaaaaaaaaa','qqqqqqqqqqqqqqq','wwwwwwwwwwwwwww','rrrrrrrrrrrrrrrrrrrrr',5);
+insert  into `area`(`id_area`,`diagnostico_area`,`objetivo_area`,`evaluacion_global`,`acti_descripcion`,`acti_responsable`,`acti_tiempo`,`acti_evaluacion`,`acti_observacion`,`area_acomp`) values (6,'jkfgn','njdfk','jkfdhbfgfjdkbsgjsb','njkgdggfndbgjbj','jkfgjksffn,bn','fdsghbfgjhbfgxmghbsjbh','hjkfgbjhfbgshjgfyygkgbvkbvhkbdfhj','jabfkdbfdhjfbahj',4),(7,'dddddddddddddddddddddd','ssssssssssssssssssssssss','rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr','sssssssssssssssss','aaaaaaaaaaaaaaaaaaaaaaa','qqqqqqqqqqqqqqq','wwwwwwwwwwwwwww','rrrrrrrrrrrrrrrrrrrrr',5),(8,'lllllllllllll','lllllllllllllllllllll','oooooooooooooooooooo','kkkkkkkkkkkkkkkkkkkkkkkk','m','llllllll','kkkkkkkkkkkkkkk','jjjjjjjjjjjjjjjjjjjj',19),(9,'kkkkkkkkkkkk','llllllllllllllllll','iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii','llllllllllllllllllllll','kkkkkkkkkkkkkkkk','jjjjjjjjjjjjjjjjj','nnnnnnnnnnnnnn','yyyyyyyyyyyyyyyyy',20),(10,'kkkkkkkkkkkk','kkkkkkkkkkkkkkk','pppppppppppppppppppppppp','nnnnnnnnnnn','yyyyyyyyyyyyyyy','ggggggggggggggg','iiiiiiiiiiiii','oooooooooooooooo',20),(11,'kkkkkkkkkkkkk','llllllllllllll','aaaaaaaaaaaaaaaaaaaaaa','oooooooooooooooooooooo','hhhhhhhhhhhhhhhhhh','rrrrrrrrrrrrrr','mmmmmmmmmmm','ffffffffffffff',19),(12,'jhjn','nbbjh','hbjkjhjk','knjj','jnjkn','jnkj','jnkj','h hjm',21);
 
 /*Table structure for table `area_acomp` */
 
@@ -88,11 +88,11 @@ CREATE TABLE `informes` (
   KEY `INFOR_TIPO` (`tipo_informe`),
   CONSTRAINT `INFOR_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`),
   CONSTRAINT `INFOR_TIPO` FOREIGN KEY (`tipo_informe`) REFERENCES `informes_tipo` (`id_inf_tipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `informes` */
 
-insert  into `informes`(`id_informe`,`fecha`,`documento`,`observacion`,`nina`,`tipo_informe`) values (1,'0000-00-00','upl_5bc01954d786d.pdf','hfdjgks',2,1),(2,'0000-00-00','upl_5bc01cdca2ab6.docx','fvdffsd',2,1);
+insert  into `informes`(`id_informe`,`fecha`,`documento`,`observacion`,`nina`,`tipo_informe`) values (1,'0000-00-00','upl_5bc01954d786d.pdf','hfdjgks',2,1),(2,'0000-00-00','upl_5bc01cdca2ab6.docx','fvdffsd',2,1),(3,'2018-10-11','upl_5bc04520ae466.docx','fkjgfd',2,1),(4,'2018-10-31','upl_5bc04b0141a04.docx','mmmmmmmmmmmmmmmmmmmmm',2,1);
 
 /*Table structure for table `informes_tipo` */
 
@@ -133,11 +133,11 @@ CREATE TABLE `ninas` (
   `desc_obs_generales` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `desc_estado_salud` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_nina`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `ninas` */
 
-insert  into `ninas`(`id_nina`,`fecha_ingreso`,`nombres`,`apellidos`,`lugar_nacimiento`,`fecha_nacimiento`,`foto`,`cedula`,`telefono`,`direccion`,`tipo_medida`,`numero_medida`,`fecha_medida`,`orga_persona`,`desc_vestimenta`,`desc_maltrato_fisico`,`desc_pertenencia`,`desc_obs_generales`,`desc_estado_salud`) values (2,'0201-05-25','vfdjhb','hbjc','fhjcsbnm','0000-00-00','foto.jpg','fhjbn','fhbjsn','fhjsnm','vfjhbn','fbjkn','0000-00-00','vhjbnm','fvsjkn','hfjbn','hbjkvfn','hbnfm','fjksn');
+insert  into `ninas`(`id_nina`,`fecha_ingreso`,`nombres`,`apellidos`,`lugar_nacimiento`,`fecha_nacimiento`,`foto`,`cedula`,`telefono`,`direccion`,`tipo_medida`,`numero_medida`,`fecha_medida`,`orga_persona`,`desc_vestimenta`,`desc_maltrato_fisico`,`desc_pertenencia`,`desc_obs_generales`,`desc_estado_salud`) values (2,'0201-05-25','vfdjhb','hbjc','fhjcsbnm','0000-00-00','foto.jpg','fhjbn','fhbjsn','fhjsnm','vfjhbn','fbjkn','0000-00-00','vhjbnm','fvsjkn','hfjbn','hbjkvfn','hbnfm','fjksn'),(6,'0201-05-25','jkdsf','kjdsb','machala','1992-07-19','foto.jpg','0706674819','0967687882','dhs','jsdka','ll','0000-00-00','ll','jjfjfjj','jj','j','jj','jj'),(7,'0201-05-25','jkdsf','kjdsb','machala','1992-07-19','foto.jpg','0706674819','0967687882','dhs','jsdka','ll','0000-00-00','ll','jjfjfjj','jj','j','jj','jj'),(8,'0201-05-25','jkdsf','kjdsb','machala','1992-07-19','upl_5bc10ad1e2b72.jpg','0706674819','0967687882','dhs','jsdka','ll','0000-00-00','ll','jjfjfjj','jj','j','jj','jj');
 
 /*Table structure for table `ninas_familia` */
 
@@ -157,11 +157,11 @@ CREATE TABLE `ninas_familia` (
   PRIMARY KEY (`id_familia`),
   KEY `FAMILA_NNA` (`nina`),
   CONSTRAINT `FAMILA_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `ninas_familia` */
 
-insert  into `ninas_familia`(`id_familia`,`nombres`,`apellidos`,`parentesco`,`edad`,`cedula`,`direccion`,`telefono`,`lugar_trabajo`,`nina`) values (1,'hkjg','hjfn','fdn',0,'dnm','hdfn','fdhbjknq','bdnm',2),(2,'jkfsdn','fjkn','jkfn',0,'nfm','jfknvm','hjnfm','hjnfm',2),(3,'hjkdbn','hjdn','hdjbn',0,'nmfjkn','hjmnf','hjknmdkj','mdhjn',2);
+insert  into `ninas_familia`(`id_familia`,`nombres`,`apellidos`,`parentesco`,`edad`,`cedula`,`direccion`,`telefono`,`lugar_trabajo`,`nina`) values (1,'hkjg','hjfn','fdn',0,'dnm','hdfn','fdhbjknq','bdnm',2),(2,'jkfsdn','fjkn','jkfn',0,'nfm','jfknvm','hjnfm','hjnfm',2),(3,'hjkdbn','hjdn','hdjbn',0,'nmfjkn','hjmnf','hjknmdkj','mdhjn',2),(4,'mmm','mm','m',0,'mm','m','m','m',6),(5,'m','m','mm',0,'m','m','m','mm',6);
 
 /*Table structure for table `ninas_informantes` */
 
@@ -179,11 +179,11 @@ CREATE TABLE `ninas_informantes` (
   PRIMARY KEY (`id_informantes`),
   KEY `INF_NNA` (`nina`),
   CONSTRAINT `INF_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `ninas_informantes` */
 
-insert  into `ninas_informantes`(`id_informantes`,`nombres`,`apellidos`,`direccion`,`telefono`,`institucion`,`documento_ingreso`,`nina`) values (1,'yehj','hjbkn','hjn','jhb','uijk','hj',2),(2,'jh','hg','hm','hgbn','hgn','hgbn ',2);
+insert  into `ninas_informantes`(`id_informantes`,`nombres`,`apellidos`,`direccion`,`telefono`,`institucion`,`documento_ingreso`,`nina`) values (1,'yehj','hjbkn','hjn','jhb','uijk','hj',2),(2,'jh','hg','hm','hgbn','hgn','hgbn ',2),(7,'dkkkj','kjj','jj','j','j','j',6);
 
 /*Table structure for table `paina` */
 
@@ -385,11 +385,11 @@ CREATE TABLE `pgf` (
   KEY `PGF_DIAG_SIT` (`diag_sit_familia`),
   KEY `PGF_NNA` (`nina`),
   CONSTRAINT `PGF_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `pgf` */
 
-insert  into `pgf`(`id_pgf`,`familia`,`etnia`,`acogimiento`,`fecha_elaboracion`,`proxima_evaluacion`,`profesional`,`cedula`,`diag_sit_familia`,`diag_sit_equipo`,`obj_gene_familia`,`obj_gene_equipo`,`nina`) values (7,'','fnkd','fnjkd','0000-00-00','0000-00-00','fnjk','fj','fdjk','gfkdn','gfdk','fdjnk',2);
+insert  into `pgf`(`id_pgf`,`familia`,`etnia`,`acogimiento`,`fecha_elaboracion`,`proxima_evaluacion`,`profesional`,`cedula`,`diag_sit_familia`,`diag_sit_equipo`,`obj_gene_familia`,`obj_gene_equipo`,`nina`) values (7,'','fnkd','fnjkd','0000-00-00','0000-00-00','fnjk','fj','fdjk','gfkdn','gfdk','fdjnk',2),(9,'','mmmmmmm','mmmmmm','0000-00-00','0000-00-00','mmmmmmmmm','mmmmmmmmmmmmm','llllllll','lllllllllllll','llllllll','kkkkkkkkkkkkk',2),(10,'','kkkkkkkkkkkkk','kkkkkkkkkkkk','0000-00-00','0000-00-00','kkkkkkkkk','kkkkkkkkkkkk','kkkkkkkkkkkk','kkkkkkkkkkkkkk','kkkkkkkk','kkkkkkkkkkkk',2),(11,'','lllllllllll','oooooooooo','0000-00-00','0000-00-00','kkkkkkkkkkk','kkkkkkkkkkk','kkkkkkkkkk','kkkkkkkkkkkk','kkkkkkkkkkk','mmmmmmmmm',2),(12,'','tttttttttt','tttttttttttttt','0000-00-00','0000-00-00','ccccccccccc','ccccccccccc','gggggggggggggg','tttttttttt','uuuuuuuuuuuuu','uuuuuuuuuuuuuu',2),(13,'','ya','tu','2018-02-25','2018-05-26','ni','3333','kkjkj','lkoij','ijkj','fgfr',2);
 
 /*Table structure for table `pgf_area` */
 
@@ -406,7 +406,7 @@ CREATE TABLE `pgf_area` (
 
 /*Data for the table `pgf_area` */
 
-insert  into `pgf_area`(`pgf`,`area`) values (7,6);
+insert  into `pgf_area`(`pgf`,`area`) values (7,6),(9,8),(10,9),(11,10),(12,11),(13,12);
 
 /*Table structure for table `roles` */
 

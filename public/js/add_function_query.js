@@ -21,7 +21,7 @@ $(document).ready(function () {
         var texto = this.parent().parent().children("label").text();
         if (text == null || text.length == 0 || /^\s+$/.test(text)) {
             this.parent().parent().attr("class", "form-group has-error");
-            this.parent().children("span").text("Este campo debe ser llenado").show();
+            this.parent().parent().children("span").text("Este campo debe ser llenado").show();
 
             this.parent().parent().children("label").text("");
             this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
@@ -30,8 +30,8 @@ $(document).ready(function () {
             this.parent().parent().attr("class", "form-group has-success");
             this.parent().parent().children("label").text("");
             this.parent().parent().children("label").append(`<i class="fa fa-check"></i> ${texto}`);
-            this.parent().children("span").text("").hide();
-            return false;
+            this.parent().parent().children("span").text("").hide();
+            return true;
         }
     }
 

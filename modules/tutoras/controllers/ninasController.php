@@ -31,36 +31,39 @@ class ninasController extends tutorasController
          */
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             # VERIFICAMOS SI SE HA ENVIADO POR POST EL CAMPO GUARDAR CON VALOR 1
+            // echo "<pre>";print_r(json_decode($_POST["familia"]));
+            // print_r($_POST);
+            // print_r($_FILES);exit;
             if ($this->getInt('guardar') == 1) {
-                // $upload = new file($_FILES['foto']);
-                // if ($upload->uploaded) {
-                //     $ruta = ROOT . "public" . DS . "img" . DS . "nina" . DS;
-                //     $upload->file_new_name_body = 'upl_' . uniqid();
-                //     $upload->process($ruta);
-                //     if ($upload->processed) {
+                $upload = new file($_FILES['foto']);
+                if ($upload->uploaded) {
+                    $ruta = ROOT . "public" . DS . "img" . DS . "nina" . DS;
+                    $upload->file_new_name_body = 'upl_' . uniqid();
+                    $upload->process_img($ruta);
+                    if ($upload->processed) {
                         $result = $this->_nina->nuevaNina(
                             array(
-                                ":fecha_ingreso"=>"201-05-25",
-                                ":nombres"=>$this->getText("nombres"),
-                                ":apellidos"=>$this->getText("apellidos"),
-                                ":lugar_nacimiento"=>$this->getText("lugar_nacimiento"),
-                                ":fecha_nacimiento"=>date("Y/m/d", strtotime($this->getText("fecha_nacimiento"))),
-                                ":foto"=>"foto.jpg",
-                                ":cedula"=>$this->getText("cedula"),
-                                ":telefono"=>$this->getText("phone"),
-                                ":direccion"=>$this->getText("direccion"),
-                                ":tipo_medida"=>$this->getText("tipo-medida"),
-                                ":numero_medida"=>$this->getText('num-medida'),
-                                ":fecha_medida"=>$this->getText('fecha-medida'),
-                                ":orga_persona"=>$this->getText('nombre_solicitud'),
-                                ":desc_vestimenta"=>$this->getText("vestimenta"),
-                                ":desc_maltrato_fisico"=>$this->getText("maltrato-fisico"),
-                                ":desc_pertenencia"=>$this->getText("pertenencias"),
-                                ":desc_obs_generales"=>$this->getText("observaciones-generales"),
-                                ":desc_estado_salud"=>$this->getText("salud")
+                                ":fecha_ingreso" => "201-05-25",
+                                ":nombres" => $this->getText("nombres"),
+                                ":apellidos" => $this->getText("apellidos"),
+                                ":lugar_nacimiento" => $this->getText("lugar_nacimiento"),
+                                ":fecha_nacimiento" => date("Y/m/d", strtotime($this->getText("fecha_nacimiento"))),
+                                ":foto" => $upload->file_name_body,
+                                ":cedula" => $this->getText("cedula"),
+                                ":telefono" => $this->getText("phone"),
+                                ":direccion" => $this->getText("direccion"),
+                                ":tipo_medida" => $this->getText("tipo-medida"),
+                                ":numero_medida" => $this->getText('num-medida'),
+                                ":fecha_medida" => $this->getText('fecha-medida'),
+                                ":orga_persona" => $this->getText('nombre_solicitud'),
+                                ":desc_vestimenta" => $this->getText("vestimenta"),
+                                ":desc_maltrato_fisico" => $this->getText("maltrato-fisico"),
+                                ":desc_pertenencia" => $this->getText("pertenencias"),
+                                ":desc_obs_generales" => $this->getText("observaciones-generales"),
+                                ":desc_estado_salud" => $this->getText("salud"),
                             ),
-                            $_POST["informante"],
-                            $_POST["familia"]
+                            json_decode($_POST["informante"],true),
+                            json_decode($_POST["familia"],true)
                         );
 
                         if (!$result) {
@@ -70,10 +73,10 @@ class ninasController extends tutorasController
                         echo true;
                         exit;
 
-                    // } else {
-                    //     echo json_encode(array("error" => true, "mensaje" => $upload->error));
-                    // }
-                // }
+                    } else {
+                        echo  $upload->error;
+                    }
+                }
 
             }
 
@@ -81,53 +84,7 @@ class ninasController extends tutorasController
             echo "Error Processing Request";
         }
     }
-    public function nuevoInformante()
-    {
 
-        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            if ($this->getInt('guardar') == 1) {
-                $resp = $this->_nina->nuevoInformante(
-                    $this->getText("nombres"),
-                    $this->getText("apellidos"),
-                    $this->getText("direccion"),
-                    $this->getText("phone"),
-                    $this->getText("institucion"),
-                    $this->getText("documento"),
-                    $this->getInt("nina")
-                );
-                if ($resp == 0) {
-                    echo json_encode(array("error" => true, "mensaje" => "Ha ocurrido un error al ingresar los datos"));
-                    exit;
-                }
-                echo json_encode(array("error" => false, "mensaje" => "Se a rregistrado con exito"));
-                exit;
-            }
-        } else {
-            echo json_encode(array("error" => true, "mensaje" => "Error Processing Request"));
-            exit;
-        }
-    }
-    public function nuevaDescripcion()
-    {
-        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            if ($this->getInt('guardar') == 1) {
-                $resp = $this->_nina->nuevoDescripcion(
-                   
-                );
-                if ($resp == 0) {
-                    echo json_encode(array("error" => true, "mensaje" => "Ha ocurrido un error al ingresar los datos"));
-                    exit;
-                }
-                echo json_encode(array("error" => false, "mensaje" => "Se a rregistrado con exito"));
-                exit;
-            }
-            echo json_encode(array("error" => false, "mensaje" => "No se a enviado guradar"));
-            exit;
-        } else {
-            echo json_encode(array("error" => true, "mensaje" => "Error Processing Request"));
-            exit;
-        }
-    }
     public function pdf()
     {
         $pdf = new MyPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);

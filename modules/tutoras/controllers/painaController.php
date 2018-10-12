@@ -53,7 +53,7 @@ class painaController extends tutorasController
             exit;
         }
     }
-    public function pdf()
+    public function pdf($id)
     {
         $pdf = new MyPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
@@ -89,9 +89,11 @@ class painaController extends tutorasController
         $pdf->SetFont('dejavusans', '', 14, '', true);
 
         $pdf->AddPage();
+        $tagvs = array('p' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n' => 0)));
+        $pdf->setHtmlVSpace($tagvs);
 
         $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
-        $dato = $this->_paina->Datos_Paina(1);
+        $dato = $this->_paina->Datos_Paina($id);
         ob_start();
         ?>
         <style>

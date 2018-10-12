@@ -104,5 +104,9 @@ EOD;
     {
 
     }
+    public function nuevapaina()
+    {
+        
+    }
 
 }

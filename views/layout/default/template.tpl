@@ -14,8 +14,9 @@
     <link rel="stylesheet" href="{$_layoutParams.jquery_jvectormap_css}">
     <link rel="stylesheet" href="{$_layoutParams.AdminLTE_css}">
     <link rel="stylesheet" href="{$_layoutParams.skins_css}">
+    <link rel="stylesheet" href="{$_layoutParams.data_piker}">
     <link rel="stylesheet" href="{$_layoutParams.ruta_css}style.css">
-
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <!-- RUTAS AUTOMATICAS CSS -->
     {if isset($_layoutParams.css) && count($_layoutParams.css)} {foreach item=css from=$_layoutParams.css}

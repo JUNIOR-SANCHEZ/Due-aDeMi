@@ -94,6 +94,8 @@ class docsController extends tutorasController
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             # VERIFICAMOS SI SE HA ENVIADO POR POST EL CAMPO GUARDAR CON VALOR 1
             if ($this->getInt('guardar') == 1) {
+                echo "<pre>";print_r($_POST);
+                exit;
                 /**
                  * VERIFICAMOS SI NO EXITE EL ENVIO DE ARCHIVO Y COMPROBAMOS SI EL ENVIO CONTIENE UN ERROR
                  * EN SER EL CASO INGRESAMOS A LA CONDICION PARA MOSTRAR UN MENSAJE CON EL NUMERO DE ERRO

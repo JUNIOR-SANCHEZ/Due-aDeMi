@@ -30,10 +30,7 @@
                                         </div>
                                         <select name="nina" class="form-control" id="form-pfc-select" required>
                                             <option value="" disabled selected>SELECCIONE:</option>
-                                            {foreach item=index from=$ninas}
-                                            <option value="{$index['id_nina']}">{$index['apellidos']}
-                                                {$index['nombres']}</option>
-                                            {/foreach}
+                                            <option value="1">ddddd</option>
                                         </select>
 
                                     </div>

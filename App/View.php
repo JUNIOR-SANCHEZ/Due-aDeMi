@@ -68,6 +68,7 @@ class View extends Smarty {
             'AdminLTE_css' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/dist/css/AdminLTE.min.css',
             'skins_css' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/dist/css/skins/_all-skins.min.css',
             'blue_css' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/plugins/iCheck/square/blue.css',
+            'data_piker' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css',
             'ruta_css' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/css/',
             // archivos .js
             'jquery_js' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/bower_components/jquery/dist/jquery.min.js',
@@ -89,6 +90,7 @@ class View extends Smarty {
             'dashboard_js' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/dist/js/pages/dashboard.js',
             'icheck_js' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/plugins/iCheck/icheck.min.js',
             'demo_js' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/dist/js/demo.js',
+            'bower_components' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/bower_components/',
             
             'js' => $js,
             'css'=> $css,

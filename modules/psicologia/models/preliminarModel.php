@@ -7,6 +7,7 @@ class preliminarModel extends Model
         # code...
         parent::__construct();
     }
+
     public function nina()
     {
         $stmt = $this->_db->query("SELECT * FROM ninas;");
@@ -17,14 +18,17 @@ class preliminarModel extends Model
     {
         try{
             $this->_db->beginTransaction();
-            $sql = "INSERT INTO informes VALUES (:fecha,:documento,:nina,1);";
+            $sql = "INSERT INTO informes VALUES (NULL,:fecha,:documento,:obser,:nina,1);";
+            
             $stmt = $this->_db->prepare($sql);
-            $stmt->execute();
+            $stmt->execute($informe);
             $this->_db->commit();
+            return true;
         }catch(PDOException $e){
             $this->_db->rollBack();
             echo $e->getMessage();
             return false;
         }
     }
+    
 }

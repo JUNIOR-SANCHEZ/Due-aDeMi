@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $(document).ready(function (){
 
     var area = [];
@@ -33,24 +32,4 @@ $(document).ready(function (){
         $(this)[0].reset();
     });
     
-=======
-$(document).ready(function(){
-
-    $('#form-paina').on('submit',function (e) {
-        e.preventDefault();
-        $(this).serialize()
-        
-        var datos=$(this).serialize()
-        var _url = $(this).attr("action");
-
-        console.log(datos);
-        
-        //var _method = $(this).attr("method")
-
-       // $.post(_url,_datos,function(retorno){
-          //  console.log(retorno)
-        //})
-        });
-       
->>>>>>> e19e5e4834ec86c5c810cb228f048d60fe4b1488
 })

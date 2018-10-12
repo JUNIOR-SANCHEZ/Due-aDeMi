@@ -18,9 +18,9 @@ class painaModel extends Model
         ");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function Datos_Paina()
+    public function Datos_Paina($id)
     {
-        $stmt = $this->_db->query("Select p.*,n.nombres,apellidos From paina p, ninas n where p.nina=n.id_nina And id_paina = 2;");
+        $stmt = $this->_db->query("Select p.*,n.nombres,apellidos From paina p, ninas n where p.nina=n.id_nina And id_paina = $id;");
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
     public function nina()
@@ -83,5 +83,11 @@ class painaModel extends Model
             echo $e->getMessage();
             return false;
         }
+    }
+    public function listapaina()
+    {
+        $stmt = $this->_db->query("SELECT p.id_paina,p.fecha_elaboracion,p.proxima_evaluacion,p.profesional, n.nombres,n.apellidos FROM ninas n, paina p WHERE n.id_nina=p.nina;
+        ");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

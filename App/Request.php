@@ -15,7 +15,7 @@ class Request {
             $url = explode('/', $url);
             $url = array_filter($url);
 
-            $this->_modules = array('usuarios','tutoras');
+            $this->_modules = array('usuarios','tutoras','psicologia');
             $this->_modulo = strtolower(array_shift($url));
 
             if (!$this->_modulo) {

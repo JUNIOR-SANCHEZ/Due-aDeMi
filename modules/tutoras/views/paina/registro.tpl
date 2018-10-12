@@ -2,14 +2,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="row">
-                <form action="{$_layoutParams.root}tutoras/pgf/nuevo_paina" method="post" id="form-paina">
+                <form action="{$_layoutParams.root}tutoras/paina/nuevo_paina" method="post" id="form-paina">
                     <input type="hidden" name="guardar" value="1">
                     <div class="col-md-12">
                         <div class="box box-solid">
                             <div class="box-header with-border">
                                 <h3 class="box-title">PROYECTO INTEGRAL DE ATENCION A LA NIÑA, NIÑO Y ADOLECENTE -
                                     PAINA</h3>
-                                <button type="button" class="btn btn-primary pull-right " id="btn-guardar-paina">Guardar</button>
+                                <button type="submit" class="btn btn-primary pull-right " id="btn-guardar-paina">Guardar</button>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -167,7 +167,7 @@
                                                     <div class="col-md-10 col-md-offset-1">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <textarea name="Consensuado_familia" id="" rows="5"
+                                                                <textarea name="obj_general" id="" rows="5"
                                                                     class="form-control"></textarea>
                                                             </div>
                                                         </div>
@@ -193,7 +193,7 @@
                                     <h3 class="box-title">Area</h3>
                                     <button type="submit" class="btn btn-info pull-right">Agregar</button>
                                     <div class="form-group col-md-4 pull-right">
-                                        <select id="disabledSelect" class="form-control ">
+                                        <select id="disabledSelect"  name="area_acomp" class="form-control ">
                                             <option value="">Seleccionar:</option>
                                             {foreach item=list from=$desarrollo_pers}
                                             <option value="{$list['id_area_acomp']}">{$list['descripcion_area_acomp']}</option>

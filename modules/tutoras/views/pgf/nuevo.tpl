@@ -135,7 +135,8 @@
                                                                                     <i></i>
                                                                                 </div>
                                                                                 <input type="text" name="cedula"
-                                                                                    placeholder="Cedula" class="form-control">
+                                                                                    placeholder="Cedula" class="form-control" id="cedula"
+                                                                                    required>
                                                                             </div>
                                                                         </div>
                                                                     </div>

@@ -14,7 +14,7 @@ class pgfModel extends Model
         WHERE pg.area = a.id_area 
         AND p.id_pgf = pg.pgf
         AND ac.id_area_acomp = a.area_acomp
-        AND pg.pgf=10
+        AND pg.pgf=$A
         GROUP BY a.id_area;
         ");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -20,14 +20,14 @@ class menuModelWidget extends Model
                 "id" => "dir_ficha",
                 "title" => "Ficha de ingreso NNA",
                 "icon" => "fa-child",
-                "sub-menu" =>  array(
+                "sub-menu" => array(
                     array(
-                    "id" => "ficha_ingreso",
-                    "title" => "Nueva ficha",
-                    "icon" => "fa-bookmark",
-                    "link" => BASE_URL . "tutoras/ninas"
-                     )
-                )
+                        "id" => "ficha_ingreso",
+                        "title" => "Nueva ficha",
+                        "icon" => "fa-bookmark",
+                        "link" => BASE_URL . "tutoras/ninas",
+                    ),
+                ),
             );
         }
         if ($this->_acl->permiso("add_pfc")) {
@@ -35,14 +35,14 @@ class menuModelWidget extends Model
                 "id" => "dir_pfc",
                 "title" => "P F C",
                 "icon" => "fa-file",
-                "sub-menu" =>  array(
+                "sub-menu" => array(
                     array(
-                    "id" => "ficha_ingreso",
-                    "title" => "Nueva PFC",
-                    "icon" => "fa-bookmark",
-                    "link" => BASE_URL . "tutoras/PFC"
-                     )
-                )
+                        "id" => "ficha_ingreso",
+                        "title" => "Nueva PFC",
+                        "icon" => "fa-bookmark",
+                        "link" => BASE_URL . "tutoras/PFC",
+                    ),
+                ),
             );
         }
         if ($this->_acl->permiso("add_pgf")) {
@@ -50,14 +50,20 @@ class menuModelWidget extends Model
                 "id" => "dir_pgf",
                 "title" => "P G F",
                 "icon" => "fa-file",
-                "sub-menu" =>  array(
+                "sub-menu" => array(
                     array(
-                    "id" => "pgf",
-                    "title" => "Nueva PGF",
-                    "icon" => "fa-bookmark",
-                    "link" => BASE_URL . "tutoras/PGF"
-                     )
-                )
+                        "id" => "pgf",
+                        "title" => "Nueva PGF",
+                        "icon" => "fa-bookmark",
+                        "link" => BASE_URL . "tutoras/PGF",
+                    ),
+                    array(
+                        "id" => "pgf_pdf",
+                        "title" => "Informes",
+                        "icon" => "fa-bookmark",
+                        "link" => BASE_URL . "tutoras/PGF/lista_pgf",
+                    ),
+                ),
             );
         }
         if ($this->_acl->permiso("add_paina")) {
@@ -65,14 +71,14 @@ class menuModelWidget extends Model
                 "id" => "dir_paina",
                 "title" => "PAINA",
                 "icon" => "fa-file",
-                "sub-menu" =>  array(
+                "sub-menu" => array(
                     array(
-                    "id" => "paina",
-                    "title" => "Nueva PAINA",
-                    "icon" => "fa-bookmark",
-                    "link" => BASE_URL . "tutoras/paina"
-                     )
-                )
+                        "id" => "paina",
+                        "title" => "Nueva PAINA",
+                        "icon" => "fa-bookmark",
+                        "link" => BASE_URL . "tutoras/paina",
+                    ),
+                ),
             );
         }
         if ($this->_acl->permiso("add_preliminar")) {
@@ -80,46 +86,45 @@ class menuModelWidget extends Model
                 "id" => "dir_preliminar",
                 "title" => "PRELIMINAR",
                 "icon" => "fa-file",
-                "sub-menu" =>  array(
+                "sub-menu" => array(
                     array(
-                    "id" => "paina",
-                    "title" => "Nueva Informe",
-                    "icon" => "fa-bookmark",
-                    "link" => BASE_URL . "psicologia/preliminar"
-                     )
-                )
-            );
-        }
-        
-        if ($this->_acl->permiso("admin_access")) {
-            $menus["sidenav"][] = 
-                array(
-                    "id" => "usuarios",
-                    "title" => "Permisos por usuario",
-                    "icon" => "fa-user",
-                    "link" => BASE_URL . "usuarios",
-                    "sub-menu"=>array()
-                
-            );
-            $menus["sidenav"][] = 
-                array(
-                    "id" => "acl",
-                    "title" => "Control de acceso por rol",
-                    "icon" => "fa-group",
-                    "link" => BASE_URL . "acl",
-                    "sub-menu"=>array()
-                
-            );
-            $menus["sidenav"][] = 
-                array(
-                    "id" => "registro_user",
-                    "title" => "Registrar nuevo usuario",
-                    "icon" => " fa-user-plus",
-                    "link" => BASE_URL . "usuarios/registro",
-                    "sub-menu"=>array()
+                        "id" => "paina",
+                        "title" => "Nueva Informe",
+                        "icon" => "fa-bookmark",
+                        "link" => BASE_URL . "psicologia/preliminar",
+                    ),
+                ),
             );
         }
 
+        if ($this->_acl->permiso("admin_access")) {
+            $menus["sidenav"][] =
+            array(
+                "id" => "usuarios",
+                "title" => "Permisos por usuario",
+                "icon" => "fa-user",
+                "link" => BASE_URL . "usuarios",
+                "sub-menu" => array(),
+
+            );
+            $menus["sidenav"][] =
+            array(
+                "id" => "acl",
+                "title" => "Control de acceso por rol",
+                "icon" => "fa-group",
+                "link" => BASE_URL . "acl",
+                "sub-menu" => array(),
+
+            );
+            $menus["sidenav"][] =
+            array(
+                "id" => "registro_user",
+                "title" => "Registrar nuevo usuario",
+                "icon" => " fa-user-plus",
+                "link" => BASE_URL . "usuarios/registro",
+                "sub-menu" => array(),
+            );
+        }
 
         if (false) {
             $menus["sidenav"][] = array(
@@ -127,7 +132,7 @@ class menuModelWidget extends Model
                 "title" => "P A I N A ",
                 "icon" => "",
                 "link" => BASE_URL . "tutoras/docs/tipoDoc/pia",
-                "sub-menu"=>array()
+                "sub-menu" => array(),
             );
         }
         $menus["top"] = array();

@@ -78,9 +78,9 @@ DROP TABLE IF EXISTS `informes`;
 
 CREATE TABLE `informes` (
   `id_informe` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha` date NOT NULL,
-  `documento` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `observacion` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha` date DEFAULT NULL,
+  `documento` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `observacion` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `nina` int(11) NOT NULL,
   `tipo_informe` int(11) NOT NULL,
   PRIMARY KEY (`id_informe`),
@@ -88,9 +88,11 @@ CREATE TABLE `informes` (
   KEY `INFOR_TIPO` (`tipo_informe`),
   CONSTRAINT `INFOR_NNA` FOREIGN KEY (`nina`) REFERENCES `ninas` (`id_nina`),
   CONSTRAINT `INFOR_TIPO` FOREIGN KEY (`tipo_informe`) REFERENCES `informes_tipo` (`id_inf_tipo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `informes` */
+
+insert  into `informes`(`id_informe`,`fecha`,`documento`,`observacion`,`nina`,`tipo_informe`) values (1,'0000-00-00','upl_5bc01954d786d.pdf','hfdjgks',2,1),(2,'0000-00-00','upl_5bc01cdca2ab6.docx','fvdffsd',2,1);
 
 /*Table structure for table `informes_tipo` */
 
@@ -233,11 +235,11 @@ CREATE TABLE `permisos` (
   `permiso` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `key` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_permiso`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 /*Data for the table `permisos` */
 
-insert  into `permisos`(`id_permiso`,`permiso`,`key`) values (1,'Tareas de administracion','admin_access'),(7,'Crear usuarios','add_user'),(8,'Desactivar usuarios','disabled_user'),(9,'Registrar nina','add_nina'),(10,'Registrar plan de fortalecimiento comunitario','add_pfc'),(11,'Agregar plan global familiar','add_pgf'),(12,'Agregar PAINA','add_paina'),(13,'Agregar Informe Preliminar (Psicología)','add_preliminar');
+insert  into `permisos`(`id_permiso`,`permiso`,`key`) values (1,'Tareas de administracion','admin_access'),(7,'Crear usuarios','add_user'),(8,'Desactivar usuarios','disabled_user'),(9,'Registrar nina','add_nina'),(10,'Registrar plan de fortalecimiento comunitario','add_pfc'),(11,'Agregar plan global familiar','add_pgf'),(12,'Agregar PAINA','add_paina'),(13,'Agregar Informe Preliminar (Psicología)','add_preliminar'),(14,'Agregar Informe Preliminar (TS)','add_ts');
 
 /*Table structure for table `permisos_role` */
 
@@ -254,7 +256,7 @@ CREATE TABLE `permisos_role` (
 
 /*Data for the table `permisos_role` */
 
-insert  into `permisos_role`(`role`,`permiso`,`valor`) values (1,1,1),(1,2,1),(1,3,1),(1,7,1),(1,8,1),(1,9,0),(1,10,0),(1,11,0),(1,12,0),(1,13,0),(5,4,1),(5,9,1),(5,10,1),(6,9,1);
+insert  into `permisos_role`(`role`,`permiso`,`valor`) values (1,1,1),(1,2,1),(1,3,1),(1,7,1),(1,8,1),(1,9,0),(1,10,0),(1,11,0),(1,12,0),(1,13,0),(5,4,1),(5,9,1),(5,10,1),(6,9,1),(7,14,1);
 
 /*Table structure for table `permisos_usuario` */
 
@@ -414,11 +416,11 @@ CREATE TABLE `roles` (
   `id_role` int(11) NOT NULL AUTO_INCREMENT,
   `role` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `roles` */
 
-insert  into `roles`(`id_role`,`role`) values (1,'Administrador'),(5,'tutoras'),(6,'Psicologa');
+insert  into `roles`(`id_role`,`role`) values (1,'Administrador'),(5,'tutoras'),(6,'Psicologa'),(7,'Trabajo Social');
 
 /*Table structure for table `usuarios` */
 

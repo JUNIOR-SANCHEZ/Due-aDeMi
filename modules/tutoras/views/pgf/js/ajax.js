@@ -1,4 +1,14 @@
 $(document).ready(function (){
+    function validacion(){
+
+        var cedula = $("#cedula").validarCedula()
+        var phone = $("#phone").validarCampoTelefono()
+        var nombre = $("#nombre-nna").validarCampoLetra()
+        if (cedula == false || phone == false ||  nombre == false) {
+            return false;
+        }       
+        return true; 
+    }
     $('#datepicker-elaboracion').datepicker({
         autoclose: true
       });
@@ -31,6 +41,26 @@ $(document).ready(function (){
         }else{
             alert("Debe llenar todo los campos");
         }
+        if (validacion()) {
+            $.ajax({
+                url: ruta,
+                type: "POST",
+                data: form,
+                // contentType: false,
+                // processData: false,
+                beforeSend: function () {},
+                success: function (response) {
+
+                    console.log(response);
+
+                    if (response == true) {
+                        alert("Se registro con exito");
+                    } else {
+                        alert("Ha ocurrido un error");
+                    }
+                }
+            })
+        }  
         
     }); 
     

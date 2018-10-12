@@ -78,6 +78,12 @@ class menuModelWidget extends Model
                         "icon" => "fa-bookmark",
                         "link" => BASE_URL . "tutoras/paina",
                     ),
+                    array(
+                        "id" => "paina_pdf",
+                        "title" => "Informes",
+                        "icon" => "fa-bookmark",
+                        "link" => BASE_URL . "tutoras/paina/lista_paina",
+                    )
                 ),
             );
         }

@@ -66,9 +66,10 @@
                                                                                     <i class="fa fa-user"></i>
                                                                                 </div>
                                                                                 <input type="text" name="nombres"
-                                                                                    placeholder="Nombres" class="form-control"
+                                                                                    placeholder="Nombres" class="form-control" id="nombre-nna"
                                                                                     required>
                                                                             </div>
+                                                                            <span class="help-block"></span>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label for="">Apellidos de la niña o
@@ -82,15 +83,15 @@
                                                                                     required>
                                                                             </div>
                                                                         </div>
+                                                                        
                                                                         <div class="form-group">
                                                                             <label for="">Fecha de nacimiento</label>
-                                                                            <div class="input-group">
+                                                                            <div class="input-group date">
                                                                                 <div class="input-group-addon">
-                                                                                    <!-- <i class="fa fa-user"></i> -->
+                                                                                    <i class="fa fa-calendar"></i>
                                                                                 </div>
                                                                                 <input type="text" name="fecha_nacimiento"
-                                                                                    placeholder="fecha de nacimiento"
-                                                                                    class="form-control" required>
+                                                                                    class="form-control pull-right" id="datepicker">
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
@@ -117,9 +118,10 @@
                                                                                     <i class="fa fa-address-card"></i>
                                                                                 </div>
                                                                                 <input type="text" name="cedula"
-                                                                                    placeholder="Cedula" class="form-control"
+                                                                                    placeholder="Cedula" class="form-control" id="cedula"
                                                                                     required>
                                                                             </div>
+                                                                            <span class="help-block"></span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
@@ -129,9 +131,10 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-phone"></i>
                                                                                 </div>
-                                                                                <input type="text" name="phone" class="form-control"
+                                                                                <input type="text" name="phone" class="form-control" id="phone"
                                                                                     required>
                                                                             </div>
+                                                                            <span class="help-block"></span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">

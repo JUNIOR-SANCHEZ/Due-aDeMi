@@ -88,24 +88,26 @@
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label for="">Fecha de elaboracion:</label>
-                                                                            <div class="input-group">
+
+                                                                            <div class="input-group date">
                                                                                 <div class="input-group-addon">
-                                                                                    <i class="fa fa-address-card"></i>
+                                                                                    <i class="fa fa-calendar"></i>
                                                                                 </div>
                                                                                 <input type="text" name="fecha_elaboracion"
-                                                                                    placeholder="Fecha" class="form-control">
+                                                                                    class="form-control pull-right" id="datepicker-elaboracion">
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label for="">Fecha proxima evaluacion:</label>
-                                                                            <div class="input-group">
+                                                                            
+                                                                            <div class="input-group date">
                                                                                 <div class="input-group-addon">
-                                                                                    <!-- <i class="fa fa-at"></i> -->
+                                                                                    <i class="fa fa-calendar"></i>
                                                                                 </div>
                                                                                 <input type="text" name="fecha_evaluacion"
-                                                                                    placeholder="Fecha" class="form-control">
+                                                                                    class="form-control pull-right" id="datepicker-evaluacion">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -338,7 +340,7 @@
                                                 <div class="row">
                                                     <div class="col-md-10 col-md-offset-1">
                                                         <div class="col-md-12">
-                                                           <div class="row">
+                                                            <div class="row">
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label for="">Descripcion</label>

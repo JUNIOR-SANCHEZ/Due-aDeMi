@@ -125,17 +125,16 @@
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-md-6">
+
                                                                         <div class="form-group">
                                                                             <label for="">Fecha eleboración del
                                                                                 plan:</label>
-                                                                            <div class="input-group">
+                                                                            <div class="input-group date">
                                                                                 <div class="input-group-addon">
-                                                                                    <i class="fa fa-calendar"
-                                                                                        aria-hidden="true"></i>
+                                                                                    <i class="fa fa-calendar"></i>
                                                                                 </div>
                                                                                 <input type="text" name="fecha_elaboracion"
-                                                                                    placeholder="" class="form-control"
-                                                                                    required>
+                                                                                    class="form-control pull-right" id="datepicker-elaboracion">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -144,14 +143,13 @@
                                                                             <label for="">Fecha de próxima
                                                                                 evaluación
                                                                                 del plan</label>
-                                                                            <div class="input-group">
+                                                                            
+                                                                            <div class="input-group date">
                                                                                 <div class="input-group-addon">
-                                                                                    <i class="fa fa-calendar"
-                                                                                        aria-hidden="true"></i>
+                                                                                    <i class="fa fa-calendar"></i>
                                                                                 </div>
                                                                                 <input type="text" name="fecha_evaluacion"
-                                                                                    class="form-control" placeholder=""
-                                                                                    required>
+                                                                                    class="form-control pull-right" id="datepicker-evaluacion">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -352,7 +350,8 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-user" aria-hidden="true"></i>
                                                                                 </div>
-                                                                                <input type="text" name="apellido" class="form-control">
+                                                                                <input type="text" name="apellido"
+                                                                                    class="form-control">
                                                                             </div>
                                                                         </div>
                                                                     </div>

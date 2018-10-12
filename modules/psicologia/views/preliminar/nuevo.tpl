@@ -46,7 +46,9 @@
                                             <i class="fa fa-file"></i>
                                         </div>
                                         <input type="file" name="documento" class="form-control" id="archivo" required>
+                                        <span class="help-block"></span>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -54,7 +56,10 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Observacion:</label>
-                                    <textarea name="observacion" class="form-control" cols="30" rows="5"></textarea>
+                                    <div>
+                                        <textarea name="observacion" class="form-control"  rows="5" id="pre-observacion"></textarea>
+                                        <span class="help-block"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

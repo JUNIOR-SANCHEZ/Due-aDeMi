@@ -13,10 +13,10 @@ class painaController extends tutorasController
     public function index()
     {
         $this->_view->setJs(array("ajax"));
-        $this->_view->assign('nina',$this->_paina->nina());
-        $area_acomp=$this->push_array($this->_paina->area_acomp_des_personal(),$this->_paina->area_acomp_des_social()) ;
-        $this->_view->assign('nina',$this->_paina->nina());
-        $this->_view->assign('desarrollo_pers',$area_acomp);
+        $this->_view->assign('nina', $this->_paina->nina());
+        $area_acomp = $this->push_array($this->_paina->area_acomp_des_personal(), $this->_paina->area_acomp_des_social());
+        $this->_view->assign('nina', $this->_paina->nina());
+        $this->_view->assign('desarrollo_pers', $area_acomp);
         $this->_view->renderizar("registro");
 
     }
@@ -32,12 +32,12 @@ class painaController extends tutorasController
                         ":familia" => $this->getText('familia'),
                         ":etnia" => $this->getText('etnia'),
                         ":acogimiento" => $this->getText('causa_acogimiento'),
-                        ":fecha_elaboracion" => $this->getText('fecha_elaboracion'),
-                        ":proxima_evaluacion" => $this->getText('fecha_evaluacion'),
+                        ":fecha_elaboracion" => date("Y/m/d", strtotime($this->getText('fecha_elaboracion'))),
+                        ":proxima_evaluacion" => date("Y/m/d", strtotime($this->getText('fecha_evaluacion'))),
                         ":profesional" => $this->getText('profesional'),
                         ":cedula" => $this->getText('cedula'),
                         ":obj_general" => $this->getText('obj_general'),
-                        ":nina" => $this->getInt('nina')
+                        ":nina" => $this->getInt('nina'),
                     ),
                     $_POST['area']
                 );
@@ -154,7 +154,7 @@ class painaController extends tutorasController
 
                 </td>
                 <td>
-                <?=$dato->proxima_evaluacion?> 
+                <?=$dato->proxima_evaluacion?>
                 </td>
             </tr>
             <tr>
@@ -172,7 +172,7 @@ class painaController extends tutorasController
 
                 </td>
                 <td>
-                <?=$dato->cedula?> 
+                <?=$dato->cedula?>
                 </td>
             </tr>
         </table>
@@ -188,7 +188,7 @@ class painaController extends tutorasController
             <?=$dato->obj_general?>
             </td>
         </tr>
-                      
+
         </table>
         <p></p>
         <table border="1" cellspacing="" cellpadding="5" >
@@ -217,8 +217,8 @@ class painaController extends tutorasController
         </table>
         <p></p>
         <?php
-        $area = $this->_paina->Datos_AREA($dato->id_paina);
-        foreach($area as $item ):?>
+$area = $this->_paina->Datos_AREA($dato->id_paina);
+        foreach ($area as $item): ?>
         <table border="1" cellspacing="" cellpadding="5" >
             <tr>
                 <td colspan="1"><strong>Area</strong></td>
@@ -241,21 +241,21 @@ class painaController extends tutorasController
                 <td>
                 <?=$item["objetivo_area"]?>
                </td>
-           
+
            </tr>
         </table>
         <p></p>
         <table border="1" cellspacing="" cellpadding="5" >
            <tr>
                <td colspan="2"><strong>Areas</strong></td>
-           </tr> 
+           </tr>
             <tr>
                 <td colspan="2">
                     <p><strong>Descripcion</strong></p>
                     <?=$item["acti_descripcion"]?>
                </td>
             </tr>
-                
+
             <tr>
                 <td>
                     <p><strong>Responsables</strong></p>
@@ -294,8 +294,8 @@ class painaController extends tutorasController
         </tr>
         </table>
         <?php endforeach;?>
-        <?php 
-        $html = ob_get_clean();
+        <?php
+$html = ob_get_clean();
         ob_clean();
         $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
@@ -310,9 +310,33 @@ class painaController extends tutorasController
     }
     public function lista_paina()
     {
-       $this->_view->assign("l",$this->_paina->listapaina());
-       $this->_view->renderizar("listapaina");
+        $this->_view->assign("l", $this->_paina->listapaina());
+        $this->_view->setJs(array("ajaxlista"));
+        $paginador = new Paginador();
+        # ENVIAMOS LLOS REGISTROS DE LA TABLA PFC A LA VISTA UTILIANDO LA PAGINACION
+        $this->_view->assign('l', $paginador->paginar($this->_paina->listapaina(), false));
+        # ENVIAMOS LA PAGINACION
+        $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
+        $this->_view->renderizar("listapaina");
 
+    }
+
+    public function lista_paina_ajax()
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            # OBTENEMOS EL NUMERO DE PAGINA DEL PAGINADOR
+            $pagina = $this->getInt('pagina');
+            # MUESTRA LOS DATOS DE LAS NIÑAS INGRESADAS
+            $paginador = new Paginador();
+            # ENVIAMOS LLOS REGISTROS DE LA TABLA PFC A LA VISTA UTILIZANDO LA PAGINACION
+            $this->_view->assign('l', $paginador->paginar($this->_paina->listapaina(), $pagina));
+            # ENVIAMOS LA PAGINACION
+            $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
+            # RENDERIZAMOS LA VISTA QUE MOSTRARA EL CONTENIDO DE LA PAGINA
+            $this->_view->renderizar("viewAjax/paina", false, true);
+        } else {
+            throw new Exception("Error Processing Request", 1);
+        }
     }
 
 }

@@ -44,7 +44,7 @@ class ninasController extends tutorasController
                                 ":nombres"=>$this->getText("nombres"),
                                 ":apellidos"=>$this->getText("apellidos"),
                                 ":lugar_nacimiento"=>$this->getText("lugar_nacimiento"),
-                                ":fecha_nacimiento"=>$this->getText("fecha_nacimiento"),
+                                ":fecha_nacimiento"=>date("Y/m/d", strtotime($this->getText("fecha_nacimiento"))),
                                 ":foto"=>"foto.jpg",
                                 ":cedula"=>$this->getText("cedula"),
                                 ":telefono"=>$this->getText("phone"),

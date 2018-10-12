@@ -1,5 +1,11 @@
 $(document).ready(function (){
 
+    $('#datepicker-elaboracion').datepicker({
+        autoclose: true
+      });
+      $('#datepicker-evaluacion').datepicker({
+        autoclose: true
+      });
     var area = [];
     $('#btn-guardar-paina').on('click', function (e)
     {

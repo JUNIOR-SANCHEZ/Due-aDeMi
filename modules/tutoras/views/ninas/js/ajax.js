@@ -1,4 +1,17 @@
 $(document).ready(function () {
+    function validacion(){
+
+        var cedula = $("#cedula").validarCedula()
+        var phone = $("#phone").validarCampoTelefono()
+        var nombre = $("#nombre-nna").validarCampoLetra()
+        if (cedula == false || phone == false ||  nombre == false) {
+            return false;
+        }       
+        return true; 
+    }
+    $('#datepicker').datepicker({
+        autoclose: true
+    });
     var info_nna = [];
     var fami_nna = [];
     /**
@@ -9,30 +22,29 @@ $(document).ready(function () {
         var form1 = $('#form-ninas').serializeFormJSON();
         var ruta = $('#form-ninas').attr("action");
         var form2 = $('#form-descripcion').serializeFormJSON();
-        var form = $.extend( true, form1, form2 );
-        form.informante =  info_nna;
+        var form = $.extend(true, form1, form2);
+        form.informante = info_nna;
         form.familia = fami_nna;
-        
-        console.log(form);
+        if (validacion()) {
+            $.ajax({
+                url: ruta,
+                type: "POST",
+                data: form,
+                // contentType: false,
+                // processData: false,
+                beforeSend: function () {},
+                success: function (response) {
 
-        $.ajax({
-            url: ruta,
-            type: "POST",
-            data: form,
-            // contentType: false,
-            // processData: false,
-            beforeSend: function () {},
-            success: function (response) {
+                    console.log(response);
 
-                console.log(response);
-                
-                if (response == true) {
-                    alert("Se registro con exito");
-                } else {
-                    alert("Ha ocurrido un error");
+                    if (response == true) {
+                        alert("Se registro con exito");
+                    } else {
+                        alert("Ha ocurrido un error");
+                    }
                 }
-            }
-        })
+            })
+        }
     });
 
     $('#form-informante').on('submit', function (e) {

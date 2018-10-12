@@ -1,5 +1,13 @@
 $(document).ready(function () {
 
+    $('#datepicker-elaboracion').datepicker({
+        autoclose: true
+      });
+      
+      $('#datepicker-evaluacion').datepicker({
+        autoclose: true
+      });
+
     var interv = [];
     var segui = [];
     var respon = [];

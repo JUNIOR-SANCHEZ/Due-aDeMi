@@ -30,8 +30,8 @@ class pgfController extends tutorasController
                         ":familia" => $this->getText('familia'),
                         ":etnia" => $this->getText('etnia'),
                         ":acogimiento" => $this->getText('causa_acogimiento'),
-                        ":fecha_elaboracion" => $this->getText('fecha_elaboracion'),
-                        ":proxima_evaluacion" => $this->getText('fecha_evaluacion'),
+                        ":fecha_elaboracion" => date("Y/m/d", strtotime($this->getText('fecha_elaboracion'))),
+                        ":proxima_evaluacion" => date("Y/m/d", strtotime($this->getText('fecha_evaluacion'))),
                         ":profesional" => $this->getText('profesional'),
                         ":cedula" => $this->getText('cedula'),
                         ":diag_familia" => $this->getText('diag_familia'),
@@ -356,7 +356,7 @@ $html = ob_get_clean();
         $this->_view->assign('l', $paginador->paginar($this->_pgf->listapgf(), false));
         # ENVIAMOS LA PAGINACION
         $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
-        // $this->_view->assign("l", $this->_pgf->listapgf());
+        
         $this->_view->renderizar("pgflista");
 
     }

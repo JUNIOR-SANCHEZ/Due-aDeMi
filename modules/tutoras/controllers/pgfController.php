@@ -79,6 +79,8 @@ class pgfController extends tutorasController
         $pdf->SetAutoPageBreak(true, PDF_MARGIN_BOTTOM);
 
         $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+        $tagvs = array('p' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n' => 0)));
+        $pdf->setHtmlVSpace($tagvs);
 
         if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
             require_once dirname(__FILE__) . '/lang/eng.php';
@@ -102,6 +104,9 @@ class pgfController extends tutorasController
             }
             .border{
                 border-radius: 2px;
+            }
+            .titulo{
+                text-align: center;
             }
         </style>
         <p class="titulo"><strong>FICHA DE INGRESO DEL PLAN GLOBAL FAMILIAR</strong></p>
@@ -184,7 +189,7 @@ class pgfController extends tutorasController
                 </td>
             </tr>
         </table>
-        <p></p>
+        <div style="height:1px;"></div>
         <table border="1" cellspacing="" cellpadding="5" >
         <tr>
                 <td colspan="2">

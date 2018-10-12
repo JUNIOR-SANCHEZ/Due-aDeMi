@@ -19,9 +19,9 @@ class pgfModel extends Model
         ");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function Datos_PGF()
+    public function Datos_PGF($id)
     {
-        $stmt = $this->_db->query("Select p.*,n.nombres,apellidos From pgf p, ninas n where p.nina=n.id_nina And id_pgf = 7;");
+        $stmt = $this->_db->query("Select p.*,n.nombres,apellidos From pgf p, ninas n where p.nina=n.id_nina And id_pgf = $id;");
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
     
@@ -89,5 +89,10 @@ class pgfModel extends Model
             echo $e->getMessage();
             return false;
         }
+    }
+    public function listapgf()
+    {
+        $stmt = $this->_db->query("SELECT p.id_pgf, p.fecha_elaboracion,p.proxima_evaluacion,p.profesional, n.nombres,n.apellidos FROM ninas n, pgf p WHERE n.id_nina=p.nina ;");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

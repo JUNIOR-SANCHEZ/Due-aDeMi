@@ -54,7 +54,7 @@ class pgfController extends tutorasController
             exit;
         }
     } 
-    public function pdf()
+    public function pdf($id)
     {
         $pdf = new MyPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
@@ -92,7 +92,7 @@ class pgfController extends tutorasController
         $pdf->AddPage();
 
         $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
-        $dato = $this->_pgf->Datos_PGF(101);
+        $dato = $this->_pgf->Datos_PGF($id);
         ob_start();
         ?>
         <style>
@@ -341,5 +341,12 @@ class pgfController extends tutorasController
         $hoy = new DateTime();
         $annos = $hoy->diff($cumpleanos);
         return $annos->y;
+    }
+
+    public function lista_pgf()
+    {
+       $this->_view->assign("l",$this->_pgf->listapgf());
+       $this->_view->renderizar("pgflista");
+
     }
 }

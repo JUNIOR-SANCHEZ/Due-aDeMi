@@ -1,7 +1,7 @@
 <?php if(isset($this->_paginacion)): ?>
 
-<div class="pagination" style="text-align: center;">
-    <ul class="pagination"> 
+
+    <ul class="pagination pagination-sm no-margin pull-right"> 
         <?php if($this->_paginacion['primero']): ?>
 
             <li><a class="pagina" pagina="<?php echo $this->_paginacion['primero']; ?>" href="javascript:void(0);">&Lt;</a></li>
@@ -60,6 +60,6 @@
 
         <?php endif; ?>
     </ul>
-</div>
+
 
 <?php endif; ?>

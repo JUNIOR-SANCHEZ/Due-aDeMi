@@ -16,7 +16,7 @@ class preliminarController extends psicologiaController
         $this->_view->renderizar("nuevo");
 
     }
-
+    
     public function nuevo_archivo()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {

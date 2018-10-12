@@ -1,5 +1,7 @@
 $(document).ready(function (){
 
+   
+
     var area = [];
     $('#btn-guardar-pgf').on('click', function (e)
     {

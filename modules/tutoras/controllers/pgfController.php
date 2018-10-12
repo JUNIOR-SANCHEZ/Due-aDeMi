@@ -2,58 +2,58 @@
 class pgfController extends tutorasController
 {
     private $_pgf;
-    
-    public function __construct(){
+
+    public function __construct()
+    {
 
         parent::__construct();
         $this->_pgf = $this->loadModel('pgf');
     }
 
-    
-    public function index(){
+    public function index()
+    {
         $this->_view->setJs(array('ajax'));
-        $area_acomp=$this->push_array($this->_pgf->area_acomp_des_personal(),$this->_pgf->area_acomp_des_social()) ;
-        $this->_view->assign('nina',$this->_pgf->nina());
-        $this->_view->assign('desarrollo_pers',$area_acomp);
-        
+        $area_acomp = $this->push_array($this->_pgf->area_acomp_des_personal(), $this->_pgf->area_acomp_des_social());
+        $this->_view->assign('nina', $this->_pgf->nina());
+        $this->_view->assign('desarrollo_pers', $area_acomp);
+
         $this->_view->renderizar("nuevo");
     }
     public function nuevopgf()
     {
-        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH'])&& strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
-            if($this->getInt('guardar')==1){
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            if ($this->getInt('guardar') == 1) {
                 // echo "<pre>";print_r($_POST);
                 // exit;
                 $resp = $this->_pgf->nuevapgf(
                     array(
-                    ":familia"=>$this->getText('familia'),
-                    ":etnia"=>$this->getText('etnia'),
-                    ":acogimiento"=>$this->getText('causa_acogimiento'),
-                    ":fecha_elaboracion"=>$this->getText('fecha_elaboracion'),
-                    ":proxima_evaluacion"=>$this->getText('fecha_evaluacion'),
-                    ":profesional"=>$this->getText('profesional'),
-                    ":cedula"=>$this->getText('cedula'),
-                    ":diag_familia"=>$this->getText('diag_familia'),
-                    ":diag_equipo"=>$this->getText('diag_equipo'),
-                    ":consensuado_familia"=>$this->getText('Consensuado_familia'),
-                    ":consensuado_equipo"=>$this->getText('del_equipo'),
-                    ":nina"=>$this->getInt('nina')
+                        ":familia" => $this->getText('familia'),
+                        ":etnia" => $this->getText('etnia'),
+                        ":acogimiento" => $this->getText('causa_acogimiento'),
+                        ":fecha_elaboracion" => $this->getText('fecha_elaboracion'),
+                        ":proxima_evaluacion" => $this->getText('fecha_evaluacion'),
+                        ":profesional" => $this->getText('profesional'),
+                        ":cedula" => $this->getText('cedula'),
+                        ":diag_familia" => $this->getText('diag_familia'),
+                        ":diag_equipo" => $this->getText('diag_equipo'),
+                        ":consensuado_familia" => $this->getText('Consensuado_familia'),
+                        ":consensuado_equipo" => $this->getText('del_equipo'),
+                        ":nina" => $this->getInt('nina'),
                     ),
                     $_POST['area']
                 );
-                if(!$resp){
+                if (!$resp) {
                     echo false;
-                exit; 
+                    exit;
                 }
                 echo true;
-                exit; 
+                exit;
             }
-        }
-        else{
+        } else {
             echo "Ha ocurrido un error no es una peticion xmlhttprequest";
             exit;
         }
-    } 
+    }
     public function pdf($id)
     {
         $pdf = new MyPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -162,7 +162,7 @@ class pgfController extends tutorasController
 
                 </td>
                 <td>
-                <?=$dato->proxima_evaluacion?> 
+                <?=$dato->proxima_evaluacion?>
                 </td>
             </tr>
             <tr>
@@ -180,7 +180,7 @@ class pgfController extends tutorasController
 
                 </td>
                 <td>
-                <?=$dato->cedula?> 
+                <?=$dato->cedula?>
                 </td>
             </tr>
         </table>
@@ -193,7 +193,7 @@ class pgfController extends tutorasController
             </tr>
         <tr>
             <td>
-            
+
                    Familia:  <?=$dato->diag_sit_familia?>
 
             </td>
@@ -201,7 +201,7 @@ class pgfController extends tutorasController
                 Equipo:  <?=$dato->diag_sit_equipo?>
                 </td>
             </tr>
-           
+
         </table>
         <p></p>
         <table border="1" cellspacing="" cellpadding="5" >
@@ -212,7 +212,7 @@ class pgfController extends tutorasController
             </tr>
         <tr>
             <td>
-            
+
             Consensuado con la familia : <?=$dato->obj_gene_familia?>
 
             </td>
@@ -220,7 +220,7 @@ class pgfController extends tutorasController
                 Del equipo Consensuado con la familia: <?=$dato->obj_gene_equipo?>
                 </td>
             </tr>
-                      
+
         </table>
         <p></p>
         <table border="1" cellspacing="" cellpadding="5" >
@@ -249,8 +249,8 @@ class pgfController extends tutorasController
 
         <p></p>
         <?php
-        $area = $this->_pgf->Datos_AREA($dato->id_pgf);
-        foreach($area as $item ):?>
+$area = $this->_pgf->Datos_AREA($dato->id_pgf);
+        foreach ($area as $item): ?>
         <table border="1" cellspacing="" cellpadding="5" >
             <tr>
                 <td colspan="1"><strong>Area</strong></td>
@@ -262,7 +262,7 @@ class pgfController extends tutorasController
                 <td>
                 <?=$item["diagnostico_area"]?>
                </td>
-               
+
         </tr>
         </table>
         <p></p>
@@ -274,21 +274,21 @@ class pgfController extends tutorasController
                 <td>
                 <?=$item["objetivo_area"]?>
                </td>
-           
+
            </tr>
         </table>
         <p></p>
         <table border="1" cellspacing="" cellpadding="5" >
            <tr>
                <td colspan="2"><strong>Areas</strong></td>
-           </tr> 
+           </tr>
             <tr>
                 <td colspan="2">
                     <p><strong>Descripcion</strong></p>
                     <?=$item["acti_descripcion"]?>
                </td>
             </tr>
-                
+
             <tr>
                 <td>
                     <p><strong>Responsables</strong></p>
@@ -312,7 +312,7 @@ class pgfController extends tutorasController
 
                </td>
             </tr>
-                        
+
         </table>
         <p></p>
         <table border="1" cellspacing="" cellpadding="5" >
@@ -323,12 +323,12 @@ class pgfController extends tutorasController
                 <td>
                 <?=$item["descripcion_area_acomp"]?>
                </td>
-           
+
            </tr>
         </table>
         <?php endforeach;?>
         <?php
-        $html = ob_get_clean();
+$html = ob_get_clean();
         ob_clean();
         $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
@@ -345,8 +345,32 @@ class pgfController extends tutorasController
 
     public function lista_pgf()
     {
-       $this->_view->assign("l",$this->_pgf->listapgf());
-       $this->_view->renderizar("pgflista");
+        $this->_view->setJs(array("ajaxlista"));
+        $paginador = new Paginador();
+        # ENVIAMOS LLOS REGISTROS DE LA TABLA PFC A LA VISTA UTILIANDO LA PAGINACION
+        $this->_view->assign('l', $paginador->paginar($this->_pgf->listapgf(), false));
+        # ENVIAMOS LA PAGINACION
+        $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
+        // $this->_view->assign("l", $this->_pgf->listapgf());
+        $this->_view->renderizar("pgflista");
 
+    }
+
+    public function lista_pgf_ajax()
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            # OBTENEMOS EL NUMERO DE PAGINA DEL PAGINADOR
+            $pagina = $this->getInt('pagina');
+            # MUESTRA LOS DATOS DE LAS NIÑAS INGRESADAS
+            $paginador = new Paginador();
+            # ENVIAMOS LLOS REGISTROS DE LA TABLA PFC A LA VISTA UTILIZANDO LA PAGINACION
+            $this->_view->assign('l', $paginador->paginar($this->_pgf->listapgf(), $pagina));
+            # ENVIAMOS LA PAGINACION
+            $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
+            # RENDERIZAMOS LA VISTA QUE MOSTRARA EL CONTENIDO DE LA PAGINA
+            $this->_view->renderizar("viewAjax/pgf", false, true);
+        } else {
+            throw new Exception("Error Processing Request", 1);
+        }
     }
 }

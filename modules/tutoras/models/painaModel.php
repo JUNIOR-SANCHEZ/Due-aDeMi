@@ -6,6 +6,23 @@ class painaModel extends Model
     {
         parent::__construct();
     }
+    public function Datos_AREA($A)
+    {
+        
+        $stmt = $this->_db->query("SELECT a.*, acti_descripcion  FROM paina p, paina_area pa,`area` a,area_acomp ac
+        WHERE pa.area = a.id_area 
+        AND p.id_paina = pa.paina
+        AND ac.id_area_acomp = a.area_acomp
+        AND pa.paina=$A
+        GROUP BY a.id_area;
+        ");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function Datos_Paina()
+    {
+        $stmt = $this->_db->query("Select p.*,n.nombres,apellidos From paina p, ninas n where p.nina=n.id_nina And id_paina = 2;");
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
     public function nina()
     {
         $stmt = $this->_db->query("SELECT * FROM ninas;");

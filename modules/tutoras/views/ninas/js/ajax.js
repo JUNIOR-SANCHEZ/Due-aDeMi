@@ -3,7 +3,7 @@ $(document).ready(function () {
         var bool =true;
         if(!$("#nombre-nna").validarCampoVacio()) bool=false;
         if(!$("#apellido-nna").validarCampoVacio()) bool=false;
-        if(!$("#cedula").validarCampoVacio()) bool=false;
+        if(!$("#cedula").validarCedula()) bool=false;
         if(!$("#phone").validarCampoVacio()) bool=false;
         if(!$("#lugar-nacimiento").validarCampoVacio()) bool=false;
         if(!$("#direccion-nna").validarCampoVacio()) bool=false;

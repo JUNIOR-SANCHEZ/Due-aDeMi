@@ -39,26 +39,7 @@ $(document).ready(function (){
         }else{
             alert("Debe llenar todo los campos");
         }
-        if (validacion()) {
-            $.ajax({
-                url: ruta,
-                type: "POST",
-                data: form,
-                // contentType: false,
-                // processData: false,
-                beforeSend: function () {},
-                success: function (response) {
-
-                    console.log(response);
-
-                    if (response == true) {
-                        alert("Se registro con exito");
-                    } else {
-                        alert("Ha ocurrido un error");
-                    }
-                }
-            })
-        }  
+        
     });
     
     $('#form-area').on("submit", function (e) {

@@ -43,7 +43,6 @@ $(document).ready(function () {
         var texto = this.parent().parent().children("label").text();
 
         if (cad !== "" && longitud === 10) {
-            alert(cad);
             for (i = 0; i < longcheck; i++) {
                 if (i % 2 === 0) {
                     var aux = cad.charAt(i) * 2;

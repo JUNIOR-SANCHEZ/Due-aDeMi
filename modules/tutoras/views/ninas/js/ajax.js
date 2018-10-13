@@ -3,7 +3,7 @@ $(document).ready(function () {
         var bool =true;
         if(!$("#nombre-nna").validarCampoVacio()) bool=false;
         if(!$("#apellido-nna").validarCampoVacio()) bool=false;
-        if(!$("#cedula").validarCampoVacio()) bool=false;
+        if(!$("#cedula").validarCedula()) bool=false;
         if(!$("#phone").validarCampoVacio()) bool=false;
         if(!$("#lugar-nacimiento").validarCampoVacio()) bool=false;
         if(!$("#direccion-nna").validarCampoVacio()) bool=false;
@@ -49,11 +49,8 @@ $(document).ready(function () {
         }
         formData.append("informante",JSON.stringify(info_nna));
         formData.append("familia",JSON.stringify(fami_nna));
-       
 
-        console.log(validacion());
-        
-        if (validacion() == true && bool == true) {
+        if ( validacion() == true && bool == true) {
         $.ajax({
             url: ruta,
             data: formData,
@@ -65,13 +62,16 @@ $(document).ready(function () {
                 // alert(response);
                 if (response == true) {
                     alert("Se registro con exito");
+                    $('#form-ninas')[0].reset();
                     info_nna = [];
                     fami_nna = [];
                 } else {
-                    console.log(response);
+                    console.log("ERROR AL REGISTRAR");
                 }
             }
         })
+        }else{
+            alert("Parametros no valido");
         }
     });
 

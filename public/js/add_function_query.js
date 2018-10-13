@@ -22,7 +22,6 @@ $(document).ready(function () {
         if (text == null || text.length == 0 || /^\s+$/.test(text)) {
             this.parent().parent().attr("class", "form-group has-error");
             this.parent().parent().children("span").text("Este campo debe ser llenado").show();
-
             this.parent().parent().children("label").text("");
             this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
             return false;
@@ -43,7 +42,7 @@ $(document).ready(function () {
         var texto = this.parent().parent().children("label").text();
 
         if (cad !== "" && longitud === 10) {
-            alert(cad);
+            
             for (i = 0; i < longcheck; i++) {
                 if (i % 2 === 0) {
                     var aux = cad.charAt(i) * 2;
@@ -65,14 +64,23 @@ $(document).ready(function () {
                 this.parent().parent().children("span").text("").hide();
                 return true;
             } else {
-
                 this.parent().parent().attr("class", "form-group has-error");
                 this.parent().parent().children("span").text("El numero que ingreso no es valido").show();
                 this.parent().parent().children("label").text("");
                 this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
                 return false;
             }
-        } else if (isNaN(cad)) {
+        } else
+        {
+                this.parent().parent().attr("class", "form-group has-error");
+                this.parent().parent().children("span").text("El numero que ingreso no es valido").show();
+                this.parent().parent().children("label").text("");
+                this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
+                return false;
+            }
+            
+            
+            if (isNaN(cad)) {
             this.parent().parent().attr("class", "form-group has-error");
             this.parent().parent().children("span").text("El campo solo acepta numeros").show();
             this.parent().parent().children("label").text("");

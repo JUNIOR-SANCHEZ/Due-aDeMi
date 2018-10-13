@@ -41,6 +41,20 @@ $(document).ready(function () {
         var longitud = cad.length;
         var longcheck = longitud - 1;
         var texto = this.parent().parent().children("label").text();
+        if (isNaN(cad)) {
+            this.parent().parent().attr("class", "form-group has-error");
+            this.parent().parent().children("span").text("El campo solo acepta numeros").show();
+            this.parent().parent().children("label").text("");
+            this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
+            return false;
+        }
+        if (cad == null || cad.length == 0 || /^\s+$/.test(cad)) {
+            this.parent().parent().attr("class", "form-group has-error");
+            this.parent().parent().children("span").text("El campo debe ser llenado").show();
+            this.parent().parent().children("label").text("");
+            this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
+            return false;
+        }
 
         if (cad !== "" && longitud === 10) {
             for (i = 0; i < longcheck; i++) {
@@ -52,11 +66,7 @@ $(document).ready(function () {
                     total += parseInt(cad.charAt(i)); // parseInt o concatenará en lugar de sumar
                 }
             }
-
             total = total % 10 ? 10 - total % 10 : 0;
-
-
-
             if (cad.charAt(longitud - 1) == total) {
                 this.parent().parent().attr("class", "form-group has-success");
                 this.parent().parent().children("label").text("");
@@ -64,26 +74,21 @@ $(document).ready(function () {
                 this.parent().parent().children("span").text("").hide();
                 return true;
             } else {
-
                 this.parent().parent().attr("class", "form-group has-error");
                 this.parent().parent().children("span").text("El numero que ingreso no es valido").show();
                 this.parent().parent().children("label").text("");
                 this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
                 return false;
             }
-        } else if (isNaN(cad)) {
+        } else {
             this.parent().parent().attr("class", "form-group has-error");
-            this.parent().parent().children("span").text("El campo solo acepta numeros").show();
-            this.parent().parent().children("label").text("");
-            this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
-            return false;
-        } else if (cad == null || cad.length == 0 || /^\s+$/.test(cad)) {
-            this.parent().parent().attr("class", "form-group has-error");
-            this.parent().parent().children("span").text("El campo debe ser llenado").show();
+            this.parent().parent().children("span").text("El numero que ingreso no es valido").show();
             this.parent().parent().children("label").text("");
             this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
             return false;
         }
+
+
     }
     $.fn.validarCampoTelefono = function () {
         var texto = this.parent().parent().children("label").text();

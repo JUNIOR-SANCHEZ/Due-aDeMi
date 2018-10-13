@@ -58,9 +58,21 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                    <label for="">Fecha de Ingreso a la Unidad:</label>
+                                                                                    <div class="input-group date">
+                                                                                        <div class="input-group-addon">
+                                                                                            <i class="fa fa-calendar"></i>
+                                                                                        </div>
+                                                                                        <input type="text" name="fecha_ingreso"
+                                                                                            class="form-control pull-right" id="datepicker-fecha-ingreso">
+                                                                                    </div>
+                                                                                    <span class="help-block"></span>
+        
+                                                                                </div>
                                                                         <div class="form-group">
                                                                             <label for="">Nombres de la niña o
-                                                                                adolecenre</label>
+                                                                                adolecente</label>
                                                                             <div class="input-group">
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-user"></i>
@@ -73,7 +85,7 @@
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label for="">Apellidos de la niña o
-                                                                                adolecenre</label>
+                                                                                adolecente</label>
                                                                             <div class="input-group">
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-user"></i>
@@ -163,13 +175,23 @@
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label for="">Tipo de Medida:</label>
-                                                                            <div class="input-group">
+                                                                            <!-- <div class="input-group">
                                                                                 <div class="input-group-addon">
                                                                                     <i></i>
                                                                                 </div>
                                                                                 <input type="text" name="tipo-medida"
                                                                                     placeholder="tipo de medida" class="form-control"
                                                                                     id="tipo-medida" required>
+                                                                            </div> -->
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-addon">
+                                                                                    <i></i>
+                                                                                </div>
+                                                                                <select class="form-control" name="tipo-medida" id="tipo-medida">
+                                                                                        <option value="0">Seleccione</option>
+                                                                                    <option value="Presunto Abuso Sexual">Presunto Abuso Sexual</option>
+                                                                                    <option value="Presunto Acoso Sexual">Presunto Acoso Sexual</option>
+                                                                                </select>
                                                                             </div>
                                                                             <span class="help-block"></span>
                                                                         </div>
@@ -213,8 +235,9 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i></i>
                                                                                 </div>
-                                                                                <input type="text" name="nombre_solicitud" id="nombre-solicitud"
-                                                                                    class="form-control" required>
+                                                                                <input type="text" name="nombre_solicitud"
+                                                                                    id="nombre-solicitud" class="form-control"
+                                                                                    required>
                                                                             </div>
                                                                         </div>
                                                                         <span class="help-block"></span>
@@ -259,7 +282,7 @@
                                                                                 <i class="fa fa-user"></i>
                                                                             </div>
                                                                             <input type="text" name="nombres" class="form-control"
-                                                                                placeholder="Nombres">
+                                                                                id="nombres-inf" placeholder="Nombres">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -271,7 +294,7 @@
                                                                                 <i class="fa fa-user"></i>
                                                                             </div>
                                                                             <input type="text" name="apellidos" class="form-control"
-                                                                                placeholder="Apellidos">
+                                                                                id="apellidos-inf" placeholder="Apellidos">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -285,19 +308,19 @@
                                                                                 <!-- <i class="fa fa-user"></i> -->
                                                                             </div>
                                                                             <input type="text" name="direccion" class="form-control"
-                                                                                placeholder="Dirección" required>
+                                                                                id="direccion-inf" placeholder="Dirección">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="">Telf:</label>
+                                                                        <label for="">Teléfono:</label>
                                                                         <div class="input-group">
                                                                             <div class="input-group-addon">
                                                                                 <i class="fa fa-phone"></i>
                                                                             </div>
                                                                             <input type="text" name="phone" class="form-control"
-                                                                                placeholder="Telefono" required>
+                                                                                id="telf-inf" placeholder="Telefono">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -311,7 +334,7 @@
                                                                                 <!-- <i class="fa fa-user"></i> -->
                                                                             </div>
                                                                             <input type="text" name="institucion" class="form-control"
-                                                                                placeholder="Institucion" required>
+                                                                                id="inst-inf" placeholder="Institucion">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -325,7 +348,7 @@
                                                                                 <i class="fa fa-file-archive-o"></i>
                                                                             </div>
                                                                             <input type="text" name="documento" class="form-control"
-                                                                                required>
+                                                                                id="dctoin-inf">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -360,35 +383,50 @@
                                                                 <div class="form-group">
                                                                     <label for="">Detalle con la vestimenta que
                                                                         ingresa:</label>
-                                                                    <textarea name="vestimenta" id="" rows="5" class="form-control"></textarea>
+                                                                    <div>
+                                                                        <textarea name="vestimenta" id="vestido" rows="5"
+                                                                            class="form-control"></textarea>
+                                                                    </div>
+                                                                    <span class="help-block"></span>
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                     <label for="">Estado de salud al momento del
                                                                         ingreso:</label>
-                                                                    <textarea name="salud" id="" rows="5" class="form-control"
-                                                                        required></textarea>
+                                                                    <div>
+                                                                        <textarea name="salud" id="salud" rows="5"
+                                                                            class="form-control" required></textarea>
+                                                                    </div> <span class="help-block"></span>
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                     <label for="">Existe señales evidentes de
                                                                         maltrato físico al momento de ingresar
                                                                         SI/NO detallar:</label>
-                                                                    <textarea name="maltrato-fisico" id="" rows="5"
+                                                                        <div>
+                                                                    <textarea name="maltrato-fisico" id="maltrato" rows="5"
                                                                         class="form-control" required></textarea>
+                                                                        </div>
+                                                                        <span class="help-block"></span>
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                     <label for="">La NNA ingresa con pertenencias
                                                                         personales SI/NO detallar:</label>
-                                                                    <textarea name="pertenencias" id="" rows="5" class="form-control"
-                                                                        required></textarea>
+                                                                    <div>
+                                                                        <textarea name="pertenencias" id="pertenencias"
+                                                                            rows="5" class="form-control" required></textarea>
+                                                                    </div>
+                                                                    <span class="help-block"></span>
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                     <label for="">Observaciones generales:</label>
+
                                                                     <textarea name="observaciones-generales" id="" rows="5"
+                                                                        placeholder="Algún dato opcional que desee informar"
                                                                         class="form-control" required></textarea>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -402,7 +440,7 @@
                                     <div class="box-header with-border">
                                         <h4 class="box-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#familiares">
-                                                Datos de los padres ofamiliares a cargo de la NNA
+                                                Datos de los padres o familiares a cargo de la NNA
                                             </a>
                                         </h4>
                                     </div>
@@ -421,7 +459,7 @@
                                                                                 <i class="fa fa-user"></i>
                                                                             </div>
                                                                             <input type="text" name="nombres" class="form-control"
-                                                                                placeholder="Nombres">
+                                                                                id="nombres-ref" placeholder="Nombres">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -433,7 +471,7 @@
                                                                                 <i class="fa fa-user"></i>
                                                                             </div>
                                                                             <input type="text" name="apellidos" class="form-control"
-                                                                                placeholder="Apellidos">
+                                                                                id="apellidos-ref" placeholder="Apellidos">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -447,7 +485,7 @@
                                                                                 <!-- <i class="fa fa-user"></i> -->
                                                                             </div>
                                                                             <input type="text" name="parentesco" class="form-control"
-                                                                                placeholder="Institucion" required>
+                                                                                id="parentesco-ref" placeholder="Parentesco familiar con NNA">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -459,7 +497,7 @@
                                                                                 <!-- <i class="fa fa-user"></i> -->
                                                                             </div>
                                                                             <input type="text" name="edad" class="form-control"
-                                                                                placeholder="Institucion" required>
+                                                                                id="edad-ref" placeholder="Edad de la persona">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -474,19 +512,19 @@
                                                                                 <!-- <i class="fa fa-user"></i> -->
                                                                             </div>
                                                                             <input type="text" name="direccion" class="form-control"
-                                                                                placeholder="Dirección" required>
+                                                                                id="direccion-ref" placeholder="Dirección">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="">Telf:</label>
+                                                                        <label for="">Teléfono:</label>
                                                                         <div class="input-group">
                                                                             <div class="input-group-addon">
                                                                                 <i class="fa fa-phone"></i>
                                                                             </div>
                                                                             <input type="text" name="phone" class="form-control"
-                                                                                placeholder="Telefono" required>
+                                                                                id="telefono-ref" placeholder="Telefono">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -501,7 +539,7 @@
                                                                                 <i class="fa fa-file-archive-o"></i>
                                                                             </div>
                                                                             <input type="text" name="cedula" class="form-control"
-                                                                                required>
+                                                                                id="cedula-ref">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -513,7 +551,8 @@
                                                                                 <i class="fa fa-file-archive-o"></i>
                                                                             </div>
                                                                             <input type="text" name="trabajo" class="form-control"
-                                                                                required>
+                                                                                placeholder="Lugar o ciudad donde labora"
+                                                                                id="trabajo-ref">
                                                                         </div>
                                                                     </div>
                                                                 </div>

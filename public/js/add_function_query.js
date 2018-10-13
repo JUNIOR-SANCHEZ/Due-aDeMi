@@ -124,4 +124,22 @@ $(document).ready(function () {
         }
     }
 
+    $.fn.validarCampoSelect = function (){
+        indice = this.val();
+        var texto = this.parent().parent().children("label").text();
+        if( indice == null || indice == 0 ) {
+            this.parent().parent().attr("class", "form-group has-error");
+            this.parent().parent().children("span").text("Solo letras y ").show();
+            this.parent().parent().children("label").text("");
+            this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
+            return false;
+          }
+          this.parent().parent().attr("class", "form-group has-success");
+            this.parent().parent().children("span").text("").hide();
+            this.parent().parent().children("label").text("");
+            this.parent().parent().children("label").append(`<i class="fa fa-check"></i> ${texto}`);
+            return true; 
+         
+    }
+
 });

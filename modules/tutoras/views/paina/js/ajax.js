@@ -1,12 +1,8 @@
 $(document).ready(function () {
-    function validacion() {
-        var bool = true;
-        if (!$("#cedula").validarCedula()) bool = false;
-        if (!$("#phone").validarCampoTelefono()) bool = false;
-        if (!$("#nombre-nna").validarCampoVacio()) bool = false;
-        return bool;
-    }
-
+    $('#Responsable').on("change",function(){
+        var cedula=$("#Responsable option[value="+$(this).val() +"]").attr("data-cedula")
+        $('#cedula').val(cedula)
+    })
     $('#datepicker-elaboracion').datepicker({
         autoclose: true
     });
@@ -25,13 +21,8 @@ $(document).ready(function () {
             alert("Debe rellenar los campos del area");
             bool = false;
         }
-        console.log(form);
-        
-        if (bool == true) {
-
+        if (validacion() == true && bool == true) {
             $.post(ruta, form, function (response) {
-                console.log(response);
-                
                 if (response == true) {
                     alert("Se registro con exito");
                     area = [];
@@ -39,17 +30,17 @@ $(document).ready(function () {
                 } else {
                     alert("Ha ocurrido un error");
                 }
-
             });
-           
         }
     });
 
     $('#form-area').on("submit", function (e) {
         e.preventDefault();
         var data = $(this).serializeFormJSON();
+        if (validacion() == true){
         area.push(data)
         $(this)[0].reset();
+        }
     });
 
 })

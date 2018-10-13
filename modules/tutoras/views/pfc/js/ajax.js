@@ -1,22 +1,19 @@
 $(document).ready(function () {
-
     $('#datepicker-elaboracion').datepicker({
         autoclose: true
       });
-      
       $('#datepicker-evaluacion').datepicker({
         autoclose: true
       });
-
     var interv = [];
     var segui = [];
     var respon = [];
-
     function campos(){
-        if(interv.length == 0 || segui.length == 0 || respon.length== 0){
-            return false;
-        }
-        return true;
+        var bool = true;
+        if(interv.length == 0) bool = false;
+        if(interv.length == 0) bool = false;
+        if(interv.length == 0) bool = false;
+        return bool;
     }
     /**
      * ENVIAMOS LOS DATOS PARA CREAR UN PLAN DE FORTALECIMIENTO COMUNITARIO
@@ -30,8 +27,6 @@ $(document).ready(function () {
         form.responsable = respon;
         if(campos()){
             $.post(url, form, function (response) {
-                console.log(response);
-    
                 if (response == true) {
                     alert("Registro exitos");
                     $("#form-pfc")[0].reset();
@@ -49,7 +44,6 @@ $(document).ready(function () {
             alert("Ingrese todo los dato correspondientes")
         }
     });
-
     /**
      * 
      */
@@ -75,9 +69,7 @@ $(document).ready(function () {
         e.preventDefault();
         var data = $(this).serializeFormJSON();
         console.log(data);
-        
         respon.push(data)
         $(this)[0].reset();
     });
-
 })

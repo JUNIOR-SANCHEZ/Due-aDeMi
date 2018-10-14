@@ -1,25 +1,12 @@
 $(document).ready(function () {
-    function validacion() {
-        var bool =true;
-        if(!$("#nombre-nna").validarCampoVacio()) bool=false;
-        if(!$("#apellido-nna").validarCampoVacio()) bool=false;
-        if(!$("#cedula").validarCedula()) bool=false;
-        if(!$("#phone").validarCampoVacio()) bool=false;
-        if(!$("#lugar-nacimiento").validarCampoVacio()) bool=false;
-        if(!$("#direccion-nna").validarCampoVacio()) bool=false;
-        if(!$("#datepicker-fecha-nacimiento").validarCampoVacio()) bool=false;
-        if(!$("#tipo-medida").validarCampoVacio()) bool=false;
-        if(!$("#num-medida").validarCampoVacio()) bool=false;
-        if(!$("#datepicker-fecha-medida").validarCampoVacio()) bool=false;
-        if(!$("#nombre-solicitud").validarCampoVacio()) bool=false;
-        
-        
-        return bool;
-    }
+    
     $('#datepicker-fecha-nacimiento').datepicker({
         autoclose: true
     });
     $('#datepicker-fecha-medida').datepicker({
+        autoclose: true
+    });
+    $('#datepicker-fecha-ingreso').datepicker({
         autoclose: true
     });
     
@@ -44,16 +31,15 @@ $(document).ready(function () {
             bool = false;
         }
         if (fami_nna.length == 0) {
-            alert("Debe agregar los datos de los familiares que estaran acargo");
+
+            alert("Debe agregar los datos de los familiares que estan a cargo");
             bool = false;
         }
         formData.append("informante",JSON.stringify(info_nna));
         formData.append("familia",JSON.stringify(fami_nna));
-       
-
-        console.log(validacion());
+        console.log(validacion_situacion());
         
-        if (validacion() == true && bool == true) {
+        if ( validacion() == true && validacion_situacion() == true && bool == true ) {
         $.ajax({
             url: ruta,
             data: formData,
@@ -65,33 +51,37 @@ $(document).ready(function () {
                 // alert(response);
                 if (response == true) {
                     alert("Se registro con exito");
+                    $('#form-ninas')[0].reset();
+                    $('#form-descripcion')[0].reset();
                     info_nna = [];
                     fami_nna = [];
                 } else {
-                    console.log(response);
+                    console.log("ERROR AL REGISTRAR");
                 }
             }
         })
+        }else{
+            alert("Parametros no válidos");
         }
     });
 
     $('#form-informante').on('submit', function (e) {
         e.preventDefault();
         var data = $(this).serializeFormJSON();
-        info_nna.push(data)
+        if(validacion_info() == true){
+            info_nna.push(data);
+            $(this)[0].reset();
+        }
         
-            
-
-
-        
-        $(this)[0].reset();
     });
 
     $("#form-familiares").on("submit", function (e) {
         e.preventDefault();
         var data = $(this).serializeFormJSON();
+        if(validacion_referente() == true){
         fami_nna.push(data)
         $(this)[0].reset();
+        }
 
     });
 

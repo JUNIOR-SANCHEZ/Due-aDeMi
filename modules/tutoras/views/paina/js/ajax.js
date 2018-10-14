@@ -43,6 +43,10 @@ $(document).ready(function () {
             });
            
         }
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 6667ad1d8c2b58419a08f0bc8cca189a3d356b5a
     });
 
     $('#form-area').on("submit", function (e) {

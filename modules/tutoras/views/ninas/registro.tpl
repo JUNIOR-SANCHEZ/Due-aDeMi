@@ -5,7 +5,7 @@
                 <div class="col-md-12">
                     <div class="box box-solid">
                         <div class="box-header with-border">
-                            <h3 class="box-title">FICHA DE INGRESO DE NIÑA O ADOLECENTE</h3>
+                            <h3 class="box-title">FICHA DE INGRESO DE NIÑA O ADOLESCENTE</h3>
                             <button type="button" class="btn btn-primary pull-right" id="enviar-nna">Guardar</button>
                         </div>
                         <!-- /.box-header -->
@@ -32,6 +32,7 @@
                                                                 <!-- parte lateral foto -->
                                                                 <div class="row">
                                                                     <div class="col-md-6 ">
+                                                                        <br><br>
                                                                         <div class="row">
                                                                             <div class="col-12 col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
                                                                                 <div id="container-logo">

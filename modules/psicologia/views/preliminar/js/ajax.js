@@ -19,8 +19,9 @@ $(document).ready(function () {
                 type: 'POST',
                 success: function (data) {
                     if (data == true) {
+                        $('#form-preliminar')[0].reset();
                         alert("Se registro con exito");
-                        form[0].reset();
+                        
                     } else {
                         alert(data);
                         console.log(data);

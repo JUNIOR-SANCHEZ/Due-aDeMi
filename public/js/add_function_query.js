@@ -22,7 +22,6 @@ $(document).ready(function () {
         if (text == null || text.length == 0 || /^\s+$/.test(text)) {
             this.parent().parent().attr("class", "form-group has-error");
             this.parent().parent().children("span").text("Este campo debe ser llenado").show();
-
             this.parent().parent().children("label").text("");
             this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
             return false;

@@ -1,11 +1,11 @@
-
-
 <div class="content">
     <div class="row">
         <div class="col-md-12">
             <div class="panel">
                 <div class="panel-heading text-center">
-                    <h2>INFORME PRELIMINAR</h2>
+                    <b>
+                        <h2>INFORME PRELIMINAR</h2>
+                    </b>
                 </div>
                 <div class="panel-body">
                     <form enctype="multipart/form-data" action="{$_layoutParams.root}psicologia/preliminar/nuevo_archivo"
@@ -50,7 +50,7 @@
                                         <input type="file" name="documento" class="form-control" id="archivo" required>
                                         <span class="help-block"></span>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                 <div class="form-group">
                                     <label for="">Observacion:</label>
                                     <div>
-                                        <textarea name="observacion" class="form-control"  rows="5" id="pre-observacion"></textarea>
+                                        <textarea name="observacion" class="form-control" rows="5" id="pre-observacion"></textarea>
                                         <span class="help-block"></span>
                                     </div>
                                 </div>

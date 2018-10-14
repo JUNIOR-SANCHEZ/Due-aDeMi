@@ -10,7 +10,7 @@ class preliminarController extends psicologiaController
     }
     public function index()
     {
-        $this->_view->setJs(array("validar","ajax"));
+        $this->_view->setJs(array("ajax"));
         $this->_view->assign("ninas", $this->_sql->nina());
 
         $this->_view->renderizar("nuevo");
@@ -28,7 +28,7 @@ class preliminarController extends psicologiaController
                     $upload->file_new_name_body = 'upl_' . uniqid();
                     $upload->process_doc($ruta);
                     if ($upload->processed) {
-                        echo $upload->file_name_body;
+                        
                         $resp = $this->_sql->nuevo_preliminar(array(
                             ":fecha" => date("Y/m/d", strtotime($this->getText('elaboracion'))),
                             ":documento" => $upload->file_name_body,

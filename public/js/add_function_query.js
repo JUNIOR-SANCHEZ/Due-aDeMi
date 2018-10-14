@@ -56,10 +56,6 @@ $(document).ready(function () {
         }
 
         if (cad !== "" && longitud === 10) {
-<<<<<<< HEAD
-            
-=======
->>>>>>> 6667ad1d8c2b58419a08f0bc8cca189a3d356b5a
             for (i = 0; i < longcheck; i++) {
                 if (i % 2 === 0) {
                     var aux = cad.charAt(i) * 2;
@@ -83,27 +79,7 @@ $(document).ready(function () {
                 this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
                 return false;
             }
-<<<<<<< HEAD
-        } else
-        {
-                this.parent().parent().attr("class", "form-group has-error");
-                this.parent().parent().children("span").text("El numero que ingreso no es valido").show();
-                this.parent().parent().children("label").text("");
-                this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
-                return false;
-            }
-            
-            
-            if (isNaN(cad)) {
-            this.parent().parent().attr("class", "form-group has-error");
-            this.parent().parent().children("span").text("El campo solo acepta numeros").show();
-            this.parent().parent().children("label").text("");
-            this.parent().parent().children("label").append(`<i class="fa fa-times-circle-o"></i> ${texto}`);
-            return false;
-        } else if (cad == null || cad.length == 0 || /^\s+$/.test(cad)) {
-=======
         } else {
->>>>>>> 6667ad1d8c2b58419a08f0bc8cca189a3d356b5a
             this.parent().parent().attr("class", "form-group has-error");
             this.parent().parent().children("span").text("El numero que ingreso no es valido").show();
             this.parent().parent().children("label").text("");

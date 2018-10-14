@@ -1,16 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
 .border {
     border: 1px solid #000000;
 }
@@ -65,7 +53,7 @@
     position: absolute;
     -webkit-animation: lds-spinner linear 1s infinite;
     animation: lds-spinner linear 1s infinite;
-    background: #00c0ef;
+    background:rgb(118, 139, 0);
     width: 12px;
     height: 24px;
     border-radius: 40%;
@@ -162,4 +150,62 @@
     height: 200px !important;
     -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
     transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+}
+
+
+
+.skin-blue .main-header .navbar  {
+    background-color:rgb(250, 70, 142);
+}
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+    background-color:rgba(0, 0, 0, 0.212);
+}
+
+.skin-blue .main-header .logo {
+    background-color:rgba(255, 203, 224, 0.911);
+    color: #fff;
+    border-bottom: 0 solid transparent;
+    
+}
+.skin-blue .main-header .logo:hover{
+    background-color:rgba(252, 182, 210, 0.863);
+}
+
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background-color:rgb(44, 0, 21); 
+}
+.skin-blue .sidebar-menu>li.header {
+    color: rgb(255, 255, 255);
+    background: rgb(99, 1, 48);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    text-align: center;
+}
+.skin-blue .sidebar a {
+    color: #cccccc;
+}
+
+.skin-blue .main-header li.user-header {
+    background-color:rgb(99, 1, 48);
+}
+
+
+.sidebar-mini.sidebar-collapse .main-header .logo>.logo-mini {
+    display: block;
+    margin-left: -15px;
+    margin-right: -15px;
+    font-size: 15px;
+    color: rgb(119, 119, 119);
+}
+
+.box-header>.fa, .box-header>.glyphicon, .box-header>.ion, .box-header .box-title {
+    display: inline-block;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}   
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

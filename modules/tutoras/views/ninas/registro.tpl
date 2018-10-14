@@ -5,7 +5,7 @@
                 <div class="col-md-12">
                     <div class="box box-solid">
                         <div class="box-header with-border">
-                            <h3 class="box-title">FICHA DE INGRESO DE NIÑA O ADOLECENTE</h3>
+                            <h3 class="box-title">FICHA DE INGRESO DE NIÑA O ADOLESCENTE</h3>
                             <button type="button" class="btn btn-primary pull-right" id="enviar-nna">Guardar</button>
                         </div>
                         <!-- /.box-header -->
@@ -60,7 +60,7 @@
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label for="">Nombres de la niña o
-                                                                                adolecenre</label>
+                                                                                adolescente</label>
                                                                             <div class="input-group">
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-user"></i>
@@ -73,7 +73,7 @@
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label for="">Apellidos de la niña o
-                                                                                adolecenre</label>
+                                                                                adolecente</label>
                                                                             <div class="input-group">
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-user"></i>

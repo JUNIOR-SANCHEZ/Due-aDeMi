@@ -1,9 +1,10 @@
+
 <div class="content">
     <div class="row">
         <div class="col-md-12">
             <div class="panel">
                 <div class="panel-heading text-center">
-                    <h2>INFORME PRELIMINAR</h2>
+                   <b><h2>INFORME PRELIMINAR</h2> </b>
                 </div>
                 <div class="panel-body">
                     <form enctype="multipart/form-data" action="{$_layoutParams.root}psicologia/preliminar/nuevo_archivo"

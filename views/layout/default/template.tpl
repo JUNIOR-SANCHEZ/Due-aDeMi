@@ -30,8 +30,11 @@
 
         {if isset($widgets.sidenav)} {foreach item=tp from=$widgets.sidenav} {$tp} {/foreach} {/if}
         <div class="content-wrapper">
+                
             <!-- CUERPO DE LA APLICACION -->
             {include file=$_contenido}
+            <img src="public/img/cuerpo.png" width='100%'  >
+
         </div>
     </div>
     <!-- FOOTER -->

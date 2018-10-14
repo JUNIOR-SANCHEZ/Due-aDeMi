@@ -365,11 +365,11 @@ a:focus {
 }
 @media (max-width: 991px) {
   .navbar-custom-menu .navbar-nav > li {
-    float: left;
+    float: center;
   }
   .navbar-custom-menu .navbar-nav {
     margin: 0;
-    float: left;
+    float: center;
   }
   .navbar-custom-menu .navbar-nav > li > a {
     padding-top: 15px;
@@ -830,11 +830,7 @@ a:focus {
   border-left-color: #141a1d;
   border-bottom-color: #141a1d;
 }
-.control-sidebar-dark .nav-tabs.control-sidebar-tabs > li > a:hover,
-.control-sidebar-dark .nav-tabs.control-sidebar-tabs > li > a:focus,
-.control-sidebar-dark .nav-tabs.control-sidebar-tabs > li > a:active {
-  background: #1c2529;
-}
+
 .control-sidebar-dark .nav-tabs.control-sidebar-tabs > li > a:hover {
   color: #fff;
 }

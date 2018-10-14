@@ -129,6 +129,7 @@ class ninasController extends tutorasController
         <style>
             .titulo{
                 text-align:center;
+                
             }
             .subtitle{
                 font-size:12px;
@@ -147,7 +148,7 @@ class ninasController extends tutorasController
                 width: 65%;
             }
         </style>
-        <p class="titulo">FICHA DE INGRESO DE LA  NIÑA NIÑO Y ADOLECENTE</p>
+        <p class="titulo">FICHA DE INGRESO DE LA  NIÑA NIÑO Y ADOLESCENTE</p>
         <p>
         <img src="<?=ROOT . "public" . DS . "img" . DS . "nina" . DS . $dato->foto?>" width="200px"  class="img"/>
         </p>

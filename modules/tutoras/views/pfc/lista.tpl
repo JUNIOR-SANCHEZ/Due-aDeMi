@@ -1,33 +1,43 @@
 <br>
+<!-- /.col -->
 <div class="col-md-12">
     <div id="contenedor">
         <div class="box box-primary">
             <div class="box-header ">
-                <h3 class="box-title"><strong>PLAN DE FORTAKECIMIENTO COMUNITARIO (PFC) </strong></h3>
-                <div class="box-tools">
-                    <ul class="pagination pagination-sm no-margin pull-right">
-                        {if isset($paginador)}{$paginador}{/if}
-                    </ul>
-                </div>
+                <h3 class="box-title"><strong>Lista Plan Familiar Comunitario</strong></h3>
+               
+
             </div>
+            <!-- /.box-header -->
+
             <div class="box-body no-padding">
+
+
                 <table class="table">
                     <tr>
                         <th>Nombre de la niña</th>
-                        <th>Fecha Elaboracion</th>
-                        <th>Proxima Evaluacion</th>
-                        <th>Profesionales</th>
+                        <th>Apellidos de la niña</th>
+                        <th>Fecha de ingreso</th>
+                        <th style="width: 30px" >Datos de identificacion</th>
+                        <th style="width: 30px" >Datos informantes</th>
+                        <th style="width: 30px" >Datos de como ingresa</th>
+                        <th style="width: 30px" >Datos Familiares</th>
                     </tr>
-                    {foreach item=lista from=$x}
                     <tr>
-                        <td>{$lista["nombres"]} {$lista["apellidos"]}</td>
-                        <td>{$lista["fecha_elab"]}</td>
-                        <td>{$lista["fecha_eval"]}</td>
-                        <td>{$lista["nombre"]}</td>
-                        <td><a target="_blank" href="{$_layoutParams.root}tutoras/paina/pdf/{$lista['id_paina']}" class="btn btn-info">PDF</a></td>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th><a class="btn btn-info">modificar</a></th>
+                        <th><a class="btn btn-info">modificar</a></th>
+                        <th><a class="btn btn-info">modificar</a></th>   
+                        <th><a class="btn btn-info">modificar</a></th>  
                     </tr>
-                    {/foreach}
+                 
                 </table>
             </div>
+            <!-- /.box-body -->
         </div>
     </div>
+    <input type="button"/> 
+</div>
+<!-- /.col -->

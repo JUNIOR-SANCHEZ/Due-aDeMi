@@ -61,7 +61,7 @@ class pfcController extends tutorasController
     /**
      * MUESTRA UNA LISTA DE PLANES DE FORTALECIMIENTO COMUNITARIO QUE ESTAN LISTO PARA RELALIZAR UN REPORTE
      */
-    public function lista_pdf()
+    public function informes()
     {
         $this->_view->assign("x", $this->_sql->listaPfcPdf());
         $paginador = new Paginador();
@@ -72,9 +72,9 @@ class pfcController extends tutorasController
     /**
      * MUESTRA UNA LISTA DE PLANES DE FORTALECIMIENTO COMUNITARIO QUE ESTAN LISTO PARA RELALIZAR CAMBIOS EN ELLOS
      */
-    public function lista_pfc()
+    public function lista()
     {
-        $this->_view->renderizar("listaspfc");
+        $this->_view->renderizar("lista");
     }
     public function pdf()
     {

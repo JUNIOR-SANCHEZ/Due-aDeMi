@@ -12,7 +12,7 @@ class ninasController extends tutorasController
     {
         if (!$this->_acl->permiso("add_nina")) {$this->redireccionar();}
         $this->_view->setJs(array('validacion', 'ajax', 'img'));
-        $this->_view->renderizar("registro", "ninas");
+        $this->_view->renderizar("nuevo", "ninas");
     }
     /**
      * LISTA PARA LOS PDF DISPONIBLES
@@ -74,7 +74,7 @@ class ninasController extends tutorasController
             echo "Error Processing Request";
         }
     }
-    public function pdf()
+    public function pdf($id)
     {
         $pdf = new MyPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
@@ -100,7 +100,7 @@ class ninasController extends tutorasController
         $pdf->SetFont('dejavusans', '', 14, '', true);
         $pdf->AddPage();
         $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
-        $dato = $this->_sql->ninaView(75);
+        $dato = $this->_sql->ninas($id);
         ob_start();
         ?>
         <style>

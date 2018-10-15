@@ -4,7 +4,6 @@ class pfcModel extends Model
     public function __construct()
     {
         parent::__construct();
-
     }
     public function listaPfcPdf()
     {
@@ -21,27 +20,16 @@ class pfcModel extends Model
         $stmt = $this->_db->query("SELECT u.`id`, CONCAT(u.`apellidos`,' ',u.`nombres`) AS nombres, r.`role` FROM usuarios u, roles r WHERE u.`role` = r.`id_role`;");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function nuevoPfc(
-        $pfc,
-        $obj,
-        $inter,
-        $segui,
-        $respo
-    ) {
+    public function nuevoPfc($pfc, $obj, $inter, $segui, $respo)
+    {
         try {
             $this->_db->beginTransaction();
-            /**
-             * INSERTAR EN TABLA DATOS_PFC
-             */ 
             $sql = "INSERT INTO pfc
             VALUES
             (NULL, :nombre, :canton, :parroquia, :num_fami, :num_nna, :fecha_elab, :fecha_eval, :diag_part_comu, :obj_gen, :obj_esp,:nina );";
             $stmt = $this->_db->prepare($sql);
             $stmt->execute($pfc);
             $lastPfc = $this->_db->lastInsertId();
-            /**
-             * 
-             */
             $sql = "INSERT INTO pfc_intervenciones VALUES (NULL,:meta,:indicador,:actividad,:tiempo,:recurso,:responsable,$lastPfc);";
             $stmt = $this->_db->prepare($sql);
             foreach ($inter as $item) {
@@ -54,9 +42,6 @@ class pfcModel extends Model
                     ":responsable" => $item["responsable"],
                 ));
             }
-            /**
-             * 
-             */
             $sql = "INSERT INTO pfc_seguimientos VALUES (NULL,:actividad,:dificultad,:resultado,:observacion,$lastPfc);";
             $stmt = $this->_db->prepare($sql);
             foreach ($segui as $item) {
@@ -67,18 +52,14 @@ class pfcModel extends Model
                     ":observacion" => $item["observacion"],
                 ));
             }
-            /**
-             * 
-             */
             $sql = "INSERT INTO pfc_responsables VALUES (NULL, :nombres,:apellidos, :rol, $lastPfc);";
             $stmt = $this->_db->prepare($sql);
             foreach ($respo as $item) {
                 $stmt->execute(array(
-                    ":nombres" => $item["nombre"] ,
-                    ":apellidos" =>$item["apellido"],
-                    ":rol" => $item["rol"]
+                    ":nombres" => $item["nombre"],
+                    ":apellidos" => $item["apellido"],
+                    ":rol" => $item["rol"],
                 ));
-
             }
             $this->_db->commit();
             return true;

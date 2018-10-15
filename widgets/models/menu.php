@@ -1,8 +1,6 @@
 <?php
-
 class menuModelWidget extends Model
 {
-
     private $_registry;
     private $_acl;
     public function __construct()
@@ -11,7 +9,6 @@ class menuModelWidget extends Model
         $this->_registry = Registry::getInstancia();
         $this->_acl = $this->_registry->_acl;
     }
-
     public function getmenu($menu)
     {
         $menus["sidenav"] = array();
@@ -146,16 +143,6 @@ class menuModelWidget extends Model
                 "title" => "Registrar nuevo usuario",
                 "icon" => " fa-user-plus",
                 "link" => BASE_URL . "usuarios/registro",
-                "sub-menu" => array(),
-            );
-        }
-
-        if (false) {
-            $menus["sidenav"][] = array(
-                "id" => "pgf",
-                "title" => "P A I N A ",
-                "icon" => "",
-                "link" => BASE_URL . "tutoras/docs/tipoDoc/pia",
                 "sub-menu" => array(),
             );
         }

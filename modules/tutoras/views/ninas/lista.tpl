@@ -24,7 +24,7 @@
                         <td>{$y["apellidos"]}</td>
                         <td>{$y["fecha_ingreso"]}</td>
                         <td>{$y["nombres"]}</td>
-                        <td><a target="_blank" href="{$_layoutParams.root}tutoras/ninas/pdf/{$y['id_nina']}" class="btn btn-info">PDF</a></td>
+                        <td><a class="btn btn-info">PDF</a></td>
                     </tr>
                     {/foreach}
                 </table>

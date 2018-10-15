@@ -25,6 +25,14 @@ class ninasController extends tutorasController
         $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
         $this->_view->renderizar("informes");
     }
+    public function lista()
+    {
+        $this->_view->assign("x", $this->_sql->listaNinaPdf());
+        $paginador = new Paginador();
+        $this->_view->assign('x', $paginador->paginar($this->_sql->listaNinaPdf(), false));
+        $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
+        $this->_view->renderizar("lista");
+    }
     public function nuevaNina()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {

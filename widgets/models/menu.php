@@ -14,7 +14,7 @@ class menuModelWidget extends Model
         $menus["sidenav"] = array();
         if ($this->_acl->permiso("add_nina")) {
             $menus["sidenav"][] = array(
-                "id" => "dir_nna",
+                "id" => "nna",
                 "title" => "Ficha de ingreso NNA",
                 "icon" => "fa-child",
                 "sub-menu" => array(
@@ -29,6 +29,12 @@ class menuModelWidget extends Model
                         "title" => "Informe",
                         "icon" => "fa-bookmark",
                         "link" => BASE_URL . "tutoras/ninas/informe",
+                    ),
+                    array(
+                        "id" => "nna_lista",
+                        "title" => "Lista",
+                        "icon" => "fa-bookmark",
+                        "link" => BASE_URL . "tutoras/ninas/lista",
                     ),
                 ),
             );

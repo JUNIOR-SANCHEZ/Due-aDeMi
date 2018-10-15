@@ -41,15 +41,15 @@ class menuModelWidget extends Model
         }
         if ($this->_acl->permiso("add_pfc")) {
             $menus["sidenav"][] = array(
-                "id" => "dir_pfc",
+                "id" => "pfc",
                 "title" => "P F C",
                 "icon" => "fa-file",
                 "sub-menu" => array(
                     array(
                         "id" => "pfc_nuevo",
-                        "title" => "Nueva PFC",
+                        "title" => "Nuevo",
                         "icon" => "fa-bookmark",
-                        "link" => BASE_URL . "tutoras/PFC",
+                        "link" => BASE_URL . "tutoras/pfc",
                     ),
                     array(
                         "id" => "pfc_informe",
@@ -58,7 +58,7 @@ class menuModelWidget extends Model
                         "link" => BASE_URL . "tutoras/PFC/informe",
                     ), 
                     array(
-                        "id" => "pfc_nuevo",
+                        "id" => "pfc_lista",
                         "title" => "Lista",
                         "icon" => "fa-bookmark",
                         "link" => BASE_URL . "tutoras/PFC/lista",

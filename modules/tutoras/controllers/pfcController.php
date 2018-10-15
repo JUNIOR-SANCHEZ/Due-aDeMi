@@ -11,7 +11,7 @@ class pfcController extends tutorasController
     {
         $this->_view->setJs(array("ajax"));
         $this->_view->assign("nina", $this->_sql->nina());
-        $this->_view->renderizar("registro", "pfc");
+        $this->_view->renderizar("nuevo", "pfc","pfc_nuevo");
     }
     /**
      * MUESTRA UNA LISTA DE PLANES DE FORTALECIMIENTO COMUNITARIO QUE ESTAN LISTO PARA RELALIZAR UN REPORTE
@@ -22,14 +22,14 @@ class pfcController extends tutorasController
         $paginador = new Paginador();
         $this->_view->assign('x', $paginador->paginar($this->_sql->listaPfcPdf(), false));
         $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
-        $this->_view->renderizar("informes");
+        $this->_view->renderizar("informes","pfc","pfc_informe");
     }
     /**
      * MUESTRA UNA LISTA DE PLANES DE FORTALECIMIENTO COMUNITARIO QUE ESTAN LISTO PARA RELALIZAR CAMBIOS EN ELLOS
      */
     public function lista()
     {
-        $this->_view->renderizar("lista");
+        $this->_view->renderizar("lista","pfc","pfc_lista");
     }
     /**
      * FUNCION QUE PERMITE REGITRA UN PLAN DE FORTALECIMIENTO COMUNITARIO

@@ -25,7 +25,7 @@ $(document).ready(function () {
         form.intervencion = interv;
         form.seguimiento = segui;
         form.responsable = respon;
-        if(campos()){
+        if (validacion()==true && campos()==true){
             $.post(url, form, function (response) {
                 if (response == true) {
                     alert("Registro exitos");
@@ -72,4 +72,17 @@ $(document).ready(function () {
         respon.push(data)
         $(this)[0].reset();
     });
+    /**
+     * 
+     */
+    $('#form-area').on("submit", function (e) 
+    {
+        e.preventDefault();
+        var data = $(this).serializeFormJSON();
+        
+        area.push(data)
+        $(this)[0].reset();
+        
+    });
+
 })

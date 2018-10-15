@@ -36,7 +36,7 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-user"></i>
                                                                                 </div>
-                                                                                <input type="text" name="nombre"
+                                                                                <input type="text" name="nombre" id="nombres"
                                                                                     placeholder="Nombres" class="form-control"
                                                                                     required>
                                                                             </div>
@@ -49,7 +49,7 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-user"></i>
                                                                                 </div>
-                                                                                <select name="nina" class="form-control"
+                                                                                <select name="nina" class="form-control"  id="Nnina"
                                                                                     required="required">
                                                                                     <option value="">Seleccione:</option>
                                                                                     {foreach item=list from=$nina}
@@ -70,10 +70,12 @@
                                                                                 <div class="input-group-addon">
                                                                                     <!-- <i class="fa fa-user"></i> -->
                                                                                 </div>
-                                                                                <input type="text" name="canton"
+                                                                                
+                                                                                <input type="text" name="canton" id="Canton"
                                                                                     placeholder="Cantón" class="form-control"
                                                                                     required>
                                                                             </div>
+                                                                            <span class="help-block"></span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
@@ -83,7 +85,7 @@
                                                                                 <div class="input-group-addon">
                                                                                     <!-- <i class="fa fa-user"></i> -->
                                                                                 </div>
-                                                                                <input type="text" name="parroquia"
+                                                                                <input type="text" name="parroquia" id="Parroquia"
                                                                                     placeholder="Parroquia" class="form-control"
                                                                                     required>
                                                                             </div>
@@ -101,9 +103,18 @@
                                                                                 <div class="input-group-addon">
                                                                                     #
                                                                                 </div>
-                                                                                <input type="text" name="nro_nna"
-                                                                                    placeholder="" class="form-control"
-                                                                                    required>
+                                                                                <select name="select" class="form-control" id="NninaC"
+                                                                                    required="required">
+                                                                                    <option value="">Seleccione</option>
+                                                                                    <option value="">1</option>
+                                                                                    <option value="">2</option>
+                                                                                    <option value="">3</option>
+                                                                                    <option value="">4</option>
+                                                                                    <option value="">5</option>
+                                                                                    
+                                                                                    </option>
+                                                                                    
+                                                                                </select>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -117,8 +128,16 @@
                                                                                 <div class="input-group-addon">
                                                                                     #
                                                                                 </div>
-                                                                                <input type="text" name="nro_familia"
-                                                                                    class="form-control" required>
+                                                                                <select name="select" class="form-control" id="NninaF"
+                                                                                    required="required">
+                                                                                    <option value="">Seleccione:</option>
+                                                                                    <option value="">1</option>
+                                                                                    <option value="">2</option>
+                                                                                    <option value="">3</option>
+                                                                                    <option value="">4</option>
+                                                                                    <option value="">5</option> 
+                                                                                    </option>
+                                                                                </select>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -133,7 +152,7 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-calendar"></i>
                                                                                 </div>
-                                                                                <input type="text" name="fecha_elaboracion"
+                                                                                <input type="text" name="fecha_elaboracion" id="FechaElab"
                                                                                     class="form-control pull-right" id="datepicker-elaboracion">
                                                                             </div>
                                                                         </div>
@@ -148,7 +167,7 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-calendar"></i>
                                                                                 </div>
-                                                                                <input type="text" name="fecha_evaluacion"
+                                                                                <input type="text" name="fecha_evaluacion" id="FechaProx"
                                                                                     class="form-control pull-right" id="datepicker-evaluacion">
                                                                             </div>
                                                                         </div>
@@ -180,22 +199,30 @@
                                                                         <label for="">Diagnostoco participativo de
                                                                             la
                                                                             comunidad::</label>
-                                                                        <textarea name="diag_part_comunidad" class="form-control"
-                                                                            rows="3" required="required"></textarea>
+                                                                            <div>
+                                                                                <textarea name="diag_part_comunidad" class="form-control" id="DianostPart"
+                                                                                rows="3" required="required"></textarea>
+                                                                            </div>
+                                                                       
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label for="">Objetivo general del plan</label>
-                                                                        <textarea name="obj_general" class="form-control"
+                                                                        <div>
+                                                                            <textarea name="obj_general" class="form-control" id="ObjGeneral"
                                                                             rows="3" required="required"></textarea>
+                                                                        </div>
+                                                                        
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                         <label for="">Objetivo Especificos</label>
-                                                                        <textarea name="obj_especificos" class="form-control"
+                                                                        <div>
+                                                                            <textarea name="obj_especificos" class="form-control" id="ObjEspe"
                                                                             rows="3" required="required"></textarea>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -224,33 +251,45 @@
                                                                 <div class=" col-md-12">
                                                                     <div class="form-group">
                                                                         <label for="">Metas:</label>
-                                                                        <textarea name="meta" id="input" class="form-control"
+                                                                        <div>
+                                                                        <textarea name="meta"  class="form-control" id="Metas"
                                                                             rows="3" required="required"></textarea>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="">Indicadores:</label>
-                                                                        <textarea name="indicador" id="input" class="form-control"
-                                                                            rows="3" required="required"></textarea>
+                                                                        <div>
+                                                                        <textarea name="indicador"  class="form-control" id="Indicadores"
+                                                                        rows="3" required="required"></textarea>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="">Actividades:</label>
-                                                                        <textarea name="actividad" id="input" class="form-control"
+                                                                        <div>
+                                                                        <textarea name="actividad" class="form-control" id="Actividades"
                                                                             rows="3" required="required"></textarea>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="">Tiempos:</label>
-                                                                        <textarea name="tiempo" id="input" class="form-control"
+                                                                        <div>
+                                                                        <textarea name="tiempo"  class="form-control" id="Tiempo"
                                                                             rows="3" required="required"></textarea>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="">Recursos:</label>
-                                                                        <textarea name="recurso" id="input" class="form-control"
+                                                                        <div>
+                                                                        <textarea name="recurso" class="form-control" id="Recursos"
                                                                             rows="3" required="required"></textarea>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="">Responsables:</label>
-                                                                        <textarea name="responsable" id="input" class="form-control"
+                                                                        <div>
+                                                                        <textarea name="responsable" class="form-control" id="Responsables"
                                                                             rows="3" required="required"></textarea>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
 

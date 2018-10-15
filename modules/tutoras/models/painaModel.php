@@ -23,6 +23,11 @@ class painaModel extends Model
         $stmt = $this->_db->query("Select p.*,n.nombres,apellidos From paina p, ninas n where p.nina=n.id_nina And id_paina = $id;");
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
+    public function Tutoras($id)
+    {
+        $stmt = $this->_db->query("SELECT * FROM usuarios WHERE role=$id;");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function nina()
     {
         $stmt = $this->_db->query("SELECT * FROM ninas;");

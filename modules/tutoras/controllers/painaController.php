@@ -12,8 +12,9 @@ class painaController extends tutorasController
 
     public function index()
     {
-        $this->_view->setJs(array("ajax"));
+        $this->_view->setJs(array("validacion","ajax"));
         $this->_view->assign('nina', $this->_paina->nina());
+        $this->_view->assign('tutoras', $this->_paina->Tutoras(5));
         $area_acomp = $this->push_array($this->_paina->area_acomp_des_personal(), $this->_paina->area_acomp_des_social());
         $this->_view->assign('nina', $this->_paina->nina());
         $this->_view->assign('desarrollo_pers', $area_acomp);

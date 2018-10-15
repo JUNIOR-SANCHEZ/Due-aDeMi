@@ -4,11 +4,15 @@
     <div id="contenedor">
         <div class="box box-primary">
             <div class="box-header ">
-                <h3 class="box-title"><strong>Lista PFC (PLAN DE FORTALECIMIENTO COMUNITARIO) </strong></h3>
-                
+                <h3 class="box-title"><strong>Lista Plan Familiar Comunitario</strong></h3>
+               
+
             </div>
             <!-- /.box-header -->
+
             <div class="box-body no-padding">
+
+
                 <table class="table">
                     <tr>
                         <th>Nombre de la niña</th>
@@ -16,11 +20,11 @@
                         <th>Proxima Evaluacion</th>
                         <th>Profesionales</th>
                     </tr>
-                
+                  
                 </table>
             </div>
+            <!-- /.box-body -->
         </div>
-        <!-- /.box-body -->
     </div>
 </div>
 <!-- /.col -->

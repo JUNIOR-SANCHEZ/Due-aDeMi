@@ -154,6 +154,10 @@ EOD;
         $pdf->Output('example_001.pdf', 'I');
 
 
-
+       
+    }
+    public function lista_pfc()
+    {
+        $this->_view->renderizar("lista_pfc");
     }
 }

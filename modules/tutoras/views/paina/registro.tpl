@@ -37,7 +37,7 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-user"></i>
                                                                                 </div>
-                                                                                <input type="text" name="famila"
+                                                                                <input type="text" name="famila" id="Familia"
                                                                                     placeholder="Familia" class="form-control">
                                                                             </div>
                                                                         </div>
@@ -49,10 +49,10 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-user"></i>
                                                                                 </div>
-                                                                                <select name="nina" class="form-control">
-                                                                                    <option value="0">Seleccione</option>
+                                                                                <select name="nina" id="NinaAdolecente" class="form-control" >
+                                                                                    <option value="0" selected>Seleccione</option>
                                                                                     {foreach item=list from=$nina}
-                                                                                    <option value="{$list['id_nina']}">{$list['nombres']}
+                                                                                    <option  value="{$list['id_nina']}">{$list['nombres']}
                                                                                         {$list['apellidos']}</option>
                                                                                     {/foreach}
                                                                                 </select>
@@ -66,7 +66,7 @@
                                                                                 <div class="input-group-addon">
                                                                                     <!-- <i class="fa fa-user"></i> -->
                                                                                 </div>
-                                                                                <input type="text" name="etnia"
+                                                                                <input type="text" name="etnia" id="etnia"
                                                                                     placeholder="Etnia" class="form-control">
                                                                             </div>
                                                                         </div>
@@ -78,8 +78,8 @@
                                                                                 <div class="input-group-addon">
                                                                                     <!-- <i class="fa fa-user"></i> -->
                                                                                 </div>
-                                                                                <input type="text" name="causa_acogimiento"
-                                                                                    placeholder="Causa" class="form-control">
+                                                                                <input type="text" name="causa_acogimiento" 
+                                                                                id="cAcogimiento" placeholder="Causa" class="form-control">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -95,7 +95,7 @@
                                                                                     <i class="fa fa-calendar"></i>
                                                                                 </div>
                                                                                 <input type="text" name="fecha_elaboracion"
-                                                                                    class="form-control pull-right" id="datepicker-elaboracion">
+                                                                                    class="form-control pull-right" id="FechaElaboracion" id="datepicker-elaboracion">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -107,7 +107,7 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i class="fa fa-calendar"></i>
                                                                                 </div>
-                                                                                <input type="text" name="fecha_evaluacion"
+                                                                                <input type="text" name="fecha_evaluacion"  id="FechapEvaluacion"
                                                                                     class="form-control pull-right" id="datepicker-evaluacion">
                                                                             </div>
                                                                         </div>
@@ -123,8 +123,14 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i></i>
                                                                                 </div>
-                                                                                <input type="text" name="profesional"
-                                                                                    placeholder="Profesional" class="form-control">
+                                                                                <select name="responsable" id="Responsable" class="form-control" >
+                                                                                    <option value="0" selected>Seleccione</option>
+                                                                                    {foreach item=list from=$tutoras}
+                                                                                    <option  value="{$list['id']}" data-cedula="{$list['cedula']}">{$list['nombres']}
+                                                                                        {$list['apellidos']}</option>
+                                                                                    {/foreach}
+                                                                                </select>
+                                                                                
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -135,8 +141,8 @@
                                                                                 <div class="input-group-addon">
                                                                                     <i></i>
                                                                                 </div>
-                                                                                <input type="text" name="cedula"
-                                                                                    placeholder="Cedula" class="form-control" id="cedula"
+                                                                                <input disabled type="text" name="cedula"
+                                                                                    placeholder="Cedula" class="form-control disabled " id="cedula"
                                                                                     required>
                                                                             </div>
                                                                         </div>
@@ -165,12 +171,12 @@
                                             </h4>
                                         </div>
                                         <div id="objetivo_general" class="panel-collapse collapse">
-                                            <div class="box-body">
+                                            <div class="box-body" >
                                                 <div class="row">
                                                     <div class="col-md-10 col-md-offset-1">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <textarea name="obj_general" id="" rows="5" class="form-control"></textarea>
+                                                                <textarea placeholder="De acuerdo a la norma tecnica tiene 15 a 30 dias para presentar el PAINA, guarde el registro y luego continue completando..00000"    name="obj_general"  rows="5" class="form-control"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -289,8 +295,13 @@
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label for="">Responsable:</label>
-                                                                            <textarea name="act_responsable" id="" rows="5"
-                                                                                class="form-control"></textarea>
+                                                                                <select name="responsable" id="Responsable" class="form-control" >
+                                                                                    <option value="0" selected>Seleccione</option>
+                                                                                    {foreach item=list from=$tutoras}
+                                                                                    <option  value="{$list['id']}">{$list['nombres']}
+                                                                                        {$list['apellidos']}</option>
+                                                                                    {/foreach}
+                                                                                </select>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">

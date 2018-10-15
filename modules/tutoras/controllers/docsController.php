@@ -11,7 +11,7 @@ class docsController extends tutorasController
 
     public function index()
     {
-        $this->?_view->assign("titulo","nuevo titulo");
+        $this->_view->assign("titulo","nuevo titulo");
         $this->_view->renderizar("nuevo");
     }
     /**

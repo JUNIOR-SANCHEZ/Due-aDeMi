@@ -58,6 +58,24 @@ class pfcController extends tutorasController
             exit;
         }
     }
+    /**
+     * MUESTRA UNA LISTA DE PLANES DE FORTALECIMIENTO COMUNITARIO QUE ESTAN LISTO PARA RELALIZAR UN REPORTE
+     */
+    public function lista_pdf()
+    {
+        $this->_view->assign("x", $this->_sql->listaPfcPdf());
+        $paginador = new Paginador();
+        $this->_view->assign('x', $paginador->paginar($this->_sql->listaPfcPdf(), false));
+        $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
+        $this->_view->renderizar("informes");
+    }
+    /**
+     * MUESTRA UNA LISTA DE PLANES DE FORTALECIMIENTO COMUNITARIO QUE ESTAN LISTO PARA RELALIZAR CAMBIOS EN ELLOS
+     */
+    public function lista_pfc()
+    {
+        $this->_view->renderizar("listaspfc");
+    }
     public function pdf()
     {
         $pdf = new MyPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -120,21 +138,10 @@ class pfcController extends tutorasController
             </tr>
         </table>
         <?php
-$html = ob_get_clean();
+        $html = ob_get_clean();
         ob_clean();
         $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
         $pdf->Output('example_001.pdf', 'I');
     }
-    public function lista_pdf()
-    {
-        $this->_view->assign("x", $this->_sql->listaPfcPdf());
-        $paginador = new Paginador();
-        $this->_view->assign('x', $paginador->paginar($this->_sql->listaPfcPdf(), false));
-        $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
-        $this->_view->renderizar("informes");
-    }
-    public function lista_pfc()
-    {
-        $this->_view->renderizar("listaspfc");
-    }
+
 }

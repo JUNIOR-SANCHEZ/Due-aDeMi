@@ -2,7 +2,8 @@
 
 require_once ROOT . "libs" . DS . "smarty" . DS . "libs" . DS . "Smarty.class.php";
 
-class View extends Smarty {
+class View extends Smarty
+{
 
     private $_request;
     private $_js;
@@ -13,9 +14,11 @@ class View extends Smarty {
     private $_jsPlugin;
     private $_cssPlugin;
     private static $_item;
+    private static $_subitem;
     private $_widget;
 
-    public function __construct(Request $peticion, ACL $_acl) {
+    public function __construct(Request $peticion, ACL $_acl)
+    {
         parent::__construct();
         $this->_request = $peticion;
         $this->_js = array();
@@ -25,7 +28,8 @@ class View extends Smarty {
         $this->_rutas = array();
         $this->_jsPlugin = array();
         $this->_cssPlugin = array();
-        self::$_item = "";
+        self::$_item = null;
+        self::$_subitem = null;
 
         $modulo = $this->_request->getModulo();
         $controlador = $this->_request->getControlador();
@@ -39,14 +43,21 @@ class View extends Smarty {
             $this->_rutas["css"] = BASE_URL . "/views/" . $controlador . '/css/';
         }
     }
-
-    public function getViewId() {
+    public static function getViewId()
+    {
         return self::$_item;
     }
-
-    public function renderizar($vista, $item = false, $noLayout = false) {
+    public static function getSubViewId()
+    {
+        return self::$_subitem;
+    }
+    public function renderizar($vista, $item = false, $subitem = false, $noLayout = false)
+    {
         if ($item) {
             self::$_item = $item;
+        }
+        if ($subitem) {
+            self::$_subitem = $subitem;
         }
         $this->template_dir = ROOT . "views" . DS . "layout" . DS . $this->_template . DS;
         $this->config_dir = ROOT . "views" . DS . "layout" . DS . $this->_template . DS . "configs" . DS;
@@ -57,7 +68,7 @@ class View extends Smarty {
             $js = $this->_js;
         }
         $css = array();
-        if(count($this->_css)){
+        if (count($this->_css)) {
             $css = $this->_css;
         }
         $params = array(
@@ -91,9 +102,9 @@ class View extends Smarty {
             'icheck_js' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/plugins/iCheck/icheck.min.js',
             'demo_js' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/dist/js/demo.js',
             'bower_components' => BASE_URL . 'views/layout/' . DEFAULT_LAYOUT . '/bower_components/',
-            
+
             'js' => $js,
-            'css'=> $css,
+            'css' => $css,
             'jsPlugin' => $this->_jsPlugin,
             'cssPlugin' => $this->_cssPlugin,
             'root' => BASE_URL,
@@ -101,7 +112,7 @@ class View extends Smarty {
                 'app_name' => APP_NAME,
                 'app_slogan' => APP_SLOGAN,
                 'app_company' => APP_COMPANY,
-            )
+            ),
         );
         if (is_readable($this->_rutas["view"] . $vista . ".tpl")) {
             if ($noLayout) {
@@ -121,8 +132,8 @@ class View extends Smarty {
         $this->assign("_layoutParams", $params);
         $this->display("template.tpl");
     }
-
-    public function setJs($js) {
+    public function setJs($js)
+    {
 
         if (is_array($js) && count($js)) {
             for ($i = 0; $i < count($js); $i++) {
@@ -132,9 +143,9 @@ class View extends Smarty {
             throw new Exception("Error el parametro enviado no es un array");
         }
     }
+    public function setCss($css)
+    {
 
-    public function setCss( $css) {
-        
         if (is_array($css) && count($css)) {
             for ($i = 0; $i < count($css); $i++) {
                 $this->_css[] = $this->_rutas["css"] . $css[$i] . '.css';
@@ -143,15 +154,14 @@ class View extends Smarty {
             throw new Exception("Error el parametro enviado no es un array");
             exit;
         }
-       
+
     }
-
-    public function setTemplate($template) {
-
+    public function setTemplate($template)
+    {
         $this->_template = (string) $template;
     }
-
-    public function setJsPlugin(array $js) {
+    public function setJsPlugin(array $js)
+    {
         if (is_array($js) && count($js)) {
             for ($i = 0; $i < count($js); $i++) {
                 $this->_jsPlugin[] = BASE_URL . "public/js/" . $js[$i] . ".js";
@@ -160,8 +170,8 @@ class View extends Smarty {
             throw new Exception("Error de js plugin");
         }
     }
-
-    public function setCssPlugin(array $css) {
+    public function setCssPlugin(array $css)
+    {
         if (is_array($css) && count($css)) {
             for ($i = 0; $i < count($css); $i++) {
                 $this->_cssPlugin[] = BASE_URL . "public/css/" . $js[$i] . ".css";
@@ -171,7 +181,8 @@ class View extends Smarty {
         }
     }
 
-    public function widget($widget, $method, $options = array()) {
+    public function widget($widget, $method, $options = array())
+    {
         if (!is_array($options)) {
             $options = array($options);
         }
@@ -197,7 +208,8 @@ class View extends Smarty {
     }
     //OBTENEMOS EL ARCHIVO DONDE SE ENCUENTRA LA CONFIGURACION DE LOS LAYOUT E INCLUIREMOS
     //ESTE ARCHIVO PARA OCUPARLA EN LA CLASE
-    public function getLayoutPosition() {
+    public function getLayoutPosition()
+    {
         if (is_readable(ROOT . "views" . DS . "layout" . DS . $this->_template . DS . "configs.php")) {
             include_once ROOT . "views" . DS . "layout" . DS . $this->_template . DS . "configs.php";
             return get_layout_positions();
@@ -205,22 +217,23 @@ class View extends Smarty {
         throw new Exception("Error configuracion layout");
     }
     //DEVOLVERA LOS WIDGES CONFIGURADOS
-    public function getWidgets() {
+    public function getWidgets()
+    {
         $widgets = array(
             "menu-top" => array(
-                "config" => $this->widget("menu", "getConfigs",array("top")),
-                "content" => array("menu", "getMenu",array("top","top"))
+                "config" => $this->widget("menu", "getConfigs", array("top")),
+                "content" => array("menu", "getMenu", array("top", "top")),
             ),
             "menu-sidenav" => array(
-                "config" => $this->widget("menu", "getConfigs",array("sidenav")),
-                "content" => array("menu", "getMenu",array("sidenav","sidenav"))
+                "config" => $this->widget("menu", "getConfigs", array("sidenav")),
+                "content" => array("menu", "getMenu", array("sidenav", "sidenav")),
             ),
             "footer" => array(
-                "config" => $this->widget("footer", "getConfigs",array("footer")),
-                "content" => array("footer", "getFooter",array(array(),"footer"))
-            )
+                "config" => $this->widget("footer", "getConfigs", array("footer")),
+                "content" => array("footer", "getFooter", array(array(), "footer")),
+            ),
         );
- 
+
         $position = $this->getLayoutPosition();
         $keys = array_keys($widgets);
         foreach ($keys as $k) {
@@ -231,10 +244,9 @@ class View extends Smarty {
                     //VERIFICAR SI ESTA HABILITADO A LA VISTA
                     if ($widgets[$k]["config"]["show"] === "all" || in_array(self::$_item, $widgets[$k]["config"]["show"])) {
                         //LLENA LA POSICION DEL LAYOUT
-                        if(isset($this->_widget[$k])){
-                            $widgets[$k]["content"][2]= $this->_widget[$k];
+                        if (isset($this->_widget[$k])) {
+                            $widgets[$k]["content"][2] = $this->_widget[$k];
                         }
-                        
                         $position[$widgets[$k]["config"]["position"]][] = $this->getWidgetConent($widgets[$k]["content"]);
                     }
                 }
@@ -243,7 +255,8 @@ class View extends Smarty {
         return $position;
     }
     //VERIFICA SI SE ESTA ENVIANDO EL WIDGET Y EL METODO
-    public function getWidgetConent(array $content) {
+    public function getWidgetConent(array $content)
+    {
         if (!isset($content[0]) || !isset($content[1])) {
             throw new Exception("Error contenido widget");
             return;
@@ -253,9 +266,10 @@ class View extends Smarty {
         }
         return $this->widget($content[0], $content[1], $content[2]);
     }
-    
-    public function setWidgetOptions($key,$option){
-        $this->_widget[$key]=$option;
+
+    public function setWidgetOptions($key, $option)
+    {
+        $this->_widget[$key] = $option;
     }
 
 }

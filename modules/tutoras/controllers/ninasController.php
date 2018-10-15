@@ -12,7 +12,7 @@ class ninasController extends tutorasController
     {
         if (!$this->_acl->permiso("add_nina")) {$this->redireccionar();}
         $this->_view->setJs(array('validacion', 'ajax', 'img'));
-        $this->_view->renderizar("nuevo", "ninas");
+        $this->_view->renderizar("nuevo", "nna","nna_nuevo");
     }
     /**
      * LISTA PARA LOS PDF DISPONIBLES
@@ -23,7 +23,7 @@ class ninasController extends tutorasController
         $paginador = new Paginador();
         $this->_view->assign('x', $paginador->paginar($this->_sql->listaNinaPdf(), false));
         $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
-        $this->_view->renderizar("informes");
+        $this->_view->renderizar("informes","nna","nna_informe");
     }
     public function lista()
     {
@@ -31,7 +31,7 @@ class ninasController extends tutorasController
         $paginador = new Paginador();
         $this->_view->assign('x', $paginador->paginar($this->_sql->listaNinaPdf(), false));
         $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
-        $this->_view->renderizar("lista");
+        $this->_view->renderizar("lista","nna","nna_lista");
     }
     public function nuevaNina()
     {

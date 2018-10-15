@@ -16,7 +16,33 @@ class painaController extends tutorasController
         $area_acomp = $this->push_array($this->_sql->area_acomp_des_personal(), $this->_sql->area_acomp_des_social());
         $this->_view->assign('nina', $this->_sql->nina());
         $this->_view->assign('desarrollo_pers', $area_acomp);
-        $this->_view->renderizar("registro");
+        $this->_view->renderizar("nuevo","paina","paina_nuevo");
+    }
+    public function informe()
+    {
+        $this->_view->assign("l", $this->_sql->listapaina());
+        $this->_view->setJs(array("ajaxlista"));
+        $paginador = new Paginador();
+        $this->_view->assign('l', $paginador->paginar($this->_sql->listapaina(), false));
+        $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
+        $this->_view->renderizar("informe","paina","paina_informe");
+    }
+    public function lista_paina_ajax()
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            # OBTENEMOS EL NUMERO DE PAGINA DEL PAGINADOR
+            $pagina = $this->getInt('pagina');
+            # MUESTRA LOS DATOS DE LAS NIÑAS INGRESADAS
+            $paginador = new Paginador();
+            # ENVIAMOS LLOS REGISTROS DE LA TABLA PFC A LA VISTA UTILIZANDO LA PAGINACION
+            $this->_view->assign('l', $paginador->paginar($this->_sql->listapaina(), $pagina));
+            # ENVIAMOS LA PAGINACION
+            $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
+            # RENDERIZAMOS LA VISTA QUE MOSTRARA EL CONTENIDO DE LA PAGINA
+            $this->_view->renderizar("viewAjax/paina", false, true);
+        } else {
+            throw new Exception("Error Processing Request", 1);
+        }
     }
     public function nuevo_paina()
     {
@@ -50,32 +76,7 @@ class painaController extends tutorasController
             exit;
         }
     }
-    public function lista_paina()
-    {
-        $this->_view->assign("l", $this->_sql->listapaina());
-        $this->_view->setJs(array("ajaxlista"));
-        $paginador = new Paginador();
-        $this->_view->assign('l', $paginador->paginar($this->_sql->listapaina(), false));
-        $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
-        $this->_view->renderizar("listapaina");
-    }
-    public function lista_paina_ajax()
-    {
-        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            # OBTENEMOS EL NUMERO DE PAGINA DEL PAGINADOR
-            $pagina = $this->getInt('pagina');
-            # MUESTRA LOS DATOS DE LAS NIÑAS INGRESADAS
-            $paginador = new Paginador();
-            # ENVIAMOS LLOS REGISTROS DE LA TABLA PFC A LA VISTA UTILIZANDO LA PAGINACION
-            $this->_view->assign('l', $paginador->paginar($this->_sql->listapaina(), $pagina));
-            # ENVIAMOS LA PAGINACION
-            $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
-            # RENDERIZAMOS LA VISTA QUE MOSTRARA EL CONTENIDO DE LA PAGINA
-            $this->_view->renderizar("viewAjax/paina", false, true);
-        } else {
-            throw new Exception("Error Processing Request", 1);
-        }
-    }
+    
     public function pdf($id)
     {
         $pdf = new MyPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);

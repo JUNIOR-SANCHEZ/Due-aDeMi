@@ -16,15 +16,20 @@
                         <th>Nombres de la niña</th>
                         <th>Apellidos de la niña</th>
                         <th>Fecha de ingreso</th>
-                        <th>Tutora</th>
+                        <th style="width: 30px">Datos de identificación</th>
+                        <th style="width: 30px">Datos Informantes</th>
+                        <th style="width: 30px">Descripción de como ingresa</th>
+                        <th style="width: 30px">Datos familiares</th>
                     </tr>
                     {foreach item=y from=$x}
                     <tr>
                         <td>{$y["nombres"]}</td>
                         <td>{$y["apellidos"]}</td>
                         <td>{$y["fecha_ingreso"]}</td>
-                        <td>{$y["nombres"]}</td>
-                        <td><a class="btn btn-info">PDF</a></td>
+                        <td><a class="btn btn-info">Modificar</a></td>
+                        <td ><a class="btn btn-info">Modificar</a></td>
+                        <td ><a class="btn btn-info">Modificar</a></td>
+                        <td ><a class="btn btn-info">Modificar</a></td>
                     </tr>
                     {/foreach}
                 </table>

@@ -6,6 +6,11 @@ class ninasModel extends Model
     {
         parent::__construct();
     }
+    public function listaNinaPdf()
+    {
+        $stmt = $this->_db->query("SELECT * FROM ninas n, ninas_informantes i, ninas_familia f WHERE n.`id_nina`=i.`nina` AND n.`id_nina`=f.`nina` GROUP BY n.`id_nina`;");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function nuevaNina($nna,$info,$fami)
     {
         try{

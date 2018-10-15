@@ -204,4 +204,15 @@ class ninasController extends tutorasController
         $annos = $hoy->diff($cumpleanos);
         return $annos->y;
     }
+    /**
+     * LISTA PARA LOS PDF DISPONIBLES
+     */
+    public function informe()
+    {
+        $this->_view->assign("x", $this->_nina->listaNinaPdf());
+        $paginador = new Paginador();
+        $this->_view->assign('x', $paginador->paginar($this->_nina->listaNinaPdf(), false));
+        $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
+        $this->_view->renderizar("informes");
+    }
 }

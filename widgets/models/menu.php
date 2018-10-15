@@ -17,15 +17,21 @@ class menuModelWidget extends Model
         $menus["sidenav"] = array();
         if ($this->_acl->permiso("add_nina")) {
             $menus["sidenav"][] = array(
-                "id" => "dir_ficha",
+                "id" => "dir_nna",
                 "title" => "Ficha de ingreso NNA",
                 "icon" => "fa-child",
                 "sub-menu" => array(
                     array(
-                        "id" => "ficha_ingreso",
-                        "title" => "Nueva ficha",
+                        "id" => "nna_nuevo",
+                        "title" => "Nuevo",
                         "icon" => "fa-bookmark",
                         "link" => BASE_URL . "tutoras/ninas",
+                    ),
+                    array(
+                        "id" => "nna_informe",
+                        "title" => "Informe",
+                        "icon" => "fa-bookmark",
+                        "link" => BASE_URL . "tutoras/ninas/informe",
                     ),
                 ),
             );
@@ -37,11 +43,17 @@ class menuModelWidget extends Model
                 "icon" => "fa-file",
                 "sub-menu" => array(
                     array(
-                        "id" => "ficha_ingreso",
+                        "id" => "pfc_nuevo",
                         "title" => "Nueva PFC",
                         "icon" => "fa-bookmark",
                         "link" => BASE_URL . "tutoras/PFC",
                     ),
+                    array(
+                        "id" => "pfc_informe",
+                        "title" => "Informes",
+                        "icon" => "fa-bookmark",
+                        "link" => BASE_URL . "tutoras/PFC/lista_pdf",
+                    )
                 ),
             );
         }

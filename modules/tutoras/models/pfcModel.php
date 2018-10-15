@@ -6,7 +6,11 @@ class pfcModel extends Model
         parent::__construct();
 
     }
-
+    public function listaPfcPdf()
+    {
+        $stmt = $this->_db->query("SELECT p.*, n.`apellidos`, n.`nombres` FROM pfc p, pfc_intervenciones i, pfc_responsables r, pfc_seguimientos s, ninas n WHERE p.`id_pfc` = i.`pfc` AND p.`id_pfc` = r.`pfc` AND p.`id_pfc` = s.`pfc` AND p.`nina` = n.`id_nina` GROUP BY p.`id_pfc`;");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function nina()
     {
         $stmt = $this->_db->query("SELECT * FROM ninas;");

@@ -53,7 +53,13 @@ class menuModelWidget extends Model
                         "title" => "Informes",
                         "icon" => "fa-bookmark",
                         "link" => BASE_URL . "tutoras/PFC/lista_pdf",
-                    )
+                    ), 
+                    array(
+                        "id" => "pfc_nuevo",
+                        "title" => "Lista",
+                        "icon" => "fa-bookmark",
+                        "link" => BASE_URL . "tutoras/PFC/listaspfc",
+                    ),
                 ),
             );
         }

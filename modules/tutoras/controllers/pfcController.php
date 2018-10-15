@@ -17,33 +17,34 @@ class pfcController extends tutorasController
      * FUNCION QUE PERMITE REGITRA UN PLAN DE FORTALECIMIENTO COMUNITARIO
      */
     public function nuevoPfc()
-    { 
+    {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            if($this->getInt("guardar") == 1){
-                echo "<pre>";print_r($_POST);
+            if ($this->getInt("guardar") == 1) {
+                echo "<pre>";
+                print_r($_POST);
                 exit;
                 $resp = $this->_sql->nuevoPfc(
                     array(
-                        ":nombre"=>$this->getText("nombre"),
-                        ":canton"=> $this->getText("canton"),
-                        ":parroquia"=>$this->getText("parroquia"),
-                        ":num_fami"=>$this->getText("nro_familia"),
-                        ":num_nna"=>$this->getText("nro_nna"),
-                        ":fecha_elab"=>date("Y/m/d", strtotime($this->getText("fecha_elaboracion"))),
-                        ":fecha_eval"=>date("Y/m/d", strtotime($this->getText("fecha_evaluacion"))),
-                        ":nina"=>$this->getText("nina"),
-                        ":diag_part_comu"=>$this->getText("diag_part_comunidad"),
-                        ":obj_gen"=>$this->getText("obj_general"),
-                        ":obj_esp"=>$this->getText("obj_especificos")
+                        ":nombre" => $this->getText("nombre"),
+                        ":canton" => $this->getText("canton"),
+                        ":parroquia" => $this->getText("parroquia"),
+                        ":num_fami" => $this->getText("nro_familia"),
+                        ":num_nna" => $this->getText("nro_nna"),
+                        ":fecha_elab" => date("Y/m/d", strtotime($this->getText("fecha_elaboracion"))),
+                        ":fecha_eval" => date("Y/m/d", strtotime($this->getText("fecha_evaluacion"))),
+                        ":nina" => $this->getText("nina"),
+                        ":diag_part_comu" => $this->getText("diag_part_comunidad"),
+                        ":obj_gen" => $this->getText("obj_general"),
+                        ":obj_esp" => $this->getText("obj_especificos"),
                     ),
                     array(
-                        
+
                     ),
                     $_POST["intervencion"],
                     $_POST["seguimiento"],
                     $_POST["responsable"]
                 );
-                    
+
                 if (!$resp) {
                     echo false;
                     exit;
@@ -51,7 +52,7 @@ class pfcController extends tutorasController
                 echo true;
                 exit;
             }
-            
+
         } else {
             echo "Error Processing Request";
             exit;
@@ -87,7 +88,7 @@ class pfcController extends tutorasController
         ?>
         <style>
             table{
-                
+
                 border-collapse: collapse;
             }
             table, tr, th, td{
@@ -112,16 +113,14 @@ class pfcController extends tutorasController
             <tr>
                 <th  >Nombres y apellidos de la niña, niño adolescente</th>
                 <td>Lorem ipsum dolor sit amet.</td>
-                
             </tr>
             <tr>
                 <th>Edad</th>
                 <td>Lorem ipsum dolor sit amet.</td>
-                
             </tr>
         </table>
         <?php
-        $html = ob_get_clean();
+$html = ob_get_clean();
         ob_clean();
         $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
         $pdf->Output('example_001.pdf', 'I');
@@ -129,12 +128,13 @@ class pfcController extends tutorasController
     public function lista_pdf()
     {
         $this->_view->assign("x", $this->_sql->listaPfcPdf());
-        // $this->_view->setJs(array(""));
         $paginador = new Paginador();
-        # ENVIAMOS LLOS REGISTROS DE LA TABLA PFC A LA VISTA UTILIANDO LA PAGINACION
         $this->_view->assign('x', $paginador->paginar($this->_sql->listaPfcPdf(), false));
-        # ENVIAMOS LA PAGINACION
         $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
         $this->_view->renderizar("informes");
+    }
+    public function lista_pfc()
+    {
+        $this->_view->renderizar("listaspfc");
     }
 }

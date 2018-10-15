@@ -20,7 +20,7 @@
                                                 <a data-toggle="collapse" data-parent="#accordion" href="#datos-identificacion">
                                                     Datos generales de la comunidad a intervenir
                                                 </a>
-                                            </h4>
+                                          </h4>
                                         </div>
                                         <div id="datos-identificacion" class="panel-collapse collapse in">
                                             <div class="box-body">

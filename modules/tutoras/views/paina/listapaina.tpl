@@ -4,13 +4,8 @@
     <div id="contenedor">
         <div class="box box-primary">
             <div class="box-header ">
-                <h3 class="box-title"><strong>Lista Paina (PROYECTO INTEGRAL DE ATENCION A LA NIÑA, NIÑO Y ADOLESCENTE -
-                        PAINA) </strong></h3>
-                <div class="box-tools">
-                    <ul class="pagination pagination-sm no-margin pull-right">
-                        {if isset($paginador)}{$paginador}{/if}
-                    </ul>
-                </div>
+                <h3 class="box-title"><strong>Lista PFC (PLAN DE FORTALECIMIENTO COMUNITARIO) </strong></h3>
+                
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
@@ -30,6 +25,7 @@
                         <td><a target="_blank" href="{$_layoutParams.root}tutoras/paina/pdf/{$lista['id_paina']}" class="btn btn-info">PDF</a></td>
                     </tr>
                     {/foreach}
+                
                 </table>
             </div>
         </div>

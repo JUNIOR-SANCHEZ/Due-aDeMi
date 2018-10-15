@@ -99,11 +99,18 @@ class menuModelWidget extends Model
                         "icon" => "fa-bookmark",
                         "link" => BASE_URL . "tutoras/paina",
                     ),
+                   
                     array(
                         "id" => "paina_informe",
                         "title" => "Informes",
                         "icon" => "fa-bookmark",
                         "link" => BASE_URL . "tutoras/paina/informe",
+                    ),
+                    array(
+                        "id" => "paina_nuevo",
+                        "title" => "lista",
+                        "icon" => "fa-bookmark",
+                        "link" => BASE_URL . "tutoras/paina/lista",
                     ),
                 ),
             );

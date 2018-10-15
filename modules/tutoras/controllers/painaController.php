@@ -262,4 +262,8 @@ class painaController extends tutorasController
 
         $pdf->Output('nina.pdf', 'I');
     }
+    public function lista()
+{
+    $this->_view->renderizar("lista");
+}
 }

@@ -76,6 +76,7 @@ class pfcController extends tutorasController
             exit;
         }
     }
+    
     public function pdf()
     {
         $pdf = new MyPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);

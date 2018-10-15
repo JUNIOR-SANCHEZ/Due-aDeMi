@@ -1,5 +1,4 @@
 <br>
-<!-- /.col -->
 <div class="col-md-12">
     <div id="contenedor">
         <div class="box box-primary">
@@ -8,13 +7,8 @@
                 <div class="box-tools">
                     {if isset($paginador)}{$paginador}{/if}
                 </div>
-
             </div>
-            <!-- /.box-header -->
-
             <div class="box-body no-padding">
-
-
                 <table class="table">
                     <tr>
                         <th>Nombre de la niña</th>
@@ -29,13 +23,10 @@
                         <td>{$lista["proxima_evaluacion"]}</td>
                         <td>{$lista["profesional"]}</td>
                         <td><a target="_blank" href="{$_layoutParams.root}tutoras/pgf/pdf/{$lista['id_pgf']}" class="btn btn-info">PDF</a></td>
-
                     </tr>
                     {/foreach}
                 </table>
             </div>
-            <!-- /.box-body -->
         </div>
     </div>
 </div>
-<!-- /.col -->

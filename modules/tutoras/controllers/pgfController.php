@@ -13,15 +13,15 @@ class pgfController extends tutorasController
         $area_acomp = $this->push_array($this->_sql->area_acomp_des_personal(), $this->_sql->area_acomp_des_social());
         $this->_view->assign('nina', $this->_sql->nina());
         $this->_view->assign('desarrollo_pers', $area_acomp);
-        $this->_view->renderizar("nuevo");
+        $this->_view->renderizar("nuevo","pgf","pgf_nuevo");
     }
-    public function lista_pgf()
+    public function lista()
     {
         $this->_view->setJs(array("ajaxlista"));
         $paginador = new Paginador();
         $this->_view->assign('l', $paginador->paginar($this->_sql->listapgf(), false));
         $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
-        $this->_view->renderizar("pgflista");
+        $this->_view->renderizar("lista","pgf","pgf_lista");
     }
     public function lista_pgf_ajax()
     {
@@ -96,7 +96,7 @@ class pgfController extends tutorasController
         $pdf->SetFont('dejavusans', '', 14, '', true);
         $pdf->AddPage();
         $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
-        $dato = $this->_sql->Datos_PGF($id);
+        $dato = $this->_sql->pgf($id);
         ob_start();
         ?>
         <style>
@@ -151,23 +151,23 @@ class pgfController extends tutorasController
         </table>
         <div style="height:1px;"></div>
         <table border="1" cellspacing="" cellpadding="5" >
-        <tr>
-            <td colspan="2"><strong> Diagnostico De Situacion</strong></td>
-        </tr>
-        <tr>
-            <td>Familia:  <?=$dato->diag_sit_familia?></td>
-            <td>Equipo:  <?=$dato->diag_sit_equipo?></td>
-        </tr>
+            <tr>
+                <td colspan="2"><strong> Diagnostico De Situacion</strong></td>
+            </tr>
+            <tr>
+                <td>Familia:  <?=$dato->diag_sit_familia?></td>
+                <td>Equipo:  <?=$dato->diag_sit_equipo?></td>
+            </tr>
         </table>
         <p></p>
         <table border="1" cellspacing="" cellpadding="5" >
-        <tr>
-            <td colspan="2"><strong>Objetivo General</strong></td>
-        </tr>
-        <tr>
-            <td>Consensuado con la familia : <?=$dato->obj_gene_familia?></td>
-            <td>Del equipo Consensuado con la familia: <?=$dato->obj_gene_equipo?></td>
-        </tr>
+            <tr>
+                <td colspan="2"><strong>Objetivo General</strong></td>
+            </tr>
+            <tr>
+                <td>Consensuado con la familia : <?=$dato->obj_gene_familia?></td>
+                <td>Del equipo Consensuado con la familia: <?=$dato->obj_gene_equipo?></td>
+            </tr>
         </table>
         <p></p>
         <table border="1" cellspacing="" cellpadding="5" >
@@ -195,7 +195,7 @@ class pgfController extends tutorasController
         </table>
         <p></p>
         <?php
-        $area = $this->_sql->Datos_AREA($dato->id_sql);
+        $area = $this->_sql->area($dato->id_pgf);
         foreach ($area as $item): ?>
         <table border="1" cellspacing="" cellpadding="5" >
             <tr>

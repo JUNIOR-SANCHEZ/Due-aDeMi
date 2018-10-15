@@ -76,7 +76,6 @@ class pfcController extends tutorasController
             exit;
         }
     }
-    
     public function pdf()
     {
         $pdf = new MyPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -144,5 +143,4 @@ class pfcController extends tutorasController
         $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
         $pdf->Output('example_001.pdf', 'I');
     }
-
 }

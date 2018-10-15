@@ -56,7 +56,7 @@ class menuModelWidget extends Model
                         "title" => "Informes",
                         "icon" => "fa-bookmark",
                         "link" => BASE_URL . "tutoras/PFC/informe",
-                    ), 
+                    ),
                     array(
                         "id" => "pfc_lista",
                         "title" => "Lista",
@@ -68,21 +68,21 @@ class menuModelWidget extends Model
         }
         if ($this->_acl->permiso("add_pgf")) {
             $menus["sidenav"][] = array(
-                "id" => "dir_pgf",
+                "id" => "pgf",
                 "title" => "P G F",
                 "icon" => "fa-file",
                 "sub-menu" => array(
                     array(
-                        "id" => "pgf",
-                        "title" => "Nueva PGF",
+                        "id" => "pgf_nuevo",
+                        "title" => "Nuevo",
                         "icon" => "fa-bookmark",
-                        "link" => BASE_URL . "tutoras/PGF",
+                        "link" => BASE_URL . "tutoras/pgf",
                     ),
                     array(
-                        "id" => "pgf_pdf",
+                        "id" => "pgf_lista",
                         "title" => "Informes",
                         "icon" => "fa-bookmark",
-                        "link" => BASE_URL . "tutoras/PGF/lista_pgf",
+                        "link" => BASE_URL . "tutoras/PGF/lista",
                     ),
                 ),
             );
@@ -104,7 +104,7 @@ class menuModelWidget extends Model
                         "title" => "Informes",
                         "icon" => "fa-bookmark",
                         "link" => BASE_URL . "tutoras/paina/informe",
-                    )
+                    ),
                 ),
             );
         }

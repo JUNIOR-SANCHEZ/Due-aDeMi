@@ -6,21 +6,24 @@ class pgfModel extends Model
     {
         parent::__construct();
     }
-    public function Datos_AREA($A)
+    public function pgf($id)
+    {
+        $stmt = $this->_db->query("Select p.*,n.nombres,apellidos From pgf p, ninas n where p.nina=n.id_nina And id_pgf = $id;");
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+    /**
+     * CONSULTA TODOS LOS REGISTRO DEL AREA DE PENDIENDO DEL ID DEL PGF
+     */
+    public function area($id)
     {
         $stmt = $this->_db->query("SELECT a.*, ac.descripcion_area_acomp  FROM pgf p, pgf_area pg,`area` a,area_acomp ac
         WHERE pg.area = a.id_area
         AND p.id_pgf = pg.pgf
         AND ac.id_area_acomp = a.area_acomp
-        AND pg.pgf=$A
+        AND pg.pgf=$id
         GROUP BY a.id_area;
         ");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    public function Datos_PGF($id)
-    {
-        $stmt = $this->_db->query("Select p.*,n.nombres,apellidos From pgf p, ninas n where p.nina=n.id_nina And id_pgf = $id;");
-        return $stmt->fetch(PDO::FETCH_OBJ);
     }
     public function nina()
     {

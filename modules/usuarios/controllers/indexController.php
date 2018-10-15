@@ -23,7 +23,7 @@ class indexController extends usuariosController
         $this->_view->setJs(array('prueba'));
         $this->_view->assign('titulo', 'Usuarios');
         $this->_view->assign('usuarios', $this->_usuarios->getUsuarios($dato));
-        $this->_view->renderizar('index', ' ');
+        $this->_view->renderizar('index', 'usuarios');
     }
     
     public function permisos($usuarioID)

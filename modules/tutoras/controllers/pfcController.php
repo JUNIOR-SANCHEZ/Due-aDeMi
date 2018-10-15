@@ -18,9 +18,9 @@ class pfcController extends tutorasController
      */
     public function informe()
     {
-        $this->_view->assign("x", $this->_sql->listaPfcPdf());
+        $this->_view->assign("x", $this->_sql->pfc());
         $paginador = new Paginador();
-        $this->_view->assign('x', $paginador->paginar($this->_sql->listaPfcPdf(), false));
+        $this->_view->assign('x', $paginador->paginar($this->_sql->pfc(), false));
         $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
         $this->_view->renderizar("informes","pfc","pfc_informe");
     }
@@ -29,6 +29,10 @@ class pfcController extends tutorasController
      */
     public function lista()
     {
+        $paginador = new Paginador();
+        $this->_view->assign('x', $paginador->paginar($this->_sql->pfc(), false));
+        $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
+        $this->_view->renderizar("informes","pfc","pfc_informe");
         $this->_view->renderizar("lista","pfc","pfc_lista");
     }
     /**

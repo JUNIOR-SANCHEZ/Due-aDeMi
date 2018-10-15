@@ -44,6 +44,10 @@ class painaController extends tutorasController
             throw new Exception("Error Processing Request", 1);
         }
     }
+    public function lista()
+    {
+        $this->_view->renderizar("lista","paina","paina_lista");
+    }
     public function nuevo_paina()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
@@ -262,8 +266,5 @@ class painaController extends tutorasController
 
         $pdf->Output('nina.pdf', 'I');
     }
-    public function lista()
-{
-    $this->_view->renderizar("lista");
-}
+   
 }

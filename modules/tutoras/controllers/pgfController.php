@@ -15,13 +15,13 @@ class pgfController extends tutorasController
         $this->_view->assign('desarrollo_pers', $area_acomp);
         $this->_view->renderizar("nuevo","pgf","pgf_nuevo");
     }
-    public function lista()
+    public function informe()
     {
         $this->_view->setJs(array("ajaxlista"));
         $paginador = new Paginador();
         $this->_view->assign('l', $paginador->paginar($this->_sql->listapgf(), false));
         $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
-        $this->_view->renderizar("lista","pgf","pgf_lista");
+        $this->_view->renderizar("informe","pgf","pgf_lista");
     }
     public function lista_pgf_ajax()
     {
@@ -34,6 +34,10 @@ class pgfController extends tutorasController
         } else {
             throw new Exception("Error Processing Request", 1);
         }
+    }
+    public function lista()
+    {
+        $this->_view->renderizar("lista","pgf","pgf_lista");
     }
     public function nuevopgf()
     {

@@ -82,7 +82,13 @@ class menuModelWidget extends Model
                         "id" => "pgf_lista",
                         "title" => "Informes",
                         "icon" => "fa-bookmark",
-                        "link" => BASE_URL . "tutoras/PGF/lista",
+                        "link" => BASE_URL . "tutoras/pgf/informe",
+                    ),
+                    array(
+                        "id" => "pgf_lista",
+                        "title" => "Lista",
+                        "icon" => "fa-bookmark",
+                        "link" => BASE_URL . "tutoras/pgf/lista",
                     ),
                 ),
             );
@@ -107,8 +113,8 @@ class menuModelWidget extends Model
                         "link" => BASE_URL . "tutoras/paina/informe",
                     ),
                     array(
-                        "id" => "paina_nuevo",
-                        "title" => "lista",
+                        "id" => "paina_lista",
+                        "title" => "Lista",
                         "icon" => "fa-bookmark",
                         "link" => BASE_URL . "tutoras/paina/lista",
                     ),
@@ -117,20 +123,19 @@ class menuModelWidget extends Model
         }
         if ($this->_acl->permiso("add_preliminar")) {
             $menus["sidenav"][] = array(
-                "id" => "dir_preliminar",
+                "id" => "preliminar",
                 "title" => "PRELIMINAR",
                 "icon" => "fa-file",
                 "sub-menu" => array(
                     array(
-                        "id" => "paina",
-                        "title" => "Nueva Informe",
+                        "id" => "preliminar_nuevo",
+                        "title" => "Nuevo",
                         "icon" => "fa-bookmark",
                         "link" => BASE_URL . "psicologia/preliminar",
                     ),
                 ),
             );
         }
-
         if ($this->_acl->permiso("admin_access")) {
             $menus["sidenav"][] =
             array(
@@ -152,7 +157,7 @@ class menuModelWidget extends Model
             );
             $menus["sidenav"][] =
             array(
-                "id" => "registro_user",
+                "id" => "registro",
                 "title" => "Registrar nuevo usuario",
                 "icon" => " fa-user-plus",
                 "link" => BASE_URL . "usuarios/registro",

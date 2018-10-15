@@ -12,7 +12,7 @@ class preliminarController extends psicologiaController
     {
         $this->_view->setJs(array("ajax"));
         $this->_view->assign("ninas", $this->_sql->nina());
-        $this->_view->renderizar("nuevo");
+        $this->_view->renderizar("nuevo","preliminar","preliminar_nuevo");
     }
     public function nuevo_archivo()
     {

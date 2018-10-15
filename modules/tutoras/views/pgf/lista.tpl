@@ -3,28 +3,28 @@
     <div id="contenedor">
         <div class="box box-primary">
             <div class="box-header ">
-                <h3 class="box-title"><strong>Lista Plan Global Familiar</strong></h3>
-                <div class="box-tools">
-                    {if isset($paginador)}{$paginador}{/if}
-                </div>
+                <h3 class="box-title"><strong>Plan Global Familiar</strong></h3>
             </div>
             <div class="box-body no-padding">
                 <table class="table">
                     <tr>
                         <th>Nombre de la niña</th>
-                        <th>Fecha Elaboracion</th>
-                        <th>Proxima Evaluacion</th>
-                        <th>Profesionales</th>
+                        <th>Apellidos de la niña</th>
+                        <th>Fecha de ingreso</th>
+                        <th style="width: 30px" >Datos de identificacion</th>
+                        <th style="width: 30px" >Datos informantes</th>
+                        <th style="width: 30px" >Datos de como ingresa</th>
+                        <th style="width: 30px" >Datos Familiares</th>
                     </tr>
-                    {foreach item=lista from=$l}
                     <tr>
-                        <td>{$lista["nombres"]} {$lista["apellidos"]}</td>
-                        <td>{$lista["fecha_elaboracion"]}</td>
-                        <td>{$lista["proxima_evaluacion"]}</td>
-                        <td>{$lista["profesional"]}</td>
-                        <td><a target="_blank" href="{$_layoutParams.root}tutoras/pgf/pdf/{$lista['id_pgf']}" class="btn btn-info">PDF</a></td>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th><a class="btn btn-info">modificar</a></th>
+                        <th><a class="btn btn-info">modificar</a></th>
+                        <th><a class="btn btn-info">modificar</a></th>   
+                        <th><a class="btn btn-info">modificar</a></th>  
                     </tr>
-                    {/foreach}
                 </table>
             </div>
         </div>
